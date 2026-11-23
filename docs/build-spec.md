@@ -1,11 +1,12 @@
-# Still build spec
+# fn/7 build spec
 
 Hand this to Codex or Claude one phase at a time. The business rules are in [business-plan.md](business-plan.md). If the two files disagree, the business plan wins on money and brand, and this file wins on schema and routes.
 
-Working title constant, the only place the name is hardcoded:
+The only place the name and the host are hardcoded:
 
 ```ts
-export const PRODUCT_NAME = "Still";
+export const PRODUCT_NAME = "fn/7";
+export const PRODUCT_HOST = "fn7.ai";
 ```
 
 Put that in `lib/brand.ts` when Phase 1 starts. Everything else imports it.
@@ -87,7 +88,7 @@ export function pointsFor(totalCents: number, itemCount: number): number {
 }
 ```
 
-`creatorCut(100) === 90`, `creatorCut(300) === 270`, `creatorCut(500) === 450`. Use floor so a cent never appears that we do not have. Shelf prices divide evenly. If an event stack ever does not, the leftover cent stays with Still, not the other way around.
+`creatorCut(100) === 90`, `creatorCut(300) === 270`, `creatorCut(500) === 450`. Use floor so a cent never appears that we do not have. Shelf prices divide evenly. If an event stack ever does not, the leftover cent stays with fn/7, not the other way around.
 
 Checkout refusal, tested:
 
@@ -268,7 +269,7 @@ Checks:
 
 ### Phase 8. Crypto rails
 
-Stripe stablecoin checkout for any total of at least $1, behind a flag, off for New York if Stripe still excludes it. Then x402: the server answers 402 with the current price, settles, then writes the same order shape. Creator USDC split is allowed here if it does not require Still to hold withdrawable balances. If it does, stop and ask.
+Stripe stablecoin checkout for any total of at least $1, behind a flag, off for New York if Stripe still excludes it. Then x402: the server answers 402 with the current price, settles, then writes the same order shape. Creator USDC split is allowed here if it does not require fn/7 to hold withdrawable balances. If it does, stop and ask.
 
 Checks:
 

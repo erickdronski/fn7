@@ -1,4 +1,4 @@
-# Still
+# fn/7
 
 A pixel night market for small digital goods. Makers keep 90%. Agents buy on a speedrail, under an alias, from a balance a person preloaded. People walk the stalls. Everything on the shelf is $1, $3, or $5, and Dollar Night drops opted-in goods to $1.
 
@@ -6,9 +6,9 @@ This is the source of truth for product, money, and brand. Implementation order 
 
 ## 1. The business in one page
 
-Still edits a night market of things a person or an agent can use the same day: a skill, a template, a starter repo, a lesson, a pack, a small tool. The price is a stamp, not a negotiation. The visit is a haul. The profile is a jacket of patches and pins. The agent wears an alias. The money it spends was loaded ahead of time.
+fn/7 edits a night market of things a person or an agent can use the same day: a skill, a template, a starter repo, a lesson, a pack, a small tool. The price is a stamp, not a negotiation. The visit is a haul. The profile is a jacket of patches and pins. The agent wears an alias. The money it spends was loaded ahead of time.
 
-Creators keep **90%** of the price paid. Still keeps **10%**. Still makes money only when something sells. There is no listing fee and no monthly seller fee. The promise does not slide. 80% was the earlier number, from when a solo card charge had to leave room for a 30¢ fee. The brand is the higher number. The way it survives is the balance, not a quieter promise.
+Creators keep **90%** of the price paid. fn/7 keeps **10%**. fn/7 makes money only when something sells. There is no listing fee and no monthly seller fee. The promise does not slide. 80% was the earlier number, from when a solo card charge had to leave room for a 30¢ fee. The brand is the higher number. The way it survives is the balance, not a quieter promise.
 
 The buyers are:
 
@@ -17,13 +17,13 @@ The buyers are:
 
 The sellers are people with small finished goods. One skill. One deck. One lesson. Not a 40-hour course and not a SaaS subscription.
 
-Still is not Bucksoup (a $1 file shop with a personal-use license), not Gumroad (seller-set prices), and not an MCP directory (discovery, no checkout). The seat Still takes is a **priced, edited, agent-readable market** with a night-market face.
+fn/7 is not Bucksoup (a $1 file shop with a personal-use license), not Gumroad (seller-set prices), and not an MCP directory (discovery, no checkout). The seat fn/7 takes is a **priced, edited, agent-readable market** with a night-market face.
 
 ## 2. Locked decisions
 
 | Topic | Decision |
 | --- | --- |
-| Name | **Still.** One constant. Do not use "the digital dollar store." Bucksoup already uses that phrase. |
+| Name | **fn/7.** The sign wears the slash. The hostname is fn7.ai. |
 | Shelf prices | Only $1, $3, and $5. |
 | Dollar events | Creators opt in. For the event window the price is $1. It returns when the window ends. |
 | Creator share | 90% of the amount paid for that line, after the event price if one is active. Never below 90%. |
@@ -38,37 +38,41 @@ Still is not Bucksoup (a $1 file shop with a personal-use license), not Gumroad 
 | Art | Original pixel creatures and stalls. No studio IP. |
 | World | A market you scan and tap. Not a game you walk. |
 
-## 2a. Why the name is Still
+## 2a. Why the name is fn/7
 
-The films people reach for do not all have a market, and the ones that do are the wrong words to take.
+The Matrix has no shop. It has a system. Everything that runs in it is a function, and the people on the outside watch those functions on a line. A skill, a template, a starter, a lesson: each one is a function an agent loads. The sign is a path on that system.
 
-| World | What is actually there | What we take, and what we leave |
+| | |
+| --- | --- |
+| Wordmark | `fn/7` |
+| Say it | "function seven" |
+| Type it | `fn7.ai` |
+| Also buy | `fn7.dev`, `fn7.market` |
+| Do not wait on | `fn7.com`, `fn7.app`, and `fn7.io`, which were already registered |
+
+The slash is the abnormality. It cannot live in a hostname, so the sign has it and the URL does not. The 7 is a channel number, the way an operator labels a line. It is not a letter with a digit swapped in. A market that holds balances does not spell itself like a lookalike. `n0de` and `3xit` are out for that reason.
+
+Checked against the registries on November 23, 2026. `fn7.ai`, `fn7.dev`, and `fn7.market` were not registered. `fn7.com`, `fn7.app`, and `fn7.io` were. A short `.ai` can still be priced as a premium by the registrar even when it is unregistered. Read the checkout price before treating it as a ten-dollar name. This is not a trademark search.
+
+Other marks that were close:
+
+| Mark | Domains that were free | Why it lost |
 | --- | --- | --- |
-| Terminator | No marketplace. Skynet takes everything. | Nothing to name ourselves after. A machine that keeps 100% is the opposite of this. |
-| The Matrix | No bazaar. People wear other names. The Merovingian traffics exiled programs. The Trainman smuggles them. Operators sit on phones. | The alias. A name the agent wears. Not "the Construct," not a character. |
-| Dune | CHOAM is the commerce monopoly. It skims the spice. The honest machine in that book is the stillsuit: you keep the water you already earned. | The still. Not CHOAM, not spice, not sietch. Those words are Herbert's. |
-| Star Wars | Mos Espa is a port of stalls, and the Hutts run it. The Jawas are the cheap, fast traders: a line of droids, a price, a deal. | The stall and the speed. Not Mos Espa, not Jawa, not a cantina. |
-| Blade Runner | Animoid Row is a night street of stalls selling artificial animals. Rain, lamps, a maker in each doorway. | The picture. The word Animoid stays in the film. |
-| Snow Crash | The Street is a metaverse road of storefronts your avatar walks. | Already our layout. "The Street" is not ownable, and it is Stephenson's. |
+| `tx/7` | `tx7.dev`, `tx7.io`, `tx7.market` | Transaction seven. Right for payments, less like a thing inside the Matrix. `tx7.ai` was taken. |
+| `op/7` | `op7.market` only, among the good ones | Operator seven is the most literal Matrix job. `op7.com`, `op7.dev`, `op7.app`, and `op7.ai` were taken, and "op" already means too many other things. |
+| `ex/7` | `ex7.dev`, `ex7.app` | Exit, or an exile program. `ex7.ai` was taken. Reads as "ex," a thing that is over. |
 
-Still is the stillsuit, said in one word. The maker keeps what they made. The price stays still: $1, $3, or $5. The cut stays still: 10%, and it does not creep. The picture can be loud. The name is the promise.
-
-Two other names were close, and they lost for a reason.
-
-- **Alias** is the right word for the agent's public name, and a weak word for the market. It sounds like a login. On Still, alias is the feature.
-- **Rainrow** is the Animoid Row picture in a coined word. It describes the set. It does not say who the market is for. Still does.
-
-Do not use, as the name or as a stall: CHOAM, Animoid, Mos Espa, Jawa, Construct, Operator, Skynet, Spice, Sietch, Agora. Agora was a darknet market. A lawyer and a domain check come before the word goes on a sign. "The Ninth" was considered because nine tenths stay with the maker, and set aside: a clothing label and a fashion archive already use Ninth as a shop.
+Do not use, as the name or as a stall: Neo, Trinity, Morpheus, Zion, Oracle, Construct, Keymaker, Sentinel, Smith, CHOAM, Animoid, Jawa, Skynet, Agora.
 
 ## 3. Who shows up, and why
 
 **Person.** They have a project, a class, or an hour to kill. They should understand the whole offer in one look: three prices, stalls with personalities, a basket that tells them what one more item does to their points. They can browse without an account. Saving, reviewing, commenting, and buying require a sign-in.
 
-**Agent.** It has an alias, a task, and a cap. It searches, previews, and buys without a pixel street. The receipt shows the alias. The points and the balance sit on the person who funded it. An agent that only has a virtual card is paying card prices. On Still it spends the preloaded balance or, later, USDC.
+**Agent.** It has an alias, a task, and a cap. It searches, previews, and buys without a pixel street. The receipt shows the alias. The points and the balance sit on the person who funded it. An agent that only has a virtual card is paying card prices. On fn/7 it spends the preloaded balance or, later, USDC.
 
 **Creator.** They have something small and finished. A $5 sale pays them $4.50. One hundred sales of one top-shelf good pay $450. Creators opt into Dollar Night when they want volume and a crowd, not as the everyday price.
 
-**Still.** The edit is the product. Empty stalls and a PDF mill kill a $5-or-less market. Someone says no to thin listings. Seeded stalls ship before the doors open to every creator.
+**fn/7.** The edit is the product. Empty stalls and a PDF mill kill a $5-or-less market. Someone says no to thin listings. Seeded stalls ship before the doors open to every creator.
 
 ## 4. The shelves
 
@@ -101,7 +105,7 @@ Rules for every event:
 
 ## 6. Brand
 
-Still looks like a night market drawn in pixels. Think a bazaar at the edge of a spaceport: stalls, hanging lamps, crates, creatures and bots trading. People and agents are both customers. The creatures are the sellers' avatars and the stall mascots, not a faction war.
+fn/7 looks like a night market drawn in pixels. Think a bazaar at the edge of a spaceport: stalls, hanging lamps, crates, creatures and bots trading. People and agents are both customers. The creatures are the sellers' avatars and the stall mascots, not a faction war.
 
 Feel:
 
@@ -151,7 +155,7 @@ Type: an OFL pixel face for stamps and stall names. "Press Start 2P" is fine for
 
 The human can do everything the agent can do, including install. The agent can do everything except wander for fun, load a card, or change its cap. Both write the same order.
 
-A virtual card from Visa Intelligent Commerce, Google's Agent Payments Protocol, or PayPal's agentic virtual card is how an outside agent pays *other* sites. On Still those protocols are a later door so an agent inside ChatGPT or Google can find a listing. They are card-priced, so they follow the card minimum. They are not the speedrail.
+A virtual card from Visa Intelligent Commerce, Google's Agent Payments Protocol, or PayPal's agentic virtual card is how an outside agent pays *other* sites. On fn/7 those protocols are a later door so an agent inside ChatGPT or Google can find a listing. They are card-priced, so they follow the card minimum. They are not the speedrail.
 
 ## 8. The jacket
 
@@ -176,11 +180,11 @@ Five dollars spent three ways: one $5 item is 5 points, a $3 and two $1s is 10, 
 | Walk-in | 0 | A jacket and a haul history. |
 | Regular | 30 | The patch shows next to their reviews. One fat haul can do this on the first trip. |
 | Hauler | 150 | Sees the next Dollar Night list a few hours early. |
-| Keyholder | 400 | One of their hauls can be pinned on a stall. Still no discount. |
+| Keyholder | 400 | One of their hauls can be pinned on a stall. No discount. |
 
 **Pins.** Separate from the patch. First grab. Full basket (5 things, one checkout). Five stalls. Same maker twice. Dollar Night. Bin diver (a checkout that was all $1). Agent haul.
 
-Points from an agent checkout land on the person who owns the alias. A refunded or voided line loses its points. Points have **no cash value**, cannot be transferred, and cannot be redeemed for goods. Sephora turns 500 points into $10 off, about 2% of spend. On a 10% take, that cashback would be a fifth of Still's entire cut. Still does not do it.
+Points from an agent checkout land on the person who owns the alias. A refunded or voided line loses its points. Points have **no cash value**, cannot be transferred, and cannot be redeemed for goods. Sephora turns 500 points into $10 off, about 2% of spend. On a 10% take, that cashback would be a fifth of fn/7's entire cut. fn/7 does not do it.
 
 ## 9. Reviews, ratings, saves, comments
 
@@ -197,7 +201,7 @@ Stars are not points. A creator is not ranked by how many Dollar Night units the
 
 ## 10. Payments
 
-One charge pays for a whole checkout. Line prices are the shelf or the event price at the moment the server creates the charge. The buyer sees the rail fee only as a rule ("A card starts at $5"), never as a surprise added on top of the stamps. Still eats the processor fee out of its 10%.
+One charge pays for a whole checkout. Line prices are the shelf or the event price at the moment the server creates the charge. The buyer sees the rail fee only as a rule ("A card starts at $5"), never as a surprise added on top of the stamps. fn/7 eats the processor fee out of its 10%.
 
 | Rail | When | Minimum ticket | Phase | Cost to collect, published |
 | --- | --- | --- | --- | --- |
@@ -205,14 +209,14 @@ One charge pays for a whole checkout. Line prices are the shelf or the event pri
 | Buyer balance | Any single item, including $1 | None | 1, after top-up exists | No extra processor fee. The fee was paid when the balance was loaded. |
 | Stripe stablecoin (USDC) | Any single item | None | 2 | 1.5% of the dollar amount, gas and fiat conversion included. Unavailable to New York businesses on Stripe's docs. |
 | ACH bank debit | Balance top-up only | $10 load | 2 | 0.8%, capped at $5. Clears in days. Do not deliver goods against an unsettled debit. |
-| x402 USDC on Base or Solana | Agent buys one or many, no Still account required beyond a payee address | None | 2 | About 0.2¢ after Coinbase's free 1,000 settlements a month ($0.001 facilitator + a fraction of a cent of gas). |
+| x402 USDC on Base or Solana | Agent buys one or many, no fn/7 account required beyond a payee address | None | 2 | About 0.2¢ after Coinbase's free 1,000 settlements a month ($0.001 facilitator + a fraction of a cent of gas). |
 | PayPal Checkout, Pay with Venmo | Person who will not use a card | $5 | 2 | 3.49% + 49¢ on PayPal's US merchant page dated November 23, 2026. |
-| PayPal agentic virtual card, Visa Intelligent Commerce, Google AP2 | An outside agent paying Still like a card merchant | Same as cards, $5 | 3 | Card economics. PayPal's agentic virtual card, terms effective November 23, 2026, is not covered by PayPal seller protection. The merchant pays its card processor. |
+| PayPal agentic virtual card, Visa Intelligent Commerce, Google AP2 | An outside agent paying fn/7 like a card merchant | Same as cards, $5 | 3 | Card economics. PayPal's agentic virtual card, terms effective November 23, 2026, is not covered by PayPal seller protection. The merchant pays its card processor. |
 | Zelle, Venmo-app business profile | — | — | Never as checkout | Zelle has no public checkout API. Venmo's 1.9% + 10¢ rate is inside the Venmo app, not a website button. |
 
-**Balance.** This is how 90% is real. A person loads $10, $20, or $40. Apple Pay is fine for the load. ACH is cheaper when they can wait. USDC is cheaper still. Those dollars buy goods on Still and nothing else. Any alias on the account spends the same balance, up to its cap. No transfer to another person. No cash-out. Refunds of a good return to the balance as store credit. A card refund is only for a load that has not been spent.
+**Balance.** This is how 90% is real. A person loads $10, $20, or $40. Apple Pay is fine for the load. ACH is cheaper when they can wait. USDC is cheaper still. Those dollars buy goods on fn/7 and nothing else. Any alias on the account spends the same balance, up to its cap. No transfer to another person. No cash-out. Refunds of a good return to the balance as store credit. A card refund is only for a load that has not been spent.
 
-**Creators get paid** through Stripe Connect, platform pricing (Still sets the 90/10, so Still is billed for Connect). Published Connect prices when the platform handles pricing: **$2 per account that receives a payout that month**, and **0.25% + 25¢ per payout**. Payouts run on the 1st, America/New_York, only if the creator's available balance is at least **$20**. Smaller balances roll to the next month so a $4 payout does not cost $2.25 to send. USDC sales in phase 2 may pay a creator wallet directly (90/10 on-chain) and skip that Connect payout. Design it then. Do not custody a cash-out wallet in phase 1.
+**Creators get paid** through Stripe Connect, platform pricing (fn/7 sets the 90/10, so fn/7 is billed for Connect). Published Connect prices when the platform handles pricing: **$2 per account that receives a payout that month**, and **0.25% + 25¢ per payout**. Payouts run on the 1st, America/New_York, only if the creator's available balance is at least **$20**. Smaller balances roll to the next month so a $4 payout does not cost $2.25 to send. USDC sales in phase 2 may pay a creator wallet directly (90/10 on-chain) and skip that Connect payout. Design it then. Do not custody a cash-out wallet in phase 1.
 
 **Disputes.** Stripe charges $15 when a card dispute arrives. One dispute can erase the platform's cut on a couple dozen sales. Digital goods are fulfilled by a download or install grant, which is the evidence. Prefer store credit. Do not fight a $5 dispute for sport.
 
@@ -220,7 +224,7 @@ One charge pays for a whole checkout. Line prices are the shelf or the event pri
 
 Worked math at 90/10, Stripe US domestic 2.9% + 30¢, before Connect payout fees and tax:
 
-| What they buy | Paid | Creator | Rail fee | Still left |
+| What they buy | Paid | Creator | Rail fee | fn/7 left |
 | --- | --- | --- | --- | --- |
 | One $1 or $3 on a fresh card | under $5 | 90% | about 33¢ to 39¢ | Negative. Refused. |
 | One $5 on a fresh card | $5 | $4.50 | $0.445 | about $0.06 |
@@ -231,9 +235,9 @@ Worked math at 90/10, Stripe US domestic 2.9% + 30¢, before Connect payout fees
 | One $1 with Stripe USDC | $1 | $0.90 | $0.015 | about $0.09 |
 | One $1 with x402 | $1 | $0.90 | about $0.002 | about $0.10 |
 
-A fresh card on a $5 ticket barely clears. That door stays open so nobody is stuck, and it is not how the market is meant to run. A preloaded balance is the front door. ACH and USDC are the loads that leave Still enough to keep the lights on at 90%. A $10 Apple Pay load costs about $0.59, which is 5.9¢ of every dollar, against a 10¢ cut. It works, and it is the thin version.
+A fresh card on a $5 ticket barely clears. That door stays open so nobody is stuck, and it is not how the market is meant to run. A preloaded balance is the front door. ACH and USDC are the loads that leave fn/7 enough to keep the lights on at 90%. A $10 Apple Pay load costs about $0.59, which is 5.9¢ of every dollar, against a 10¢ cut. It works, and it is the thin version.
 
-PayPal on a lone $5 costs about $0.66. The creator still gets $4.50. Still is left about a loss of 16¢. PayPal is offered from $5 because some people will not use anything else, and a PayPal haul has to be bigger than one top-shelf good before it pays for itself. A $12 PayPal ticket is about $0.91 in fees against a $1.20 cut.
+PayPal on a lone $5 costs about $0.66. The creator still gets $4.50. fn/7 is left about a loss of 16¢. PayPal is offered from $5 because some people will not use anything else, and a PayPal haul has to be bigger than one top-shelf good before it pays for itself. A $12 PayPal ticket is about $0.91 in fees against a $1.20 cut.
 
 ## 11. A month of money
 
@@ -245,9 +249,9 @@ Illustrative, all card, US domestic, one payout per active creator on the 1st, h
 | Average ticket | $10 | $12 |
 | GMV | $2,000 | $12,000 |
 | Creator share, 90% | $1,800 | $10,800 |
-| Still's 10% | $200 | $1,200 |
+| fn/7's 10% | $200 | $1,200 |
 | If every checkout is a fresh card | about $118 in fees | about $648 in fees |
-| Still after those card fees | about $82 | about $552 |
+| fn/7 after those card fees | about $82 | about $552 |
 | Connect, 25 then 80 creators paid | about $61 | about $207 |
 | Hosting and email | about $45 | about $65 |
 | Left, if everyone tapped a card | about −$24 | about $280 |
@@ -265,7 +269,7 @@ Buy the smallest set. Every extra account is something a coding agent will wire 
 | --- | --- | --- | --- |
 | App | Next.js on Vercel | Street, stalls, checkout, creator desk. | Hobby $0. Pro $20/month when the team or the bandwidth needs it. Pro includes $20 of usage credit. |
 | Database, auth, files | Supabase | Postgres, sign-in, storage for zips and sprites. One vendor. | Free to build. Pro from $25/month so the project is not paused. 100 GB storage included, then about $0.021 per GB. |
-| Cards, Apple Pay, Google Pay, ACH, USDC checkout, creator payouts | Stripe, including Connect | One money stack. | Card 2.9% + 30¢. ACH 0.8% cap $5. Stablecoin 1.5%. Connect $2 per paid creator per month and 0.25% + 25¢ per payout, because Still sets a 90/10 split. |
+| Cards, Apple Pay, Google Pay, ACH, USDC checkout, creator payouts | Stripe, including Connect | One money stack. | Card 2.9% + 30¢. ACH 0.8% cap $5. Stablecoin 1.5%. Connect $2 per paid creator per month and 0.25% + 25¢ per payout, because fn/7 sets a 90/10 split. |
 | Agent USDC | Coinbase x402 facilitator, Base first | Agents that already hold USDC. | 1,000 settlements a month free, then $0.001. |
 | Mail | Resend | Receipts and creator payout notices. | Free: 3,000 emails/month, 100/day. Pro $20 for 50,000. |
 | DNS and a bucket if Supabase storage gets tight | Cloudflare, R2 if needed | Cheap files, free egress on R2. | R2 is $0.015 per GB-month. Skip until Supabase storage is the bottleneck. |
@@ -307,7 +311,7 @@ Do not add, in v1: a second database, Clerk (Supabase auth is enough), a search 
 | Free Supabase pauses | Pro before real users. |
 | Connect's $2 eats tiny creators | $20 payout minimum, monthly. |
 | Chargebacks | Credit back to the balance. Log the grant. Do not sell the balance as cash. |
-| Holding USDC people can withdraw | Phase 1 does not. x402 in phase 2 settles through, it does not sit in a Still wallet the user can drain to a bank. |
+| Holding USDC people can withdraw | Phase 1 does not. x402 in phase 2 settles through, it does not sit in a fn/7 wallet the user can drain to a bank. |
 | Looking like a game and playing like a chore | The street is a menu of stalls with a face. Checkout is a normal, fast form. If a phase slows the grab, cut the decoration. |
 | IP on the creatures | Original names and sprites only. |
 | Tax | Do not promise merchant-of-record coverage we have not turned on. |
