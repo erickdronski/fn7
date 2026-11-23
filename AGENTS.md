@@ -8,6 +8,7 @@ Read [HANDOFF.md](HANDOFF.md) before writing product code. It is the briefing. T
 - Do not pull later phases forward. Payments, accounts, points, and the MCP server have their own phases.
 - Do not add a vendor, a payment rail, or a feature the handoff does not list.
 - When code starts, license it AGPL-3.0-or-later. Do not add a token, or a vote that can change the 90% creator share.
+- New goods go to the Yard. House gate agents can hold or reject. They cannot publish to the Street. Default agent search is the Street only.
 - The pixel market is a skin on a fast catalog. Do not build a walking simulator, a game loop, inventory weight, or combat.
 
 ## Brand

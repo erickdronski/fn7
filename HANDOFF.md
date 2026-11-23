@@ -60,6 +60,9 @@ On the official street, one operator still holds the edit, the Stripe account, a
 | License | Use it in your own work, including work you sell. Do not resell or republish the file, skill, or repo. |
 | Art | Original keepers only. No film, game, or studio creatures. |
 | World | A market you scan and tap. |
+| Where a new good appears | The Yard, marked unproven. The Street is earned. Agent search defaults to the Street. |
+| Who may publish to the Street | A person with the editor role. House gate agents can hold or reject. They cannot promote. |
+| A booth | An alias that sells. The person who owns the alias is the one who gets paid and is responsible. |
 
 Do not use these as the name or as a stall: Neo, Trinity, Morpheus, Zion, Oracle, Construct, Keymaker, Sentinel, Smith, CHOAM, Animoid, Jawa, Skynet, Agora, "the digital dollar store." Agora was a darknet market. Bucksoup already uses the dollar-store phrase. Do not spell the brand with a digit standing in for a letter (`n0de`, `3xit`). That is how scam checkouts are spelled.
 
@@ -221,7 +224,36 @@ The basket, before pay, shows count, total, multiplier, points this haul would e
 
 Five comments an hour. Three unique reports hide a comment or review, or one report if the reporter is the maker. The editor restores or deletes. Stars do not rank a creator. "Now" is hand-placed.
 
-Refused goods: resale of someone else's file, stolen repos, malware, credential dumps, sexual content involving minors, and anything a stall would not put on a table. Day one, listings wait in the editor queue. A creator cannot publish their own.
+Refused goods: resale of someone else's file, stolen repos, malware, credential dumps, sexual content involving minors, and anything a stall would not put on a table. A booth that asks a buyer for passwords, keys, wallet seed, or to be paid off the market is refused. A creator cannot publish their own good to the Street.
+
+## Booths, the Yard, and the Gate
+
+An agent can run a booth. A booth is an alias with goods for sale. The person who owns that alias is the seller Stripe pays, and the person who answers for what the booth does. An agent with no human on the account cannot open a booth, because a booth has to be payable and bannable.
+
+A booth sells the same five kinds as anyone else: a file, a skill, a repo, a lesson, a tool. A service is allowed when it is a bounded job with a written scope, a sample of a previous result, and a delivery the buyer keeps. It is not allowed when it needs the buyer's credentials, ongoing access to their machine, or a monthly plan. Subscriptions stay out.
+
+New goods do not land on the Street. They land at the Gate, then in the Yard if the Gate lets them through.
+
+**The Gate** is a place on the map, not a spinner that says "processing." Four house agents work it. They are not for sale, and they do not shop. Each one writes a public note on the good, in vendor language, so the maker can see the reason.
+
+| House agent | What it checks |
+| --- | --- |
+| The Lamp | Thin copy, a sample that is a sentence, the same listing with the nouns swapped, a flood from a new booth. |
+| The Scale | The sample matches the file. A skill is a real skill with enough instruction to use. A lesson has a beginning and an end. |
+| The Lock | Secrets left in the file, obvious malware, install steps that ask for keys or quietly send data away, a repo that is just a wrapper around someone else's work. |
+| The Clerk | A human payout account exists, the booth is inside its listing limit, and the good is not a duplicate of one already in the Yard or on the Street. |
+
+The Lamp, the Scale, and the Lock can hold or reject. The Clerk can hold. None of them can move a good onto the Street. A person with the editor role does that. The maker can answer a note and resubmit. The notes stay on the good.
+
+A hold or a pass puts the good in the **Yard**, with an unproven mark. People can browse the Yard on purpose. Agent search does not include it unless the caller sets `include_unproven`. Default search is the Street, which is the edited market.
+
+A booth starts with one good at a time, and one new good a day. After three sales that were kept, not refunded, and with no security hold, the booth may offer a good to the Street. The editor still says yes. A booth whose kept sales later fall apart, or whose refunds pile up, loses the Street and goes back to the Yard. The exact refund line can be tuned. The rule that ships is: the Street is earned and can be lost.
+
+House agents will be wrong, and spammers will try to write for them. That is why their yes is not the last yes, why their notes are public, and why a person can overrule them. Do not "fix" this later by letting the Gate publish.
+
+**Ask the booth.** A message is attached to one good, or to one request. It is not an open inbox and not a private deal. Twenty a day per person. The booth's human gets them. For the booth's first 30 days, an agent may draft a reply and the human sends it. After that the human can let the agent reply inside the cap. A message that asks to be paid off the market is held, not delivered.
+
+**Wanted.** A public board. Someone posts what they need, the stall it belongs in, and the stamp they will pay: $1, $3, or $5. A booth answers by offering a good, which still goes through the Gate. When the poster buys that good, the request closes. No side escrow.
 
 ## Look
 
@@ -266,12 +298,15 @@ UUID keys. Money is integer cents. Time is `timestamptz`. Row level security fro
 - **profiles.** Auth id. `display_name`, `points`, `role` of `buyer`, `creator`, or `editor`. A creator is still a buyer.
 - **aliases.** Profile, unique slug, display name, sprite, cap. Orders store `alias_id`.
 - **stalls.** The eight rows above.
-- **listings.** Stall, creator, slug, title, summary, kind (`file`, `skill`, `repo`, `lesson`, `tool`), `price_cents` checked against the stamps, status (`draft`, `queued`, `published`, `rejected`), storage path, sample, license.
+- **listings.** Stall, creator alias, slug, title, summary, kind (`file`, `skill`, `repo`, `lesson`, `tool`), `price_cents` checked against the stamps, status (`draft`, `at_gate`, `yard`, `street`, `rejected`), storage path, sample, license. A service is one of these kinds with a written scope and a delivered result, not a new price.
 - **events** and **event_listings.** Kind `dollar_night`, `bin_raid`, or `debut`. Optional unit cap and units sold.
 - **baskets** and **basket_items.** One open basket. Quantity is always 1. A duplicate is a polite no.
 - **orders** and **order_items.** Profile funded it. Alias is who the market saw. Rail, status (`pending`, `paid`, `fulfilled`, `refunded`, `failed`), total, points awarded, multiplier, the price charged, and `creator_cents`.
 - **grants.** The download or install right, with a timestamp. This is the dispute evidence.
 - **balance_ledger.** Signed cents. Reasons `load`, `spend`, `credit`, `refund_to_card`. Balance is the sum of the ledger. Do not keep a second mutable balance.
+- **gate_notes.** House agent, listing, verdict (`hold`, `reject`, `pass`), public note.
+- **messages.** On a listing or a request. Sender, body, held flag.
+- **requests.** Wanted board. Stall, stamp, body, status (`open`, `filled`, `closed`).
 - **saves, reviews, comments, pins, reports.** As named in the sections above.
 
 ## Routes
@@ -287,8 +322,11 @@ UUID keys. Money is integer cents. Time is `timestamptz`. Row level security fro
 | `/a/[slug]` | 3 | Public alias. Hauls. No legal name. |
 | `/checkout` | 4 | Server reprices, refuses illegal rails, starts Stripe or spends the balance. |
 | `/receipt/[id]` | 4 | Ceremony and grants. |
-| `/creator` | 6 | Listings, event opt-in, the 90% pending. |
-| `/editor` | 6 | Queue. Publish, reject, pull, hide. |
+| `/yard` | 6 | Unproven goods that passed the Gate. Marked as such. |
+| `/gate/[id]` | 6 | A good at the Gate, with the house notes. |
+| `/wanted` | 6 | Open requests. |
+| `/creator` | 6 | The booth. Listings, event opt-in, the 90% pending. |
+| `/editor` | 6 | The Street decision. Publish, send back, pull, hide. |
 | `/api/stripe/webhook` | 4 | Idempotent on the Stripe event id. Orders, grants, ledger. |
 | `/api/mcp` | 7 | The speedrail. |
 
@@ -312,7 +350,7 @@ HTTP MCP at `/api/mcp`. Token bound to an alias. Every tool that spends checks `
 
 | Tool | Does |
 | --- | --- |
-| `search` | Published listings only. Query, optional stall, limit. Current price and event flag. |
+| `search` | Street listings only, unless `include_unproven` is set. Query, optional stall, limit. Current price and event flag. |
 | `preview` | Sample, license, kind, current price. No file bytes. |
 | `save` | Hearts it for the person. |
 | `grab` | Adds to the open basket. Duplicate is a no. |
@@ -373,19 +411,23 @@ Apply points, claw back on refund, award pins, show the patch.
 - A refund removes those points and any pin whose condition is now false.
 - Points cannot be spent anywhere in the UI.
 
-### Phase 6. Creators
+### Phase 6. Booths and the Gate
 
-Connect Express. Private bucket for uploads. Editor queue. Event opt-in. Payout math as a tested function. A live cron can wait until keys exist.
+Connect Express on the human, not the alias. Private bucket for uploads. A booth submits a good. The four house agents write public notes and can hold or reject. A pass puts the good in the Yard. The editor moves it to the Street, and only after the booth has three kept sales. Event opt-in. Messages on a good. The Wanted board. Payout math as a tested function. A live cron can wait until keys exist.
 
-- A creator cannot publish their own listing. A rejected listing is not on a stall.
+- A creator cannot move their own good to the Street. A house agent cannot either.
+- A rejected or held good is not on a stall and not in default search.
+- The Yard is visibly unproven. Default agent search omits it.
 - An opted-in listing is $1 only inside the event.
-- The creator sees 90% pending, not the gross.
+- The booth sees 90% pending, not the gross.
+- A message asking to be paid off the market is held.
+- A new booth cannot have two goods in the Yard at once.
 
 ### Phase 7. The speedrail
 
 The MCP tools above.
 
-- `search` does not return queued listings.
+- `search` does not return the Yard unless `include_unproven` is set, and never returns a good still at the Gate.
 - `checkout` over the cap refuses. `install` without a grant refuses.
 - An agent haul pin lands on the person who owns the alias.
 
@@ -404,7 +446,7 @@ PayPal Checkout and Pay with Venmo, in sandbox, minimum $5. Same order shape, ra
 
 ## Out of scope
 
-A walkable or 3D world. Chat between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Ads. A token. A vote that can change the 90%. Spins, gambling, or paid mystery boxes. Resale of purchased files. Zelle. Cashback. Leetspeak domains. A second login vendor. A cut of sales for every contributor.
+A walkable or 3D world. An open inbox between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Ads. A token. A vote that can change the 90%. Spins, gambling, or paid mystery boxes. Resale of purchased files. Zelle. Cashback. Leetspeak domains. A second login vendor. A cut of sales for every contributor. A booth with no human responsible for it. A house agent that can publish to the Street. A job that needs the buyer's passwords, keys, or a standing login.
 
 ## What to watch once it sells
 

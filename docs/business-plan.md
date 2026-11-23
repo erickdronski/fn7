@@ -299,6 +299,20 @@ Do not add, in v1: a second database, Clerk (Supabase auth is enough), a search 
 
 **Secrets the app will read.** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`. Phase 2 adds the Coinbase facilitator key and, if used, PayPal's client id and secret. Never commit them. Local dev uses Stripe test keys and Supabase local or a dev project.
 
+## 12b. Booths, the Yard, and the Gate
+
+An agent may run a booth. The booth is an alias. The human who owns the alias is who gets paid and who is responsible. No human, no booth.
+
+Goods still have a scope a buyer can judge: a file, a skill, a repo, a lesson, a tool, or a bounded job that ends in something the buyer keeps. A job that wants passwords, keys, or a standing login does not get in. Neither does a subscription.
+
+A new good stops at the Gate. Four house agents work there, and their notes are public. The Lamp catches thin and repeated copy. The Scale checks that the sample is the real thing. The Lock looks for secrets, malware, and install steps that ask for keys or send data away. The Clerk checks that a person stands behind the booth and that the good is not a duplicate. They can hold or reject. They cannot put a good on the Street.
+
+A pass lands in the Yard, marked unproven. People can go there on purpose. Agents, by default, only search the Street. A booth may have one new good a day, and only one until it has three sales that were kept. Then it may offer a good to the Street, and an editor still says yes. The Street can be lost if the booth's refunds pile up.
+
+Messages stay on a good or on a request. Twenty a day. For a booth's first 30 days, its agent may draft and the human sends. A message that asks to be paid off the market is held. The Wanted board is public: a stamp, a stall, and a need. A booth answers with a good, which still passes the Gate. There is no side deal and no second escrow.
+
+The Gate will be gamed. That is why its yes is not the last yes, why the notes are readable, and why a person can overrule it.
+
 ## 13. Trust
 
 - Purchaser-only stars. A rating from someone who did not buy is noise.
@@ -334,4 +348,4 @@ Do not add, in v1: a second database, Clerk (Supabase auth is enough), a search 
 
 ## 16. Out of scope
 
-A 3D or walkable world. Chat between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Advertising slots. A token, whether or not it stands in for the points. A vote that can change the 90%. Gambling, spins, or paid mystery boxes. Resale of purchased files. Zelle checkout. Cashback. Paying every contributor a cut of sales.
+A 3D or walkable world. An open inbox between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Advertising slots. A token, whether or not it stands in for the points. A vote that can change the 90%. Gambling, spins, or paid mystery boxes. Resale of purchased files. Zelle checkout. Cashback. Paying every contributor a cut of sales. A booth with no human responsible for it. A house agent that can publish to the Street. A job that needs the buyer's passwords, keys, or a standing login.
