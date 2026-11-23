@@ -203,16 +203,16 @@ Stars are not points. A creator is not ranked by how many Dollar Night units the
 
 One charge pays for a whole checkout. Line prices are the shelf or the event price at the moment the server creates the charge. The buyer sees the rail fee only as a rule ("A card starts at $5"), never as a surprise added on top of the stamps. fn/7 eats the processor fee out of its 10%.
 
-| Rail | When | Minimum ticket | Phase | Cost to collect, published |
+| Rail | When | Minimum ticket | Build phase | Cost to collect, published |
 | --- | --- | --- | --- | --- |
-| Apple Pay, Google Pay, cards, Link | Person checkout and balance top-up | $5 to buy directly. $10, $20, or $40 to load. | 1 | Stripe US domestic card, 2.9% + 30¢ |
-| Buyer balance | Any single item, including $1 | None | 1, after top-up exists | No extra processor fee. The fee was paid when the balance was loaded. |
-| Stripe stablecoin (USDC) | Any single item | None | 2 | 1.5% of the dollar amount, gas and fiat conversion included. Unavailable to New York businesses on Stripe's docs. |
-| ACH bank debit | Balance top-up only | $10 load | 2 | 0.8%, capped at $5. Clears in days. Do not deliver goods against an unsettled debit. |
-| x402 USDC on Base or Solana | Agent buys one or many, no fn/7 account required beyond a payee address | None | 2 | About 0.2¢ after Coinbase's free 1,000 settlements a month ($0.001 facilitator + a fraction of a cent of gas). |
-| PayPal Checkout, Pay with Venmo | Person who will not use a card | $5 | 2 | 3.49% + 49¢ on PayPal's US merchant page dated November 23, 2026. |
-| PayPal agentic virtual card, Visa Intelligent Commerce, Google AP2 | An outside agent paying fn/7 like a card merchant | Same as cards, $5 | 3 | Card economics. PayPal's agentic virtual card, terms effective November 23, 2026, is not covered by PayPal seller protection. The merchant pays its card processor. |
-| Zelle, Venmo-app business profile | — | — | Never as checkout | Zelle has no public checkout API. Venmo's 1.9% + 10¢ rate is inside the Venmo app, not a website button. |
+| Apple Pay, Google Pay, cards, Link | Person checkout and balance top-up | $5 to buy directly. $10, $20, or $40 to load. | 4 | Stripe US domestic card, 2.9% + 30¢ |
+| Buyer balance | Any single item, including $1 | None | 4 | No extra processor fee. The fee was paid when the balance was loaded. |
+| Stripe stablecoin (USDC) | Any single item | None | 8 | 1.5% of the dollar amount, gas and fiat conversion included. Unavailable to New York businesses on Stripe's docs. |
+| ACH bank debit | Balance top-up only | $10 load | 8 | 0.8%, capped at $5. Clears in days. Do not deliver goods against an unsettled debit. |
+| x402 USDC on Base or Solana | Agent buys one or many, no fn/7 account required beyond a payee address | None | 8 | About 0.2¢ after Coinbase's free 1,000 settlements a month ($0.001 facilitator + a fraction of a cent of gas). |
+| PayPal Checkout, Pay with Venmo | Person who will not use a card | $5 | 9 | 3.49% + 49¢ on PayPal's US merchant page dated November 23, 2026. |
+| PayPal agentic virtual card, Visa Intelligent Commerce, Google AP2 | An outside agent paying fn/7 like a card merchant | Same as cards, $5 | After 9. Not scheduled. | Card economics. PayPal's agentic virtual card, terms effective November 23, 2026, is not covered by PayPal seller protection. The merchant pays its card processor. |
+| Zelle, Venmo-app business profile | — | — | Never | Zelle has no public checkout API. Venmo's 1.9% + 10¢ rate is inside the Venmo app, not a website button. |
 
 **Balance.** This is how 90% is real. A person loads $10, $20, or $40. Apple Pay is fine for the load. ACH is cheaper when they can wait. USDC is cheaper still. Those dollars buy goods on fn/7 and nothing else. Any alias on the account spends the same balance, up to its cap. No transfer to another person. No cash-out. Refunds of a good return to the balance as store credit. A card refund is only for a load that has not been spent.
 

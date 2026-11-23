@@ -8,9 +8,10 @@ This repository is the plan, not the store yet. Nothing here takes a payment.
 
 | File | Who it is for |
 | --- | --- |
-| [docs/business-plan.md](docs/business-plan.md) | The business: price, brand, payments, points, budget, risks. |
-| [docs/build-spec.md](docs/build-spec.md) | What to build, in phases, with data, routes, and checks. |
-| [AGENTS.md](AGENTS.md) | Rules for Codex, Claude, or any coding agent in this repo. |
+| [HANDOFF.md](HANDOFF.md) | Start here. The full briefing for Claude, Codex, or the next person. |
+| [docs/business-plan.md](docs/business-plan.md) | The business in long form: price, brand, payments, points, budget, risks. |
+| [docs/build-spec.md](docs/build-spec.md) | Schema, routes, and the checks for each phase. |
+| [AGENTS.md](AGENTS.md) | Short rules for a coding agent in this repo. |
 
 The wordmark is `PRODUCT_NAME` (`fn/7`). The hostname is `PRODUCT_HOST` (`fn7.ai`). Both live in the build spec. Screens should read the constant.
 

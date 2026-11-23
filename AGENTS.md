@@ -1,6 +1,6 @@
 # Agent rules
 
-Read [docs/business-plan.md](docs/business-plan.md) and [docs/build-spec.md](docs/build-spec.md) before writing product code.
+Read [HANDOFF.md](HANDOFF.md) before writing product code. It is the briefing. The business plan and the build spec are the long versions behind it.
 
 ## What to build
 
