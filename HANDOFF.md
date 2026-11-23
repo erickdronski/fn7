@@ -43,7 +43,7 @@ On the official street, one operator still holds the edit, the Stripe account, a
 | Name | `fn/7` on the sign. Say "function seven." Hostname `fn7.ai`. |
 | Also buy if the price is ordinary | `fn7.dev`, `fn7.market`. |
 | Already registered on Nov 23, 2026 | `fn7.com`, `fn7.app`, `fn7.io`. Do not block on them. |
-| Shelf prices | Only $1, $3, $5. Cents: 100, 300, 500. |
+| Shelf prices | Start at $1, $3, $5. Higher stamps unlock with status. Nobody lists $50 on day one. |
 | Events | Opted-in goods are $1 inside the window, then the shelf price returns. |
 | Creator share | 90% of the cents actually charged for that line. Never below 90%. Floor the cut. A leftover cent stays with fn/7. |
 | Card, Apple Pay, Google Pay, Link | Ticket of **$5** or more. A $1 or $3 card charge is refused. |
@@ -84,6 +84,26 @@ Eight stalls. Seed at least three real goods on each in Phase 1. Mix the stamps.
 | The Bin | `bin` | Bin raccoon | Dollar Night and staff $1s. |
 
 V1 art is colored pixel blocks and these names until Erick draws a sprite sheet. Do not download game assets. Eight keepers, stall frames, a jacket, pin slots. About $1,500 if a pixel artist is hired instead.
+
+## Status and the price ceiling
+
+Everyone starts on the dollar street. A higher price is a capability you earn, not a field you type. The listing form only shows stamps the booth has unlocked. Buying your own good does not count. A refunded sale does not count. A purchase counts as use only if the grant was opened.
+
+Both tracks have to move. Spending a lot does not unlock a $50 listing. Selling a lot without ever buying does not either. The person, or the human behind the booth, has to shop the market and be shopped.
+
+| Patch | What you did | Stamps you may ask for | What else opens |
+| --- | --- | --- | --- |
+| Walk-in | You arrived | $1, $3, $5, in the Yard, one good | Buy anything. One alias. |
+| Regular | 3 kept sales, and you opened at least 3 goods you bought | $1, $3, $5, on the Street, after the editor says yes | Wanted board. Ask the booth. A second alias. |
+| Hauler | 15 kept sales, 8 different buyers, refunds under 10%, and 8 goods you bought and opened | $10 and $15, each one justified | A higher cap for your agents. Early look at Dollar Night. |
+| Keyholder | 40 kept sales, 20 different buyers, and 15 goods you bought and opened | $20, justified, and a person always reads it | A haul can be pinned. The booth may reply without a draft sitting in your queue. |
+| Channel | 100 kept sales, 40 different buyers, and 25 goods you bought and opened | $35 and $50, justified, Lock and a person both read it | The premium mark on the profile. The booth can be featured on Now. The Gate still runs. |
+
+Above $5, every listing carries a short justification: what the buyer can do the same day, what is actually in the file or the job, and why the cheaper stamp is the wrong one. The Scale reads it against the sample. If the sample cannot hold the price, the note says so and the maker can resubmit at a stamp they have already earned. The form never offers a stamp the booth has not earned.
+
+Dollar Night stays a $1 event for goods whose shelf price is $5 or less. A $20 or $50 good does not drop to a dollar to farm sales.
+
+A fresh card on $10 or more finally leaves room after the 90% share. A $10 card fee is about 59¢, the maker keeps $9, and fn/7 keeps about 41¢. A $50 card fee is about $1.75, the maker keeps $45, and fn/7 keeps about $3.25. The expensive stamps are where a card sale is a real sale. They are also where a sloppy file does the most harm, which is why the bar rises with the stamp.
 
 ## Prices and events
 
@@ -257,7 +277,7 @@ House agents will be wrong, and spammers will try to write for them. That is why
 
 ## Look
 
-Night market, hard pixels, few colors. No blur, no gradients, no soft shadows. `image-rendering: pixelated`. A lamp may blink. A sticker may flip when Dollar Night starts. No screen shake, no loot spray. Copy sounds like a vendor. "Eight stalls. Nothing over $5." "Dollar Night. These are $1 until midnight." "Nothing saved. The stalls are still up."
+Night market, hard pixels, the six brand colors used as stall paint. No blur, no gradients, no soft shadows. The street opens with three plaques: makers keep 90%, the code is public, agents shop the same stamps. `image-rendering: pixelated`. A lamp may blink. A sticker may flip when Dollar Night starts. No screen shake, no loot spray. Copy sounds like a vendor. "Eight stalls. Nothing over $5." "Dollar Night. These are $1 until midnight." "Nothing saved. The stalls are still up."
 
 | Token | Hex | Use |
 | --- | --- | --- |

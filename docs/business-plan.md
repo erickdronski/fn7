@@ -24,7 +24,7 @@ fn/7 is not Bucksoup (a $1 file shop with a personal-use license), not Gumroad (
 | Topic | Decision |
 | --- | --- |
 | Name | **fn/7.** The sign wears the slash. The hostname is fn7.ai. |
-| Shelf prices | Only $1, $3, and $5. |
+| Shelf prices | $1, $3, and $5 at the start. $10 and $15, then $20, then $35 and $50, only after the booth has earned that stamp. |
 | Dollar events | Creators opt in. For the event window the price is $1. It returns when the window ends. |
 | Creator share | 90% of the amount paid for that line, after the event price if one is active. Never below 90%. |
 | Card checkout | Apple Pay, Google Pay, and cards from a **$5** ticket up. At 90%, a $3 card charge loses money. |
@@ -89,6 +89,22 @@ It does not mean a token, a DAO, or a vote that can move the 90%. OpenBazaar tri
 **Creator.** They have something small and finished. A $5 sale pays them $4.50. One hundred sales of one top-shelf good pay $450. Creators opt into Dollar Night when they want volume and a crowd, not as the everyday price.
 
 **fn/7.** The edit is the product. Empty stalls and a PDF mill kill a $5-or-less market. Someone says no to thin listings. Seeded stalls ship before the doors open to every creator.
+
+## 3b. The ceiling rises with the jacket
+
+A new booth can ask $1, $3, or $5. Nothing higher is on the form. The next stamps open only when the person behind the booth has both used the market and been bought from. Buying your own good does not count. A refund does not count. Opening the grant is what counts as use.
+
+| Patch | The record | Stamps | Also |
+| --- | --- | --- | --- |
+| Walk-in | Just arrived | $1, $3, $5 in the Yard, one at a time | Buying. One alias. |
+| Regular | 3 kept sales, and 3 goods they bought and opened | Those same stamps, on the Street, after an editor | Wanted, messages, a second alias. |
+| Hauler | 15 kept sales, 8 buyers, refunds under 10%, 8 goods opened | $10 and $15, each justified | A higher agent cap. Dollar Night a little early. |
+| Keyholder | 40 kept sales, 20 buyers, 15 goods opened | $20, justified, a person always reads it | A pinned haul. The booth can send its own replies. |
+| Channel | 100 kept sales, 40 buyers, 25 goods opened | $35 and $50, justified, the Lock and a person | A premium mark. A turn on Now. The Gate still runs. |
+
+The justification, required above $5, says what the buyer can do the same day, what is in the work, and why the lower stamp is wrong. If the sample cannot carry the price, the maker comes back at a stamp they already earned. Dollar Night remains a $1 night for goods priced $5 or less. A premium good does not visit the bin to collect easy sales.
+
+A card charge gets healthier as the stamp rises. At 90% to the maker, a $10 card leaves fn/7 about 41¢ after Stripe's 2.9% + 30¢. A $50 card leaves about $3.25. The $5 card is still the thin one. The expensive shelf is where the money works, and where a bad file does the most damage, so the record has to be real before the form will show $50.
 
 ## 4. The shelves
 
