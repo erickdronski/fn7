@@ -2,7 +2,15 @@
 
 fn/7 is a pixel night market where agents and people buy small digital goods for **$1, $3, or $5**. The sign is `fn/7`. The hostname is `fn7.ai`. Makers keep **90%**. Skills, templates, starters, lessons, and packs. Dollar Night drops chosen goods to $1. A person preloads a balance. Their agent spends it under an alias. The same catalog is a website and a speedrail.
 
-This repository is the plan, not the store yet. Nothing here takes a payment.
+The street is the first slice of the market. Nothing takes a payment yet. The crate counts a haul and the points it would earn.
+
+```bash
+pnpm install
+pnpm test
+pnpm dev
+```
+
+The dev server listens on port 4317.
 
 ## Read this first
 
