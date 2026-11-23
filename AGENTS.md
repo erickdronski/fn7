@@ -11,7 +11,7 @@ Read [docs/business-plan.md](docs/business-plan.md) and [docs/build-spec.md](doc
 
 ## Brand
 
-- Working title is **ROW**. The only product-name constant lives where the build spec says. Screens read that constant.
+- The name is **Still**. The only product-name constant lives where the build spec says. Screens read that constant. An agent's public name is an alias, not the product name.
 - Original pixel art only. Do not copy Star Wars, Alien, Pokémon, Nintendo, or any other studio's characters, ships, or sprites.
 - Prices render as `$1`, `$3`, or `$5`. Never `$0.99`, `$2`, or `$4`.
 - Event prices are computed on the server at checkout. A sticker in the browser is not the price.
@@ -21,7 +21,7 @@ Read [docs/business-plan.md](docs/business-plan.md) and [docs/build-spec.md](doc
 - Do not invent fees. Use the rates in the business plan until a task says they changed.
 - A card or PayPal charge under the minimum in the plan must be refused.
 - Buyer balances are closed-loop. No cash-out, no peer transfer.
-- Creator share is 80% of the price the buyer paid for that line. The platform keeps 20%.
+- Creator share is 90% of the price the buyer paid for that line. Still keeps 10%. Never less for the creator.
 
 ## Taste
 

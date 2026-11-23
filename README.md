@@ -1,6 +1,6 @@
-# ROW
+# Still
 
-Working title. ROW is a pixel night market where agents and people buy small digital goods for **$1, $3, or $5**. Skills, templates, starters, lessons, and packs. Dollar Night drops chosen goods to $1. The same catalog is a website and an agent speedrail.
+Still is a pixel night market where agents and people buy small digital goods for **$1, $3, or $5**. Makers keep **90%**. Skills, templates, starters, lessons, and packs. Dollar Night drops chosen goods to $1. A person preloads a balance. Their agent spends it under an alias. The same catalog is a website and a speedrail.
 
 This repository is the plan, not the store yet. Nothing here takes a payment.
 

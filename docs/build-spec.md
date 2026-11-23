@@ -1,11 +1,11 @@
-# ROW build spec
+# Still build spec
 
 Hand this to Codex or Claude one phase at a time. The business rules are in [business-plan.md](business-plan.md). If the two files disagree, the business plan wins on money and brand, and this file wins on schema and routes.
 
 Working title constant, the only place the name is hardcoded:
 
 ```ts
-export const PRODUCT_NAME = "ROW";
+export const PRODUCT_NAME = "Still";
 ```
 
 Put that in `lib/brand.ts` when Phase 1 starts. Everything else imports it.
@@ -63,8 +63,8 @@ Put these in `lib/prices.ts` and `lib/points.ts` with tests before any UI. These
 
 ```ts
 export const STAMPS = [100, 300, 500] as const;
-export const CREATOR_SHARE_BPS = 8000; // 80.00%
-export const CARD_MINIMUM_CENTS = 300;
+export const CREATOR_SHARE_BPS = 9000; // 90.00%
+export const CARD_MINIMUM_CENTS = 500;
 export const PAYPAL_MINIMUM_CENTS = 500;
 export const LOAD_AMOUNTS_CENTS = [1000, 2000, 4000] as const;
 export const PAYOUT_MINIMUM_CENTS = 2000;
@@ -87,11 +87,11 @@ export function pointsFor(totalCents: number, itemCount: number): number {
 }
 ```
 
-`creatorCut(100) === 80`, `creatorCut(300) === 240`, `creatorCut(500) === 400`. Use floor so a cent never appears that we do not have. Shelf prices divide evenly. If an event stack ever does not, the creator's remainder stays with ROW, not the other way around.
+`creatorCut(100) === 90`, `creatorCut(300) === 270`, `creatorCut(500) === 450`. Use floor so a cent never appears that we do not have. Shelf prices divide evenly. If an event stack ever does not, the leftover cent stays with Still, not the other way around.
 
 Checkout refusal, tested:
 
-- Rail `card` and total under 300 cents: refuse.
+- Rail `card` and total under 500 cents: refuse.
 - Rail `paypal` and total under 500 cents: refuse.
 - Rail `balance` or `usdc`: any total of at least 100 cents, made of legal line prices.
 - A line that is not 100, 300, or 500 cents cannot be inserted. Event price is 100.
@@ -109,7 +109,9 @@ Patch thresholds: Regular 30, Hauler 150, Keyholder 400. A function `patchFor(po
 
 UUID primary keys. Money is integer cents. Timestamps are `timestamptz`.
 
-**profiles.** `id` matches auth user. `display_name`, `keeper` nullable (buyer jacket vs a maker), `points`, `role` (`buyer`, `creator`, `editor`). A person can buy and sell. `role` is the highest tool they have. Creators are still buyers.
+**profiles.** `id` matches auth user. `display_name`, `points`, `role` (`buyer`, `creator`, `editor`). A person can buy and sell. `role` is the highest tool they have. Creators are still buyers.
+
+**aliases.** `profile_id`, `slug`, `display_name`, `sprite`, `cap_cents`. Unique slug. Signing up creates one. A person may add more. The alias is the name an agent wears in the market. Points, pins, and the balance stay on the profile. Orders record `alias_id`. The public page is `/a/[slug]`. An agent token is issued to an alias, never to a bare profile, and cannot raise its own cap.
 
 **stalls.** `slug`, `name`, `keeper_name`, `blurb`, `sort`. Eight rows, seeded.
 
@@ -123,7 +125,7 @@ UUID primary keys. Money is integer cents. Timestamps are `timestamptz`.
 
 **basket_items.** `basket_id`, `listing_id`, unique pair. Quantity is always 1. Digital goods are not stacked. Buying twice is two checkouts or a refused duplicate.
 
-**orders.** `profile_id`, `rail`, `status` (`pending`, `paid`, `fulfilled`, `refunded`, `failed`), `total_cents`, `points_awarded`, `multiplier`, `stripe_checkout_session_id` nullable, `funded_by` nullable (the human, when an agent checked out).
+**orders.** `profile_id`, `alias_id`, `rail`, `status` (`pending`, `paid`, `fulfilled`, `refunded`, `failed`), `total_cents`, `points_awarded`, `multiplier`, `stripe_checkout_session_id` nullable. The profile is who funded it. The alias is who the market saw.
 
 **order_items.** `order_id`, `listing_id`, `price_cents` (the price actually charged), `creator_cents`.
 
@@ -152,7 +154,8 @@ Row level security on from day one. Buyers read published listings. Buyers write
 | `/good/[slug]` | 1 | Sample, stamp, license, keeper. Grab. Save from phase 3. |
 | `/basket` | 1 | Crate, multiplier, points preview. No pay button until phase 4. Phase 1 grab stores the basket in a cookie or local state. Phase 3 moves it to the database. |
 | `/saved` | 3 | Saved goods. |
-| `/jacket` | 3, points in 5 | Patches and pins. Before phase 5, just the name. |
+| `/jacket` | 3, points in 5 | Patches, pins, and aliases. Before phase 5, the name and the alias. |
+| `/a/[slug]` | 3 | Public alias. Past hauls, no legal name. |
 | `/checkout` | 4 | Server reprices, refuses illegal rails, starts Stripe or spends balance. |
 | `/receipt/[id]` | 4 | Ceremony and grants. |
 | `/creator` | 6 | Their listings, event opt-in, payout balance. |
@@ -207,10 +210,11 @@ Checks:
 
 ### Phase 3. Accounts, saves, words
 
-Supabase auth. Jacket with a display name. Saves. Comments. No reviews yet, because nothing can be bought. Editor role can hide a comment.
+Supabase auth. Jacket with a display name and one alias. More aliases can be added. Saves. Comments. No reviews yet, because nothing can be bought. Editor role can hide a comment.
 
 Checks:
 
+- Sign-up creates one alias. Its public page shows the alias, not an email.
 - Signed out: can browse, cannot save or comment.
 - Comment over 500 characters is refused.
 - Sixth comment inside an hour is refused.
@@ -222,11 +226,11 @@ Stripe test mode. Card, Apple Pay, Google Pay via Checkout. Rails and minimums. 
 
 Checks:
 
-- A $1-only card checkout never creates a Stripe session.
-- A $3 card checkout can.
+- A checkout under $5 on a card never creates a Stripe session.
+- A $5 card checkout can.
 - A $1 balance checkout can, and the ledger sums to the right cents.
 - Webhook retried twice does not double-grant.
-- Creator cents on each line are 80% floored.
+- Creator cents on each line are 90% floored.
 - Receipt shows points even though the jacket patch can wait for phase 5. Store `points_awarded` now.
 
 ### Phase 5. The jacket
@@ -249,11 +253,11 @@ Checks:
 - A creator cannot publish their own listing.
 - A rejected listing does not appear on a stall.
 - Opted-in listing is $1 only inside the event.
-- Creator sees 80% pending, not the gross.
+- Creator sees 90% pending, not the gross.
 
 ### Phase 7. Speedrail
 
-MCP tools above. Agent token with a cap. Points and pins use `funded_by`.
+MCP tools above. Agent token bound to an alias, with that alias's cap. Points and pins land on the profile that owns the alias.
 
 Checks:
 
@@ -264,13 +268,13 @@ Checks:
 
 ### Phase 8. Crypto rails
 
-Stripe stablecoin checkout for any total of at least $1, behind a flag, off for New York if Stripe still excludes it. Then x402: the server answers 402 with the current price, settles, then writes the same order shape. Creator USDC split is allowed here if it does not require ROW to hold withdrawable balances. If it does, stop and ask.
+Stripe stablecoin checkout for any total of at least $1, behind a flag, off for New York if Stripe still excludes it. Then x402: the server answers 402 with the current price, settles, then writes the same order shape. Creator USDC split is allowed here if it does not require Still to hold withdrawable balances. If it does, stop and ask.
 
 Checks:
 
 - A $1 USDC checkout is allowed.
 - A failed settlement writes no grant.
-- The order rail is `usdc` and the creator cut is still 80%.
+- The order rail is `usdc` and the creator cut is still 90%.
 
 ### Phase 9. PayPal
 
@@ -292,7 +296,7 @@ Use lines in this family. Do not invent a mascot voice that talks in puns on eve
 - Street: "Eight stalls. Nothing over $5."
 - Dollar Night banner: "Dollar Night. These are $1 until midnight."
 - Basket: "4 things. $11. 2.5×. Add one for 3×."
-- Card refused: "A card starts at $3. Add something, or spend your balance."
+- Card refused: "A card starts at $5. Add something, or spend your balance."
 - Receipt: "You grabbed 5. That's $9. 3×. 27 points."
 - Empty save list: "Nothing saved. The stalls are still up."
 - New good: "New. No ratings yet."
