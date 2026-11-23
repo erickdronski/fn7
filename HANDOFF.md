@@ -24,6 +24,18 @@ Two doors, one catalog:
 
 The buyers are people building a project or learning a tool, and agents with a budget. The sellers are people with one finished small thing, not a 40-hour course and not a subscription. The edit is the product. Seeded stalls ship before every stranger can publish. Someone says no to thin listings.
 
+## Open code, official market
+
+The software is open. The shop is the instance at fn7.ai. On that instance, makers keep 90% of a sale, 1% goes to a public fund, and 9% runs fn/7. A fork may change the fee. It may not use the name.
+
+The day code starts, the license is AGPL-3.0-or-later. A hosted fork that improves the market has to publish the improvements. Pull requests are the way in. A merged patch earns the `builder` pin and a vote on the fund. It does not earn a percent of sales.
+
+The gift is 1% of settled sales on the official instance, after refunds. It accrues in a file in the repo and is paid quarterly, only in a quarter where the 10% covered payment fees. A red quarter rolls forward. For the first year Erick can refuse a nominee. After that, people with a merged pull request nominate and vote. The fund is for the tools the market stands on, and for learning. It is not a salary and it is not a campaign.
+
+Decentralized, in this order, and no further without being asked: public code, a signed catalog anyone can mirror, x402 so an agent can pay a maker without fn/7 holding the coin, and later a stall run by someone else that the official street may choose to show. No token. No vote that can move the 90%. OpenBazaar charged nothing, raised $9.25 million, and in 2021 the company running its servers shut them down. The code survived. The market did not.
+
+On the official street, one operator still holds the edit, the Stripe account, and the right to refuse malware. That is the market agents trust.
+
 ## Locked
 
 | Topic | Decision |
@@ -40,6 +52,9 @@ The buyers are people building a project or learning a tool, and agents with a b
 | Loads | $10, $20, $40 only. |
 | Zelle | Never a checkout. |
 | Points | 1 per dollar, times a basket multiplier. No cash value. Cannot be spent. |
+| The code | Open. AGPL-3.0-or-later the day code starts. |
+| The shop | fn7.ai. Makers 90%, fund 1% of sales, operator 9%. |
+| A fork | May change the fee. May not use the name fn/7. |
 | Stars and written reviews | Purchasers only, one per person per listing, after a fulfilled grant. |
 | Comments | Any signed-in person. 500 characters. 5 per hour. One level of replies. No images, no links. |
 | License | Use it in your own work, including work you sell. Do not resell or republish the file, skill, or repo. |
@@ -389,7 +404,7 @@ PayPal Checkout and Pay with Venmo, in sandbox, minimum $5. Same order shape, ra
 
 ## Out of scope
 
-A walkable or 3D world. Chat between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Ads. A token that is the points. Spins, gambling, or paid mystery boxes. Resale of purchased files. Zelle. Cashback. Leetspeak domains. A second login vendor.
+A walkable or 3D world. Chat between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Ads. A token. A vote that can change the 90%. Spins, gambling, or paid mystery boxes. Resale of purchased files. Zelle. Cashback. Leetspeak domains. A second login vendor. A cut of sales for every contributor.
 
 ## What to watch once it sells
 

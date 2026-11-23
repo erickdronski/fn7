@@ -64,6 +64,22 @@ Other marks that were close:
 
 Do not use, as the name or as a stall: Neo, Trinity, Morpheus, Zion, Oracle, Construct, Keymaker, Sentinel, Smith, CHOAM, Animoid, Jawa, Skynet, Agora.
 
+## 2b. Open code, one official market
+
+The software is open. The market people shop is the one Erick runs at fn7.ai. Makers keep 90% on that market. Of the remaining 10% of settled sales, 1% of sales is given away and 9% runs fn/7. Say it as "makers keep ninety, we keep nine, one goes to the fund."
+
+This is the split that stays. A fork of the code may charge something else. It may not call itself fn/7. The name is a trademark held by the operator of the official market, not a gift that ships with the repository.
+
+**License, the day code starts.** AGPL-3.0-or-later. Someone who runs a hosted copy and improves it has to publish those improvements. An MIT license would let a company take the street, keep a fee, and never send a patch back. Contributions come in as pull requests. A merged patch does not buy a share of the 9%. It earns the `builder` pin and a vote on the fund.
+
+**The gift.** 1% of settled sales on the official instance, counted after refunds. It accrues in public. It is paid quarterly, and only in a quarter where the 10% covered payment fees. A red quarter rolls the gift forward instead of sending money that is not there. The ledger is a file in the repo: what came in, what went out, to whom. For the first year Erick can refuse a nominee that is a capture or a personal payout. After that, people with a merged pull request nominate and vote. The fund is for the tools the market stands on, and for learning. It is not a second salary and it is not a campaign fund unless Erick later says so.
+
+**What "decentralized" means here.** Three layers, in order. The code is public, so anyone can read the price rules and send a patch. The catalog of published goods is a signed feed anyone can mirror. An agent can pay a maker with USDC over x402 without fn/7 holding the coin. A later layer can let someone else run a stall whose goods the official street chooses to show. That is as far as it goes.
+
+It does not mean a token, a DAO, or a vote that can move the 90%. OpenBazaar tried the other version. It charged no fee, raised $9.25 million, and in 2021 the company that ran the wallets, search, and site shut them down. The code remained. The market did not. Ghost is the closer shape: the software is free, most people run their own, and the official hosted service is what pays the people who keep building it. fn/7 does not need to be a nonprofit for that to work. Erick can own the operator and still give the code away.
+
+**What stays in one pair of hands, on purpose.** The edit of the official street. The Stripe account for that street. The right to refuse malware. A fork can be looser. Agents that want the edited market come to fn7.ai.
+
 ## 3. Who shows up, and why
 
 **Person.** They have a project, a class, or an hour to kill. They should understand the whole offer in one look: three prices, stalls with personalities, a basket that tells them what one more item does to their points. They can browse without an account. Saving, reviewing, commenting, and buying require a sign-in.
@@ -318,4 +334,4 @@ Do not add, in v1: a second database, Clerk (Supabase auth is enough), a search 
 
 ## 16. Out of scope
 
-A 3D or walkable world. Chat between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Advertising slots. A token that is the points. Gambling, spins, or paid mystery boxes. Resale of purchased files. Zelle checkout. Cashback.
+A 3D or walkable world. Chat between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Advertising slots. A token, whether or not it stands in for the points. A vote that can change the 90%. Gambling, spins, or paid mystery boxes. Resale of purchased files. Zelle checkout. Cashback. Paying every contributor a cut of sales.
