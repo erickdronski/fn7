@@ -1,0 +1,291 @@
+# ROW business plan
+
+Working title: **ROW**. A pixel night market for small digital goods. Agents buy on a speedrail. People walk the stalls. Everything on the shelf is $1, $3, or $5, and scheduled Dollar Nights drop opted-in goods to $1.
+
+This is the source of truth for product, money, and brand. Implementation order lives in [build-spec.md](build-spec.md). Fees were read from vendor pages in November 2026. This is not legal, tax, or payments advice.
+
+## 1. The business in one page
+
+ROW edits a night market of things a person or an agent can use the same day: a skill, a template, a starter repo, a lesson, a pack, a small tool. The price is a stamp, not a negotiation. The visit is a haul. The profile is a jacket of patches and pins.
+
+Creators keep **80%** of the price paid. ROW keeps **20%**. ROW makes money only when something sells. There is no listing fee and no monthly seller fee.
+
+The buyers are:
+
+- A person building a project, learning a tool, or hunting for a cheap kit.
+- An agent with a budget, shopping the same catalog through MCP, and later through USDC on x402.
+
+The sellers are people with small finished goods. One skill. One deck. One lesson. Not a 40-hour course and not a SaaS subscription.
+
+ROW is not Bucksoup (a $1 file shop with a personal-use license), not Gumroad (seller-set prices), and not an MCP directory (discovery, no checkout). The seat ROW takes is a **priced, edited, agent-readable market** with a night-market face.
+
+## 2. Locked decisions
+
+| Topic | Decision |
+| --- | --- |
+| Name | Working title ROW. One constant. Rename later. Do not use "the digital dollar store." Bucksoup already uses that phrase. |
+| Shelf prices | Only $1, $3, and $5. |
+| Dollar events | Creators opt in. For the event window the price is $1. It returns when the window ends. |
+| Creator share | 80% of the amount paid for that line, after the event price if one is active. |
+| Card checkout | Apple Pay, Google Pay, and cards from a **$3** ticket up. |
+| PayPal and Venmo | From a **$5** ticket up. Phase 2. Not the cheap rail. |
+| Balance and USDC | Can buy a single $1 item. Balance cannot be cashed out. |
+| Zelle | Not a checkout. |
+| Points | 1 per dollar spent, times a basket multiplier. No cash value. |
+| Reviews | Star ratings and written reviews from purchasers only. |
+| Comments | Any signed-in person, rate-limited. Purchaser comments wear a pin. |
+| License | Buyer may use the good in their own work, including work they sell. They may not resell or republish the file, skill, or repo. |
+| Art | Original pixel creatures and stalls. No studio IP. |
+| World | A market you scan and tap. Not a game you walk. |
+
+## 3. Who shows up, and why
+
+**Person.** They have a project, a class, or an hour to kill. They should understand the whole offer in one look: three prices, stalls with personalities, a basket that tells them what one more item does to their points. They can browse without an account. Saving, reviewing, commenting, and buying require a sign-in.
+
+**Agent.** It has a task and a cap. It searches, previews, and buys without a pixel street. The receipt and the points land on the human who funded it. An agent that only has a virtual card is paying card prices. On ROW's own shelf it spends a balance or, later, USDC.
+
+**Creator.** They have something small and finished. A $5 sale pays them $4. One hundred sales of one top-shelf good pay $400. That is the same dollars as five hundred sales of a $1 file at this split, and the thing can be good enough to sign. Creators opt into Dollar Night when they want volume and a crowd, not as the everyday price.
+
+**ROW.** The edit is the product. Empty stalls and a PDF mill kill a $5-or-less market. Someone says no to thin listings. Seeded stalls ship before the doors open to every creator.
+
+## 4. The shelves
+
+| Stamp | Buyer pays | Creator keeps | What belongs there |
+| --- | --- | --- | --- |
+| Bin | $1 | $0.80 | A prompt, a palette, a snippet, a single sample. Also every Dollar Night price. |
+| Middle | $3 | $2.40 | A skill, a starter, a short lesson, a small pack. |
+| Top | $5 | $4.00 | A template system, a fuller lesson, a small tool with a license key. |
+
+A course is a stack of lessons, so eight lessons are $24 if each is $3, or $40 if each is $5. The ceiling still holds on every object. Bundles are not a fourth price. A bundle is N listings added together, and the basket multiplier applies.
+
+No compare-at strikethrough on an ordinary day. The only time a second number shows is during an event: the shelf stamp, then the $1 event stamp, with the clock.
+
+## 5. Dollar Night and other $1 events
+
+Events are how $1 stays fun after the everyday ceiling moved to $5.
+
+**Dollar Night.** A repeating window, Thursday 00:00 through 23:59 in America/New_York. Creators opt a listing in before the window. For those hours that listing is $1. When the window ends, open baskets reprice on the server before anyone can pay. A sticker cached in the browser is not the price.
+
+**Bin Raid.** A staff-built stall of $1 goods, up for a short run. The theme is on the sign. Two of the goods are visible before you grab the set. This is a chosen bag, not a random loot box. Loot boxes are out. They are a legal and a taste problem.
+
+**First listing.** A creator's first listing may sit at $1 for seven days if they choose. One time per creator. It is a debut, not a permanent bin.
+
+Rules for every event:
+
+- The creator still keeps 80% of $1, which is $0.80.
+- A $1 line cannot be the only thing on a card or PayPal charge. It can be bought with balance, with USDC, or inside a ticket that clears the rail's minimum.
+- Points use the normal formula. The event does not add a points multiplier. The low price is the thrill. Buying during Dollar Night earns a pin.
+- A creator can cap units for an event. When the cap hits, the listing leaves the event and returns to its shelf price. Do not invent "only 3 left" on an infinite file.
+
+## 6. Brand
+
+ROW looks like a night market drawn in pixels. Think a bazaar at the edge of a spaceport: stalls, hanging lamps, crates, creatures and bots trading. People and agents are both customers. The creatures are the sellers' avatars and the stall mascots, not a faction war.
+
+Feel:
+
+- Few colors, hard pixels, no blur, no gradients, no soft shadows.
+- A market street of stalls is the home. Each stall is an aisle with a keeper.
+- Signs are short. "PAPER." "AGENTS." "THE BIN."
+- Copy sounds like a vendor, not a startup. "Five things. Nine dollars." "Dollar Night ends at midnight."
+- Motion is small. A lamp blink. A sticker flip when an event starts. No screen shake, no loot spray.
+
+Do not copy Star Wars, Alien, or any other film's creatures, ships, costumes, or names. The reference is the *kind* of place (a cantina, a trading post, a night market), and the drawings are ours.
+
+Starter keepers, original, for the first stalls:
+
+| Stall | Keeper | Sells |
+| --- | --- | --- |
+| Now | Lamp moth | This week's drops. They leave. |
+| Paper | Fold crane | Templates, decks, one section of a page. |
+| Agents | Courier bot | Skills. The receipt has Install. |
+| Code | Crate crab | Starters, snippets, tiny repos. |
+| Lessons | Chalk owl | One idea at a time. |
+| Packs | Tin fox | Icons, palettes, presets, samples. |
+| Tools | Key sparrow | A small utility and a key. |
+| The Bin | Bin raccoon | Dollar Night and staff $1s. |
+
+V1 art can be Erick's sprite sheet: 8 keepers, stall frames, a buyer jacket, pin slots. A coding agent uses colored pixel blocks and the names until those sprites exist. It does not download game assets.
+
+Palette, to start:
+
+| Token | Hex | Use |
+| --- | --- | --- |
+| Ink | `#140c1c` | Night sky, page |
+| Paper | `#f3e6c8` | Signs, receipt |
+| Amber | `#f0a202` | Lamps, $5 stamp |
+| Cyan | `#7ee0d6` | Links, agent trail |
+| Crate | `#e23d28` | $1 stamp, alerts |
+| Moss | `#6ea84a` | $3 stamp, success |
+
+Type: an OFL pixel face for stamps and stall names. "Press Start 2P" is fine for v1. Body copy can be a plain sans at a small size so reviews are readable. Prices and stall names stay pixel. Reviews do not.
+
+## 7. Two doors, one catalog
+
+**The street (people).** Stalls, then a shelf, then a good, then a basket, then a receipt. Search sits on the street for someone who already knows the name. The street is the treasure hunt. It has to be fast: a stall opens without a loading novel.
+
+**The speedrail (agents).** No street required. Tools: `search`, `preview`, `save`, `grab`, `checkout`, `install`, `library`, `reviews`. Browse is free. Buying spends the human's balance or a later USDC rail, and stops at a cap the human set. Preview returns what is inside, the license, a sample, the price, and whether an event price is active. Install returns a skill zip, a repo archive, or a download grant.
+
+The human can do everything the agent can do, including install. The agent can do everything except wander for fun. Both write the same order.
+
+A virtual card from Visa Intelligent Commerce, Google's Agent Payments Protocol, or PayPal's agentic virtual card is how an outside agent pays *other* sites. On ROW those protocols are a later door so an agent inside ChatGPT or Google can find a listing. They are card-priced, so they follow the card minimum. They are not the speedrail.
+
+## 8. The jacket
+
+The profile is a jacket, built from the first purchase. It shows the patch (status), the pins (badges), past receipts, stalls visited, and makers they keep buying.
+
+**Points.** 1 point per dollar spent on goods, ignoring tax if any is added later. Then multiply by how many listings share that checkout:
+
+| Things in the checkout | Multiplier |
+| --- | --- |
+| 1 | 1× |
+| 2 | 1.5× |
+| 3 | 2× |
+| 4 | 2.5× |
+| 5 or more | 3× |
+
+Five dollars spent three ways: one $5 item is 5 points, a $3 and two $1s is 10, five $1s is 15. The basket says what one more item would do, before they pay.
+
+**Patches.** Lifetime points. Status never falls.
+
+| Patch | Points | What they get |
+| --- | --- | --- |
+| Walk-in | 0 | A jacket and a haul history. |
+| Regular | 30 | The patch shows next to their reviews. One fat haul can do this on the first trip. |
+| Hauler | 150 | Sees the next Dollar Night list a few hours early. |
+| Keyholder | 400 | One of their hauls can be pinned on a stall. Still no discount. |
+
+**Pins.** Separate from the patch. First grab. Full basket (5 things, one checkout). Five stalls. Same maker twice. Dollar Night. Bin diver (a checkout that was all $1). Agent haul.
+
+Points from an agent checkout land on the human who funded the agent. A refunded or voided line loses its points. Points have **no cash value**, cannot be transferred, and cannot be redeemed for goods. Sephora turns 500 points into $10 off, about 2% of spend. On a 20% take, that kind of cashback gives away a tenth of ROW's cut and teaches people to wait for a bonus day. ROW does not do it.
+
+## 9. Reviews, ratings, saves, comments
+
+| Action | Who | Rules |
+| --- | --- | --- |
+| Save | Signed-in | Private list. A heart on the good. No points for saving. |
+| Star rating | Purchaser, after the order is fulfilled | 1 to 5. One rating per person per listing. Updating replaces. Average shows after 1 rating. Before that the stall says "New." |
+| Written review | Same as stars | Optional text with the rating. The maker can reply once. |
+| Comment | Any signed-in person | One thread under the good. Replies go one level deep. 500 characters. No images, no links in v1. A purchaser's comment wears a pin. |
+
+Rate limit comments: 5 per hour per person. A report hides a comment or review for the queue after 3 unique reports, or immediately if the reporter is the maker of that good. Erick, or whoever holds the editor role, restores or deletes.
+
+Stars are not points. A creator is not ranked by how many Dollar Night units they dump. Sort stalls by a mix of recent sales, rating count, and editor picks. "Now" is hand-placed.
+
+## 10. Payments
+
+One charge pays for a whole checkout. Line prices are the shelf or the event price at the moment the server creates the charge. The buyer sees the rail fee only as a rule ("This rail starts at $3"), never as a surprise added on top of the stamps. ROW eats the processor fee out of its 20%.
+
+| Rail | When | Minimum ticket | Phase | Cost to collect, published |
+| --- | --- | --- | --- | --- |
+| Apple Pay, Google Pay, cards, Link | Person checkout and balance top-up | $3 | 1 | Stripe US domestic card, 2.9% + 30¢ |
+| Buyer balance | Any single item, including $1 | None | 1, after top-up exists | No extra processor fee. The fee was paid when the balance was loaded. |
+| Stripe stablecoin (USDC) | Any single item | None | 2 | 1.5% of the dollar amount, gas and fiat conversion included. Unavailable to New York businesses on Stripe's docs. |
+| ACH bank debit | Balance top-up only | $10 load | 2 | 0.8%, capped at $5. Clears in days. Do not deliver goods against an unsettled debit. |
+| x402 USDC on Base or Solana | Agent buys one or many, no ROW account required beyond a payee address | None | 2 | About 0.2¢ after Coinbase's free 1,000 settlements a month ($0.001 facilitator + a fraction of a cent of gas). |
+| PayPal Checkout, Pay with Venmo | Person who will not use a card | $5 | 2 | 3.49% + 49¢ on PayPal's US merchant page dated November 23, 2026. |
+| PayPal agentic virtual card, Visa Intelligent Commerce, Google AP2 | An outside agent paying ROW like a card merchant | Same as cards, $3 | 3 | Card economics. PayPal's agentic virtual card, terms effective November 23, 2026, is not covered by PayPal seller protection. The merchant pays its card processor. |
+| Zelle, Venmo-app business profile | — | — | Never as checkout | Zelle has no public checkout API. Venmo's 1.9% + 10¢ rate is inside the Venmo app, not a website button. |
+
+**Balance.** A person loads $10, $20, or $40 with Apple Pay. Those dollars buy goods on ROW and nothing else. No transfer to another person. No cash-out. Refunds of a good return to the balance as store credit. A card refund is only for a load that has not been spent. This is the closed loop that keeps a $1 grab instant and keeps ROW from becoming a wallet people cash out.
+
+**Creators get paid** through Stripe Connect, platform pricing (ROW sets the 80/20, so ROW is billed for Connect). Published Connect prices when the platform handles pricing: **$2 per account that receives a payout that month**, and **0.25% + 25¢ per payout**. Payouts run on the 1st, America/New_York, only if the creator's available balance is at least **$20**. Smaller balances roll to the next month so a $4 payout does not cost $2.25 to send. USDC sales in phase 2 may pay a creator wallet directly (80/20 on-chain) and skip that Connect payout. Design it then. Do not custody a cash-out wallet in phase 1.
+
+**Disputes.** Stripe charges $15 when a card dispute arrives. One dispute can erase the platform's cut on a couple dozen sales. Digital goods are fulfilled by a download or install grant, which is the evidence. Prefer store credit. Do not fight a $5 dispute for sport.
+
+**Tax.** Gumroad and Lemon Squeezy win some creators by being the merchant of record and remitting sales tax. That is real work at these prices. Phase 1 uses Stripe Tax if it can be turned on without blocking the first sales, and the plan does not promise "we file in every country" until the volume is there. Say so in the creator terms.
+
+Worked card math at 80/20, Stripe US domestic 2.9% + 30¢, before Connect payout fees and tax:
+
+| What they buy | Paid | Creator | Card fee | ROW left |
+| --- | --- | --- | --- | --- |
+| One $1 on a card | $1 | $0.80 | $0.329 | −$0.129, refused |
+| One $3 on a card | $3 | $2.40 | $0.387 | $0.213 |
+| One $5 on a card | $5 | $4.00 | $0.445 | $0.555 |
+| Five $1s, one card | $5 | $4.00 | $0.445 | $0.555 |
+| Four $3s, one card | $12 | $9.60 | $0.648 | $1.752 |
+| One $1 with Stripe USDC | $1 | $0.80 | $0.015 | $0.185 |
+| One $1 with x402 | $1 | $0.80 | about $0.002 | about $0.198 |
+
+A $10 Apple Pay load costs about $0.59 in card fees. Spent as ten $1 grabs, that is $0.059 per grab, and ROW's $0.20 still clears. This is why the balance exists.
+
+PayPal on a lone $5: fee about $0.66, creator $4.00, ROW left about $0.34. PayPal on a lone $3 roughly breaks even, which is why PayPal starts at $5.
+
+## 11. A month of money
+
+Illustrative, all card, US domestic, one payout per active creator on the 1st, hosting at the "real" stack below. Refunds and tax not included.
+
+| | Quiet month | Working month |
+| --- | --- | --- |
+| Checkouts | 200 | 1,000 |
+| Average ticket | $10 | $12 |
+| GMV | $2,000 | $12,000 |
+| Creator share, 80% | $1,600 | $9,600 |
+| ROW's 20% | $400 | $2,400 |
+| Card fees | about $118 | about $648 |
+| ROW after cards | about $282 | about $1,752 |
+| Connect, 25 then 80 creators paid | about $60 | about $204 |
+| Hosting and email | about $45 | about $65 |
+| Left | about $175 | about $1,480 |
+
+Two hundred checkouts is a small night market and a thin business. A thousand is a real stall. The edit, the seeded goods, and Dollar Night are what get the checkouts. The 20% is not the hard part.
+
+Hosting before anyone is selling: **$0 to $45 a month.** See the stack below. Do not buy the paid tiers on day one if the free tiers are enough to build. Do buy Supabase Pro before real people depend on it. Free projects pause after a week of inactivity.
+
+## 12. Tools and what to pay
+
+Buy the smallest set. Every extra account is something a coding agent will wire halfway.
+
+| Job | Tool | Why this one | Price to plan on |
+| --- | --- | --- | --- |
+| App | Next.js on Vercel | Street, stalls, checkout, creator desk. | Hobby $0. Pro $20/month when the team or the bandwidth needs it. Pro includes $20 of usage credit. |
+| Database, auth, files | Supabase | Postgres, sign-in, storage for zips and sprites. One vendor. | Free to build. Pro from $25/month so the project is not paused. 100 GB storage included, then about $0.021 per GB. |
+| Cards, Apple Pay, Google Pay, ACH, USDC checkout, creator payouts | Stripe, including Connect | One money stack. | Card 2.9% + 30¢. ACH 0.8% cap $5. Stablecoin 1.5%. Connect $2 per paid creator per month and 0.25% + 25¢ per payout, because ROW sets the split. |
+| Agent USDC | Coinbase x402 facilitator, Base first | Agents that already hold USDC. | 1,000 settlements a month free, then $0.001. |
+| Mail | Resend | Receipts and creator payout notices. | Free: 3,000 emails/month, 100/day. Pro $20 for 50,000. |
+| DNS and a bucket if Supabase storage gets tight | Cloudflare, R2 if needed | Cheap files, free egress on R2. | R2 is $0.015 per GB-month. Skip until Supabase storage is the bottleneck. |
+| Name | A domain | People have to type it. | About $12 to $20 a year. |
+| Sprites | Erick, then a paid sheet if needed | The market has to look like itself. | $0 if Erick draws the v1 sheet. About $1,500 if a pixel artist draws 8 keepers, stalls, and a jacket. |
+| Lawyer pass | A marketplace lawyer, once, before public creators | Terms, license, credits, tax story. | Budget $1,500 to $3,000 before the doors open to strangers. Not required to build the prototype. |
+
+Do not add, in v1: a second database, Clerk (Supabase auth is enough), a search vendor (Postgres is enough), an analytics suite, a feature-flag service, a CMS, an AI moderation API, or a crypto custody account.
+
+**Accounts to open, in order.** A domain. A Stripe account (test mode first). A Supabase project. A Vercel project. A Resend account. A Coinbase Developer Platform account when phase 2 starts, not before. PayPal when phase 2's PayPal task starts.
+
+**Secrets the app will read.** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`. Phase 2 adds the Coinbase facilitator key and, if used, PayPal's client id and secret. Never commit them. Local dev uses Stripe test keys and Supabase local or a dev project.
+
+## 13. Trust
+
+- Purchaser-only stars. A rating from someone who did not buy is noise.
+- Downloads and installs are grants on the order, logged, so a dispute has a timestamp.
+- Listings wait in a queue until an editor publishes them, until the market is busy enough to flip new creators to "publish, then review." Day one is the queue.
+- Refused: resale of someone else's good, stolen repos, malware, credential dumps, sexual content involving minors, anything a reasonable stall would not put on a table. The build spec's editor screen is the tool.
+- The license line is on every good, in plain words, and in the preview an agent reads.
+
+## 14. What to watch
+
+- Haul rate: share of checkouts with 3 or more goods. This is the habit the multiplier is for.
+- Dollar Night share of weekly GMV, and the refund rate on those $1s versus shelf-price sales.
+- Median creator earnings in their first 30 days. If that number stays near $0, the supply side is the problem, not the theme.
+- Agent checkouts versus human checkouts, after the MCP phase.
+- Dispute count. One is a story. A pattern is a listing to pull.
+- Time from opening a stall to grabbing something. If the pixel skin makes this slow, the skin is wrong.
+
+## 15. Risks
+
+| Risk | What we do |
+| --- | --- |
+| Thin $1 files flood Dollar Night | Editor queue. Purchaser stars. Event unit caps. A maker with a high refund rate loses event opt-in. |
+| $1 card charges lose money | The server refuses them. Tests cover this. |
+| Points become a shadow discount | No redemption. Written in the terms. |
+| Creators split one good into five $1s to game the buyer's multiplier | The multiplier pays the buyer, not the creator's rank. The editor still rejects empty splits. |
+| Free Supabase pauses | Pro before real users. |
+| Connect's $2 eats tiny creators | $20 payout minimum, monthly. |
+| Chargebacks | Credit back to the balance. Log the grant. Do not sell the balance as cash. |
+| Holding USDC people can withdraw | Phase 1 does not. x402 in phase 2 settles through, it does not sit in a ROW wallet the user can drain to a bank. |
+| Looking like a game and playing like a chore | The street is a menu of stalls with a face. Checkout is a normal, fast form. If a phase slows the grab, cut the decoration. |
+| IP on the creatures | Original names and sprites only. |
+| Tax | Do not promise merchant-of-record coverage we have not turned on. |
+
+## 16. Out of scope
+
+A 3D or walkable world. Chat between strangers. Auctions. Subscriptions. Seller-set prices. Prices above $5. Physical goods. Advertising slots. A token that is the points. Gambling, spins, or paid mystery boxes. Resale of purchased files. Zelle checkout. Cashback.
