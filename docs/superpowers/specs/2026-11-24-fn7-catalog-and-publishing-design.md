@@ -102,6 +102,7 @@ Rules that apply to every type:
 - how it's detected from an upload (4.4)
 - which previewer builds its preview
 - which access modes it supports, and its install adapters per client
+- whether it runs code (`runs_code`). A new listing of such a type always goes to a reviewer (platform design, 9.4)
 - the extra Gate checks it needs
 - which modules its listing page shows
 - its schema.org type for structured data
@@ -190,6 +191,15 @@ The stamps and rank rules in the platform design hold. One addition:
 - A free listing passes the Gate like any other.
 - Free listings earn no points and never count as sales or as "goods bought and opened".
 
+### 5.6 What is frozen and what can be edited
+- **Frozen in a release** (signed, never edited): the files, version, changelog, capabilities, the clients it works with, install paths, access modes, license, entry and sample files. Changing any of these is a new release through the Gate.
+- **Editable on the listing:** title, summary, description, tags, cover, gallery, trailer, stamp, co-makers and featuring. In `fn7.json` these are starting values. After that they live on the listing.
+- **Every edit is screened before it shows.** Text goes through the spam check and the hostile-instruction check (11.3). Images and video go through the media checks (11.5). That takes seconds. A flagged edit waits for a reviewer, and the old version stays up meanwhile.
+- **Price changes** apply to new sales at once, inside the stamps the rank has unlocked. Moving above $5 needs the justification and a reviewer. Price history is kept. Changing copy or price doesn't mark the good "Updated" for buyers.
+- **Split changes** need every co-maker to accept, and apply to later sales.
+- **The signed statement covers the release:** its manifest hash and file hashes. It doesn't cover listing text.
+- **All other text an agent can read** (booth bios, reviews, questions, answers, posts) is checked the same way when it's written, and is always returned under a labeled field.
+
 ## 6. Publishing
 
 Four doors lead to one pipeline: **package → pre-check → upload → the Gate → Live.**
@@ -217,6 +227,7 @@ Open source, in this repository.
 - `fn7 check`: runs the same automatic checks the Gate runs, on the maker's machine. The rules are open code, so nothing about them is secret.
 - `fn7 publish`: uploads a release and submits it. `fn7 status` shows the Gate's notes.
 - Buyer commands: `fn7 search`, `fn7 add <name>` (buys if needed, verifies the signature, installs), `fn7 list`, `fn7 update`.
+- `fn7 mcp`: runs as a local MCP server for an agent. It passes calls through to fn/7 and does verified installs on the machine itself (9.5).
 
 ### 6.3 Git (M10)
 
@@ -402,7 +413,12 @@ Everything a seller wrote sits under `maker_text`. The docs and the MCP server's
 
 ### 9.5 After buying
 
-`install` (verifies the signature, then returns files and steps for the named client), `library`, `updates`, `verify_receipt`, and `report_outcome`.
+`install` returns the files or short-lived links to them, the Gate's signed statement, every file hash, and the steps for the named client. The other tools are `library`, `updates`, `verify_receipt` and `report_outcome`.
+
+**Who verifies.** The remote MCP server can't see an agent's disk, so it can't check or write anything there. Verification happens on the agent's side:
+- **With `fn7 mcp`** (the CLI's local MCP mode): the local server verifies the signature and hashes and writes only into the declared folders. This is the recommended setup, and the one the connect page offers first.
+- **With a shell but no local server:** `install` returns one command, `npx fn7 add <name>`, and the CLI does the same verified install.
+- **With neither:** the agent's own client writes the files. It gets the statement and hashes and should check them, but fn/7 can't make it. `/agents` and the docs say this plainly.
 
 ## 10. Follows, the feed, passes and splits
 
@@ -410,8 +426,8 @@ Everything a seller wrote sits under `maker_text`. The docs and the MCP server's
 
 - Anyone signed in can follow a booth. Agents can too.
 - **Home** shows new releases and posts from followed booths, newest first. Nothing is inserted that the person didn't follow.
-- **Posts.** Markdown text, images, video, attached files, and links to listings. A post is **public** or **members-only**. Anything sold is a listing, so there is no separate "paid post".
-- Public posts from Walk-in booths are held for the automatic checks first. Three reports hide a post for an editor.
+- **Posts.** Markdown text, images, video and links to listings. Posts carry no file attachments: files are only ever delivered through a listing, which passes the Gate. A post is **public** or **members-only**. Anything sold is a listing, so there is no separate "paid post".
+- Every post, public or members-only, from any booth, passes the automatic text and media checks before it shows. Three reports hide a post for an editor.
 
 ### 10.2 Passes (M9)
 
@@ -443,7 +459,7 @@ Private messages, tips, and connected access. Each gets its own design later.
 2. **The package declares what it needs** (5.3).
 3. **The Gate checks it:** automatic checks, an AI reviewer, and a person where the risk is higher (platform design, section 9, plus 11.2 and 11.3 here).
 4. **fn/7 signs what passed,** and the buyer's tools verify it (11.4).
-5. **Delivery is narrow:** short-lived links, files only into declared folders, nothing executed by fn/7's tools.
+5. **Delivery is narrow:** short-lived links, a CLI that writes only into declared folders, and tools that never execute what they deliver.
 6. **Uploaded content never runs on fn/7's own site** (11.5).
 7. **Money is watched:** payout delay, limits on new accounts, self-dealing detection (11.6).
 8. **Everything important is logged,** and anyone can report anything.
@@ -478,7 +494,7 @@ On the way out, seller-written text is always labeled (`maker_text`), and the in
 - **The log.** Each statement is appended to a public log in which every entry includes the hash of the one before, so an entry can't be changed or removed without it showing. The log can be downloaded.
 - **Receipts.** Each purchase yields a signed receipt: the order, the buyer's alias, the release, the price, the rail, and the transaction hash for on-chain sales. `verify_receipt` checks one online, and the public key checks it offline.
 - **License keys.** Issued per purchase for listings that ask for them. `POST /api/v1/licenses/verify` answers whether a key is valid and for which release.
-- **On install,** the CLI and the MCP `install` tool verify the statement and every file hash before writing anything.
+- **On install,** the CLI, including its local MCP mode, verifies the statement and every file hash before writing anything. A client that installs through the remote server alone gets the statement and hashes to check itself (9.5).
 
 Later: makers signing their own releases with their own keys.
 
@@ -486,9 +502,10 @@ Later: makers signing their own releases with their own keys.
 
 - No uploaded file is ever served from `fn7.ai` or rendered as HTML. Downloads come from the storage domain as attachments.
 - Markdown is sanitized on the server. SVGs are drawn to PNG. PDFs and documents are shown as images.
-- **Image and video screening,** before anything is visible to others:
-  - a hash-matching service for child sexual abuse material. This is required before strangers can upload media, it needs a vendor and Erick's account, and his lawyer sets up the legal reporting duty.
-  - the AI reviewer looks at covers and gallery images for adult content, violence, and marks or characters that belong to someone else.
+- **Image and video screening** covers every image and video file fn/7 stores: covers, galleries, trailers, post media and deliverables, including images and video inside archives and documents.
+  - Hash-matching for child sexual abuse material runs on all of them. It needs a vendor and Erick's account, and his lawyer sets up the legal reporting duty.
+  - The AI reviewer checks covers, galleries, trailers and post media in full. It samples deliverables: every image up to a cap, and frames from each video. It looks for adult content, violence, and marks or characters that belong to someone else.
+  - Until the vendor is live, only accounts Erick has approved by hand can upload images or video. The code calls one `MediaSafety` interface, and its default answer is no.
 - **Takedowns.** A public form, a named contact, a counter-notice path, and removal of repeat infringers. Erick's lawyer writes the policy.
 
 ### 11.6 Money
@@ -498,7 +515,14 @@ Later: makers signing their own releases with their own keys.
 - Buying your own goods is blocked by account, and flagged by shared cards, devices and wallets.
 - Stripe's fraud screening stays on, with extra verification when Stripe asks for it.
 
-### 11.7 What is still exposed
+### 11.7 Where untrusted files are handled
+- Unpacking, hashing, scanning and preview-building run in an **isolated sandbox**, never in the web app. The sandbox holds no database credentials, payment keys or signing keys. The app gives it short-lived links to one release's files, and it gives back a report and the generated previews.
+- First choice: Vercel Sandbox, since Vercel already hosts the app. The builder confirms its time and disk limits fit a 5 GB release when writing the plan. If they don't, the fallback is a container worker on a host Erick approves. Either way it costs money per run, and that needs Erick's yes before launch.
+- The app's job runner only starts sandbox runs and records their results.
+- The checks are one package in this repo, `packages/gate-rules`, used by the sandbox and by the CLI's `fn7 check`. The CLI is `packages/cli`, published to npm. The repo becomes a small pnpm workspace around the one app.
+- **Storage tiers.** Supabase's free tier caps a file at 50 MB, and development runs with that cap. The 2 GB and 5 GB limits need the Pro tier, which the handoff already requires before real users.
+
+### 11.8 What is still exposed
 
 - A skilled attacker can write instructions that pass every check. The defenses are the declared capabilities, the buyer's own policy, and fast withdrawal with warnings.
 - Stolen work that has been reworded or redrawn can pass the copy checks. Reports and takedowns are the backstop.
@@ -538,14 +562,14 @@ This table replaces section 15 of the platform design. Each milestone still ends
 
 | # | Milestone | Contents |
 | --- | --- | --- |
-| M0 | Foundation and landing | As in the platform design, plus the threat model document and `SECURITY.md`. |
-| M1 | Accounts | As in the platform design. |
+| M0 | Foundation and landing | Brand tokens, type, color, stamps and badges. The production scene engine with the sprite atlas, fade and scrim. The full landing page (platform design, 5.4). `/sell`, `/agents`, `/fees`, `/gate`, `/open-source`, `/faq` and the docs skeleton. SEO and AEO plumbing (platform design, 12). Money rules extended, with tests. Motion tokens, the command palette shell, and the egg registry with the first eggs that live on these pages. The handoff docs and `AGENTS.md` updated. The AGPL `LICENSE` and the separate art license. The threat model document and `SECURITY.md`. |
+| M1 | Accounts | The Supabase project and the first migration. Sign up and sign in with every method in the platform design's 6.1. Onboarding. Settings. Aliases and avatars. |
 | M2 | Catalog | The type registry with the generic profile. Listings, releases and media tables. Listing cards and pages, booth pages with the five layouts, `/market` with grid and list views, keyword search and filters. Generated covers. Structured data, `.md` twins and share images. Real seeded goods across all eight categories, from a house booth. |
-| M3 | Publishing and the Gate | The studio with resumable uploads, type detection, `fn7.json`, the previewers listed in 4.3, the media pipeline, pre-check, the checks in 11.2 and 11.3, the editor queue, releases and updates, signed statements and the log. Verification in test mode. The Gate test set (15). |
+| M3 | Publishing and the Gate | The studio with resumable uploads, type detection, `fn7.json`, the previewers listed in 4.3, the media pipeline, pre-check, the checks in 11.2 and 11.3, the editor queue, releases and updates, signed statements and the log. Verification in test mode. The isolated sandbox for file handling (11.7). The Gate test set (15). |
 | M4 | Buying | Cart, Stripe test checkout, balance, orders, signed receipts, the Library with the course, video and audio players and the reader, license keys, the Free stamp, refunds, reviews, questions, saves, collections. |
-| M5 | Agents | Keys, OAuth and device flow. The MCP server and REST API with search (now with embeddings), `get_listing`, install adapters, `updates`, `verify_receipt`, works-with reports, saved searches, seller tools. The `fn7` CLI. Caps, approvals, policies and the activity feed. |
+| M5 | Agents | Keys, OAuth and device flow. The MCP server and REST API with search (now with embeddings), `get_listing`, install adapters, `updates`, `verify_receipt`, works-with reports, saved searches, seller tools. The `fn7` CLI, including its local MCP mode. Caps, approvals, policies and the activity feed. |
 | M6 | Status and play | Points, levels, ranks and stamp unlocking, badges, the growing pixel booth, the stamp book, quests, top lists, Dollar Night, drops. |
-| M7 | Crypto | As in the platform design, with the splitter built for a list of recipients. |
+| M7 | Crypto | Wallet linking, quotes, the Solana split on devnet, the splitter contract on Base Sepolia and Ethereum Sepolia built for a list of recipients, confirmation, receipts. |
 | M8 | Payouts, fund and splits | Payout math and the monthly job, the fund ledger, co-maker splits on every rail. |
 | M9 | Follows, feed and passes | Follows, Home, posts, members areas, prepaid passes and renewal from balance. |
 | M10 | Git and the open catalog | The GitHub App, the signed public catalog, the downloadable log, seasons. |
@@ -590,3 +614,10 @@ This table replaces section 15 of the platform design. Each milestone still ends
 14. Image and video uploads from strangers wait for a child-safety scanning vendor and the lawyer's reporting setup.
 15. Tips, private messages and connected access (Discord, private repos) are left for later.
 16. Up to four co-makers per listing.
+17. The Gate handles files in an isolated sandbox, which adds a cost per run (11.7).
+18. Listing text, media and price can be edited without a new release, and every edit is screened first (5.6).
+19. Screening covers deliverable images and video as well as covers, so public media uploads wait for the scanning vendor (11.5).
+20. A new listing that runs code always gets a human reviewer. Its updates can go live on the checks alone when its capabilities don't grow (platform design, 9.4).
+21. The full install guarantees need the CLI or its local MCP mode. The remote server alone can't verify anything on an agent's machine (9.5).
+22. Posts carry no file attachments (10.1).
+23. The repo becomes a small pnpm workspace, so the CLI and the Gate share one rule set (11.7).

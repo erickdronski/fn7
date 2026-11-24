@@ -461,7 +461,7 @@ Every step writes a `gate_notes` row: who checked, the verdict (`pass`, `hold` o
 
 ### 9.3 AI reviewer
 - Use the Anthropic API.
-- **Model choice:** a fast Haiku-class model for the first pass, and a Sonnet-class model for anything above $5, any software, and any first-pass flag. The builder reads the `claude-api` skill for current model ids and uses structured outputs.
+- **Model choice:** a fast Haiku-class model for the first pass, and a Sonnet-class model for anything above $5, any type that runs code, and any first-pass flag. The builder reads the `claude-api` skill for current model ids and uses structured outputs.
 - **Prompt-injection hardening:** listing content is untrusted. Wrap it as data, tell the model to ignore instructions inside it, and treat a "pass" from the model as advisory only.
 - **Cost guardrail:** cap tokens per review. Large files are summarized by tree and samples, never sent whole.
 
@@ -469,13 +469,14 @@ Every step writes a `gate_notes` row: who checked, the verdict (`pass`, `hold` o
 - **An editor (a human) must approve:**
   - a booth's first 3 listings
   - anything above $5
-  - any Software kind
+  - any new listing that runs code or tells an agent to run it: every type whose profile is marked `runs_code` (MCP servers, plugins, workflows, scripts, libraries, starters, repos, apps, extensions, CLIs), and any skill or prompt that declares shell, network or secret capabilities
   - any listing a checker held or flagged
-  - any new version that changes executable files
+  - any update to one of those whose declared capabilities grow
 - **Auto-live** is allowed only when *all* of these are true:
   - the booth is Regular or higher, with no security hold in its history
   - the stamp is $5 or less
   - every checker passed, and Scale raised no flags
+  - it isn't a new listing that runs code, and its declared capabilities haven't grown
 
   A human approved this booth's first three listings, so auto-live runs inside a policy a person set.
 - **The editor queue** (`/review`) shows the listing, files, all notes and the booth's history, and offers Approve, Request changes (with a note), Reject or Escalate. Anyone can report a Live listing. Three unique reports, or one from an editor, pause it for review.
@@ -628,7 +629,7 @@ UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security i
   - Server Actions for signed-in mutations
   - Route Handlers for `/mcp`, `/api/v1`, webhooks, `.md` twins and text files
 - **Supabase:** Postgres (with `pg_trgm` and full-text search), Auth, Storage. SQL migrations live in `supabase/migrations/`. Atomic money operations (checkout, ledger writes, grants) are Postgres functions called from the server. Development uses a dedicated Supabase project that Erick approves creating. Local Docker is optional.
-- **Background work** (Gate runs, quote expiry, payout calculation): a `jobs` table, processed from Next's `after()` right after the triggering request, plus a Vercel Cron sweep every 5 minutes for retries.
+- **Background work** (Gate runs, quote expiry, payout calculation): a `jobs` table, processed from Next's `after()` right after the triggering request, plus a Vercel Cron sweep every 5 minutes for retries. Gate runs themselves execute in an isolated sandbox that holds no secrets (catalog design, 11.7). The job only starts them and records the result. The repo is a small pnpm workspace: the app, `packages/gate-rules` and `packages/cli`.
 - **Stripe:** Checkout Sessions, Connect Express, Identity, webhooks. Test mode only.
 - **Crypto:** `@solana/web3.js` and `@solana/pay` on Solana. viem and wagmi on EVM. Foundry for the splitter contract and its tests. Solana devnet, Base Sepolia and Ethereum Sepolia.
 - **AI:** the Anthropic SDK for Scale.
@@ -667,7 +668,7 @@ The milestone table now lives in section 14 of the catalog and publishing design
 - How to seed realistic demo data for screenshots and tests.
 
 ## 18. Calls made in this document for Erick to check
-1. Auto-live for listings at $5 or less from Regular-and-up booths with clean records (9.4). Everything else needs a person.
+1. Auto-live for listings at $5 or less from Regular-and-up booths with clean records (9.4). Everything else needs a person, and so does any new listing that runs code.
 2. Two status tracks: named Booth ranks and numbered Buyer levels (8). Points per line capped at 25 before the Cart bonus.
 3. Ethereum mainnet only above $50, because of gas. Base is the default EVM chain.
 4. Crypto refunds become store credit, recovered from the maker's future earnings (10.2).
