@@ -1,0 +1,29 @@
+name: Suggest an idea
+description: Propose a feature or a change to the design.
+title: "Idea: "
+labels: ["idea"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Who has it, and what do they do today instead?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What do you propose?
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: How does it fit the design?
+      description: Optional. Point at the section of the platform or catalog design it touches, and say whether it changes fees, price tiers, ranks or the Gate.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Would you build it?
+      options:
+        - label: I'd like to send the pull request for this.

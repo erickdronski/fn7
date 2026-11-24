@@ -194,16 +194,27 @@ Erick's bar is "no AI slop". These rules are drawn from the design references he
 ### 4.9 Motion and navigation
 Motion should feel physical and fast, and be rare enough to mean something.
 
-- **Should it move at all?** Decide by how often a person sees it.
-  - Hundreds of times a day (keyboard shortcuts, the command palette): no animation.
-  - Tens of times a day (hover, moving through a list): instant, or a color change of 150ms or less.
-  - Occasionally (modals, drawers, toasts, menus): a standard transition.
-  - Rarely (a first visit, a first sale, a new rank): room for delight.
+- **Everything interactive responds.** Erick's direction: fluid motion on every button, tile, click and dropdown. Every interactive element has a designed hover, press, focus, and open or close motion. Speed is what keeps this from slowing anyone down: the more often something is used, the shorter its motion.
+  - Used constantly (keyboard shortcuts, the command palette, moving through a list): 80–120ms.
+  - Used often (buttons, tiles, links, tabs, dropdowns, tooltips): 120–220ms.
+  - Used occasionally (modals, drawers, toasts): 300–450ms.
+  - Seen rarely (a first visit, a first sale, a new rank): room for a longer, richer moment.
+- **By component.**
+  - Buttons: press to 0.97, a highlight that appears at once on press and fades after release, and a hover shift in fill.
+  - Tiles and cards: lift 2px with a deeper shadow and a brighter edge on hover, and press to 0.985.
+  - Links: an underline that draws in from the left.
+  - Dropdowns and menus: grow from the control that opened them, with items staggered by 30ms. They close faster than they open.
+  - Tabs and segmented controls: one indicator that slides between options.
+  - Accordions: open by height with a fade, and the chevron turns.
+  - Copy buttons, toggles and checkboxes: the icon swaps with a scale, a fade and a blur.
+  - Numbers that change: roll to the new value in tabular figures.
+  - Sections: one entrance as they scroll into view, with children staggered, played once.
+  - Pages: shared elements carry across with the View Transitions API.
 - **Tokens,** defined once in `app/globals.css`:
   - `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for anything entering or leaving
   - `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)` for things moving on screen
   - `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for sheets and drawers
-  - durations: press 120–160ms, tooltips 150ms, menus 180–220ms, modals and drawers 300–450ms. Apart from those last two, interface motion stays under 300ms.
+  - durations: press 120–160ms, hover 150ms, tooltips 150ms, menus 180–220ms, modals and drawers 300–450ms. Apart from those last two, interface motion stays under 300ms.
 - **Rules.**
   - Never ease-in. Never start from `scale(0)`: enter from `scale(0.96)` with opacity 0.
   - Animate only `transform`, `opacity`, `filter` and `clip-path`.
@@ -220,7 +231,7 @@ Motion should feel physical and fast, and be rare enough to mean something.
   - Adding to the cart, saving and reviewing update at once and reconcile after.
   - Scroll position is restored on back.
   - Scrolling is always native. Nothing hijacks it, and there is no custom cursor.
-  - **Command palette (⌘K):** search listings, booths and docs, jump to any page, and run actions (connect an agent, start a listing, copy the MCP URL). It opens with no animation.
+  - **Command palette (⌘K):** search listings, booths and docs, jump to any page, and run actions (connect an agent, start a listing, copy the MCP URL). It opens in about 100ms.
 - **Signature moments,** where the craft is spent:
   1. The hero camera descent (4.6).
   2. The camera easing into a booth as the hero scrolls away.
@@ -743,3 +754,4 @@ The milestone table now lives in section 14 of the catalog and publishing design
 23. The first easter-egg set (4.10). The lawyer reviews it with the legal pages.
 24. The design references were read and distilled into 4.8 and 4.9. None is installed.
 25. The catalog and publishing design carries its own list of calls, in its section 17.
+26. Erick asked for motion on every button, tile, click and dropdown. Things used constantly get very short motion instead of none (4.9).

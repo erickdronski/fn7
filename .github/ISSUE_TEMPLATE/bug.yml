@@ -1,0 +1,34 @@
+name: Report a bug
+description: Something on the site or in the code is broken.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Security problems don't go here. Report those privately through the Security tab.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: And what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Click …
+        3. See …
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: The page or file, and your browser and device if it's visual.
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshot, clip or console output

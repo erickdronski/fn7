@@ -1,0 +1,32 @@
+name: Share feedback
+description: Tell us what you think of fn/7, the design or the site.
+title: "Feedback: "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time. Blunt is fine.
+  - type: dropdown
+    id: who
+    attributes:
+      label: I'm mostly here as
+      options:
+        - Someone who would sell on fn/7
+        - Someone who would buy on fn/7
+        - Someone building or running AI agents
+        - A developer who might contribute
+        - Just curious
+    validations:
+      required: true
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What do you think?
+      description: What works, what doesn't, what's missing, what you'd change first.
+    validations:
+      required: true
+  - type: textarea
+    id: need
+    attributes:
+      label: What would make you use it?
+      description: Optional. The one thing that would get you to list something, buy something or connect an agent.

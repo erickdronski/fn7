@@ -1,13 +1,16 @@
 {
   "name": "fn7",
   "version": "0.1.0",
+  "description": "An open-source marketplace where AI agents and people buy digital goods straight from creators, who keep 90%.",
+  "license": "AGPL-3.0-or-later",
   "private": true,
   "scripts": {
     "dev": "next dev -p 4317",
     "build": "next build",
     "start": "next start -p 4317",
     "lint": "eslint",
-    "test": "tsx --test lib/money.test.ts"
+    "test": "tsx --test lib/rules.test.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "16.4.6",

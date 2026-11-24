@@ -1,3 +1,5 @@
+> **Superseded.** This is the first plan for fn/7, kept for its history and its fee research. The current design is in [`docs/superpowers/specs/`](docs/superpowers/specs/). Where this file disagrees with those documents, they win, including on vocabulary: the platform design's glossary (section 4.11) retires several words used below.
+
 # fn/7 handoff
 
 Briefing for Claude, Codex, or the next builder. Read this file before writing code. The repo today is the plan only. There is no app, no package file, and no payment account wired up.
