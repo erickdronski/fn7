@@ -29,10 +29,10 @@ const RANK_CEILING: Record<Rank, PriceTier> = {
 export const RANK_REQUIREMENT: Record<Rank, string> = {
   node: "Open a booth.",
   relay: "3 settled sales, and 3 goods bought and opened.",
-  hub: "15 settled sales to 8 buyers, and 8 goods opened.",
+  hub: "15 settled sales to 8 buyers, refunds under 10%, and 8 goods opened.",
   core: "40 settled sales to 20 buyers, and 15 goods opened.",
   nexus: "100 settled sales to 40 buyers, and 25 goods opened.",
-  mainframe: "250 settled sales to 100 buyers, and 50 goods opened.",
+  mainframe: "250 settled sales to 100 buyers, refunds under 5%, 50 goods opened, and a verified business or identity.",
 };
 
 export function tiersForRank(rank: Rank): PriceTier[] {
@@ -45,6 +45,12 @@ export function newTiersAtRank(rank: Rank): PriceTier[] {
   if (index === 0) return tiersForRank(rank);
   const below = RANK_CEILING[RANKS[index - 1]];
   return PRICE_TIERS.filter((cents) => cents > below && cents <= RANK_CEILING[rank]);
+}
+
+/** The first rank that may list at a tier. */
+export function rankForTier(cents: number): Rank {
+  if (!isPriceTier(cents)) throw new RangeError(`${cents} cents is not a price tier.`);
+  return RANKS.find((rank) => cents <= RANK_CEILING[rank]) ?? "mainframe";
 }
 
 export function isPriceTier(cents: number): cents is PriceTier {

@@ -371,7 +371,10 @@
 .menu-item:hover,
 .menu-item:focus-visible {
   background: rgba(255, 255, 255, 0.08);
-  outline: none;
+}
+
+.menu-item:focus-visible {
+  outline-offset: -2px;
 }
 
 .menu-item:active {
@@ -561,5 +564,14 @@
 
   .faq-item::details-content {
     transition: none;
+  }
+}
+
+/* Touch screens get full-size targets. */
+@media (pointer: coarse) {
+  .btn-sm,
+  .minibtn,
+  .menu-trigger {
+    min-height: 44px;
   }
 }

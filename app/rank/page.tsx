@@ -6,6 +6,7 @@ import { PriceChip } from "@/components/ui/price-chip";
 import { Reveal } from "@/components/ui/reveal";
 import { RANK_REASONS } from "@/lib/content";
 import { LEVEL_THRESHOLDS, POINTS_PER_LINE_CAP } from "@/lib/points";
+import { STARTING_TIERS } from "@/lib/copy";
 import { ROUTES } from "@/lib/site";
 import { RANKS, RANK_LABEL, RANK_REQUIREMENT, newTiersAtRank } from "@/lib/tiers";
 
@@ -30,7 +31,7 @@ export default function RankPage() {
     <>
       <PageHero
         title="A price is proof"
-        lead="On fn/7 you can't type a price. Every creator starts at Free, $1, $3 and $5, and higher price tiers unlock with rank. Rank comes from settled sales to real buyers, and from buying on the market yourself."
+        lead={`On fn/7 you can't type a price. Every creator starts at ${STARTING_TIERS}, and higher price tiers unlock with rank. Rank comes from settled sales to real buyers, and from buying on the market yourself.`}
       >
         <Button href="#ladder">See the ladder</Button>
         <Button href={ROUTES.creators} variant="line">
@@ -38,11 +39,11 @@ export default function RankPage() {
         </Button>
       </PageHero>
 
-      <Block id="why" lead="Why it works this way" title="Three problems, one mechanism." intro="Open marketplaces fill with overpriced junk because anyone can charge anything on day one. Earned pricing ties what you can charge to what you have already delivered.">
+      <Block id="why" icon="lens" lead="Why it works this way" title="Three problems, one mechanism." intro="Open marketplaces fill with overpriced junk because anyone can charge anything on day one. Earned pricing ties what you can charge to what you have already delivered.">
         <Reasons items={RANK_REASONS} />
       </Block>
 
-      <Block id="ladder" lead="The ladder" title="Six ranks. Twelve price tiers." intro="Drag through the ranks to see which tiers each one unlocks. Lower tiers always stay open." raised>
+      <Block id="ladder" icon="ladder" lead="The ladder" title="Six ranks. Twelve price tiers." intro="Drag through the ranks to see which tiers each one unlocks. Lower tiers always stay open." raised>
         <div className="split ladder-split">
           <Reveal>
             <TierLadder />
@@ -66,7 +67,7 @@ export default function RankPage() {
         </div>
       </Block>
 
-      <Block id="rules" lead="What counts" title="Both tracks have to move." intro="Selling a lot without ever buying doesn't unlock a higher tier, and neither does spending a lot. A creator has to shop the market and be shopped.">
+      <Block id="rules" icon="check" lead="What counts" title="Both tracks have to move." intro="Selling a lot without ever buying doesn't unlock a higher tier, and neither does spending a lot. A creator has to shop the market and be shopped.">
         <Points
           items={[
             "A sale counts once it is settled: 14 days old with no refund.",
@@ -80,13 +81,13 @@ export default function RankPage() {
         />
       </Block>
 
-      <Block id="agents" lead="For agents" title="Rank is data an agent can read." intro="Every search result and listing carries a trust object. An agent, or its owner's policy, can require a minimum rank before spending." raised>
+      <Block id="agents" icon="bot" lead="For agents" title="Rank is data an agent can read." intro="Every search result and listing carries a trust object. An agent, or its owner's policy, can require a minimum rank before spending." raised>
         <Reveal>
           <CodeBlock caption="Part of a search result" code={TRUST_JSON} />
         </Reveal>
       </Block>
 
-      <Block id="levels" lead="Buyers level up too" title="Points for buying. No cash value.">
+      <Block id="levels" icon="star" lead="Buyers level up too" title="Points for buying. No cash value.">
         <Facts
           rows={[
             { area: "How points work", fact: `Each item in a checkout counts its dollars, up to ${POINTS_PER_LINE_CAP} points an item. More items in one cart multiply the total, up to 3 times at five items.` },

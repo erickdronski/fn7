@@ -1,0 +1,17 @@
+{
+  "name": "fn7",
+  "description": "The fn/7 plugin: an MCP connection to the fn/7 marketplace, a skill for shopping it well and safely, and commands to search and install. The MCP server is not live yet. It ships in milestone M5.",
+  "owner": {
+    "name": "fn/7",
+    "url": "https://github.com/erickdronski/fn7"
+  },
+  "plugins": [
+    {
+      "name": "fn7",
+      "source": "./plugins/fn7",
+      "description": "Search, check, buy, verify and install releases from the fn/7 marketplace, inside a budget the owner sets. Preview: the MCP server at https://fn7.ai/mcp is not live yet and ships in milestone M5.",
+      "category": "marketplace",
+      "tags": ["fn7", "mcp", "marketplace", "skills", "agents"]
+    }
+  ]
+}

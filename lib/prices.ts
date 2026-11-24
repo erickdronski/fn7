@@ -11,6 +11,25 @@ export function creatorCut(cents: number): number {
   return Math.floor((cents * CREATOR_SHARE_BPS) / 10000);
 }
 
+const FUND_SHARE_BPS = 100;
+
+/**
+ * Where every cent of one sale goes. The creator's share is fixed first, the
+ * open-source fund's is floored, and whatever is left runs the market, so the
+ * three parts always add up to the price.
+ */
+export function splitSale(cents: number): { creator: number; market: number; fund: number } {
+  const creator = creatorCut(cents);
+  const fund = Math.floor((cents * FUND_SHARE_BPS) / 10000);
+  return { creator, market: cents - creator - fund, fund };
+}
+
+/** What a creator keeps from a number of sales at one price. Each sale is cut on its own. */
+export function earnings(cents: number, sales: number): number {
+  if (!Number.isInteger(sales) || sales < 0) throw new RangeError("Sales must be a whole number, zero or more.");
+  return creatorCut(cents) * sales;
+}
+
 export type Rail = "card" | "paypal" | "balance" | "usdc";
 
 export function checkoutAllowed(rail: Rail, totalCents: number): boolean {

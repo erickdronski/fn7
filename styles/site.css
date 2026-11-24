@@ -49,7 +49,7 @@
 .nav-in {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: clamp(24px, 3vw, 40px);
   height: var(--nav-h);
 }
 
@@ -71,7 +71,8 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: clamp(16px, 1.9vw, 28px);
+  white-space: nowrap;
 }
 
 .nav-link {
@@ -84,6 +85,14 @@
   margin-left: auto;
   display: flex;
   gap: 10px;
+  white-space: nowrap;
+}
+
+/* The bar keeps one action until there is room for two. */
+@media (max-width: 1279px) {
+  .nav-actions .btn-line {
+    display: none;
+  }
 }
 
 .nav-toggle {
@@ -131,7 +140,7 @@
   display: none;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
   .nav-links,
   .nav-actions {
     display: none;
@@ -148,7 +157,12 @@
     right: 0;
     top: 100%;
     padding: 12px 0 28px;
-    background: rgba(3, 4, 11, 0.96);
+    max-height: calc(100vh - var(--nav-h));
+    max-height: calc(100dvh - var(--nav-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    /* Solid, so the page behind never shows through the links. */
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
     opacity: 0;
     transform: translateY(-10px);
@@ -173,7 +187,19 @@
     display: grid;
   }
 
-  .sheet-links > a {
+  .sheet-group {
+    display: grid;
+  }
+
+  .sheet-title {
+    padding: 22px 0 6px;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-faint);
+  }
+
+  .sheet-group > a {
     padding: 14px 0;
     font-size: 19px;
     border-bottom: 1px solid var(--line);
@@ -185,13 +211,14 @@
       color var(--dur-hover) ease;
   }
 
-  .nav[data-open="true"] .sheet-links > a {
+  /* The stagger stops growing after the first screenful, so the last link never lags. */
+  .nav[data-open="true"] .sheet-group > a {
     opacity: 1;
     transform: none;
-    transition-delay: calc(var(--i) * 28ms), calc(var(--i) * 28ms), 0ms;
+    transition-delay: calc(min(var(--i), 9) * 26ms), calc(min(var(--i), 9) * 26ms), 0ms;
   }
 
-  .sheet-links > a:active {
+  .sheet-group > a:active {
     color: var(--cyan);
   }
 
@@ -206,7 +233,7 @@
   color: var(--cyan-ink);
   text-align: center;
   font-size: 14px;
-  padding: 9px var(--gutter);
+  padding: 9px calc(var(--gutter) + var(--safe-x));
 }
 
 .strip a {
@@ -218,6 +245,11 @@
 
 .strip a:hover {
   opacity: 0.7;
+}
+
+/* Cyan on cyan would hide the focus ring. */
+.strip :focus-visible {
+  outline-color: var(--cyan-ink);
 }
 
 /* ---------- Footer ---------- */
@@ -284,8 +316,26 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nav-sheet,
-  .sheet-links > a,
+  .sheet-group > a,
   .nav-toggle-bars i {
     transition-duration: 1ms;
+  }
+}
+
+/* Touch screens get full-size targets. */
+@media (pointer: coarse) {
+  .nav-mark {
+    padding: 11px 0;
+  }
+
+  .strip a {
+    display: inline-block;
+    padding: 12px 6px;
+    margin: -12px -6px;
+  }
+
+  .footer-link,
+  .legalbar-link {
+    padding-block: 12px;
   }
 }

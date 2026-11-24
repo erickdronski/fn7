@@ -32,11 +32,11 @@ export default function TrustPage() {
         </Button>
       </PageHero>
 
-      <Block id="checks" lead="The Gate" title="Four checks stand between an upload and the market.">
+      <Block id="checks" icon="shield" lead="The Gate" title="Four checks stand between an upload and the market.">
         <Reasons items={GATE_CHECKS.map((check) => ({ icon: check.icon, title: check.name, text: check.text }))} />
       </Block>
 
-      <Block id="flow" lead="The order" title="What happens to a release." raised>
+      <Block id="flow" icon="sieve" lead="The order" title="What happens to a release." raised>
         <Steps
           items={[
             { title: "Submit", text: "A creator sends a release with its manifest, sample and declared permissions." },
@@ -48,13 +48,13 @@ export default function TrustPage() {
         />
       </Block>
 
-      <Block id="permissions" lead="Permissions" title="A release says what it needs. The Gate checks that it's true." intro="Network access, secrets, shell commands and the folders it writes to are declared up front. A release that does more than it declares is rejected. The listing shows it in plain words: Needs git. No network. No secrets.">
+      <Block id="permissions" icon="key" lead="Permissions" title="A release says what it needs. The Gate checks that it's true." intro="Network access, secrets, shell commands and the folders it writes to are declared up front. A release that does more than it declares is rejected. The listing shows it in plain words: Needs git. No network. No secrets.">
         <Reveal>
           <CodeBlock caption="From a release's fn7.json" code={PERMISSIONS} />
         </Reveal>
       </Block>
 
-      <Block id="injection" lead="Prompt injection" title="Skills are instructions. So they're read like an attack." intro="A marketplace for people doesn't need this. A marketplace for agents can't run without it. Every file an agent will follow, and every line of text an agent will see in search, is screened for:" raised>
+      <Block id="injection" icon="bot" lead="Prompt injection" title="Skills are instructions. So they're read like an attack." intro="A marketplace for people doesn't need this. A marketplace for agents can't run without it. Every file an agent will follow, and every line of text an agent will see in search, is screened for:" raised>
         <Points
           items={[
             "Hidden text: zero-width characters, direction switches, comments, and text encoded to hide it.",
@@ -67,7 +67,7 @@ export default function TrustPage() {
         />
       </Block>
 
-      <Block id="proof" lead="Proof" title="Signed, logged and checkable offline.">
+      <Block id="proof" icon="check" lead="Proof" title="Signed, logged and checkable offline.">
         <Facts
           rows={[
             { area: "Attestation", fact: "When a release passes, fn/7 signs a record of what was checked and the hash of what was checked, with an Ed25519 key." },
@@ -79,7 +79,7 @@ export default function TrustPage() {
         />
       </Block>
 
-      <Block id="limits" lead="What is still exposed" title="No marketplace is bulletproof. Here is what remains." raised>
+      <Block id="limits" icon="lens" lead="What is still exposed" title="No marketplace is bulletproof. Here is what remains." raised>
         <Points
           items={[
             "A skilled attacker can write instructions that pass every check. The defenses are declared permissions, the owner's own policy, and fast withdrawal with a warning to agents.",

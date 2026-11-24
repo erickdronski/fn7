@@ -52,27 +52,28 @@ export const RAILS: Rail[] = [
   { name: "USDC", note: "On Solana and Base. Split on-chain. From $1.", when: "At launch" },
   { name: "Solana", brand: "solana", note: "SOL. Split on-chain. From $1.", when: "At launch" },
   { name: "Ethereum", brand: "ethereum", note: "ETH on Base. Mainnet above $50.", when: "At launch" },
-  { name: "Coinbase", brand: "coinbase", note: "Pay from a Coinbase wallet, and agent payments over x402.", when: "Later" },
+  { name: "Coinbase", brand: "coinbase", note: "Pay from a Coinbase wallet. Agent payments over x402, on Solana first.", when: "Later" },
   { name: "PayPal", brand: "paypal", note: "PayPal and Venmo. From $5.", when: "Later" },
   { name: "Bitcoin", brand: "bitcoin", note: "Over Lightning, once the split can stay non-custodial.", when: "Later" },
 ];
 
-export type Connector = { name: string; brand?: BrandName; how: string };
+/** `icon` is fn/7's own, shown where the tool's mark is held back (lib/marks.ts). */
+export type Connector = { name: string; brand?: BrandName; icon: PixelIconName; how: string };
 
 /** Where fn/7 will plug in. All of these ship with or after the agent milestone (M5). */
 export const CONNECTORS: Connector[] = [
-  { name: "Any MCP client", brand: "mcp", how: "The remote MCP server, with OAuth 2.1" },
-  { name: "Claude", brand: "claude", how: "A connector for Claude, and a plugin for Claude Code" },
-  { name: "Cursor", brand: "cursor", how: "MCP server, with one-click setup" },
-  { name: "Windsurf", brand: "windsurf", how: "MCP server, with one-click setup" },
-  { name: "GitHub Copilot", brand: "copilot", how: "MCP server in VS Code" },
-  { name: "Gemini", brand: "gemini", how: "MCP server" },
-  { name: "Terminal", brand: "npm", how: "The fn7 CLI: search, add, publish, and a local MCP mode" },
-  { name: "GitHub", brand: "github", how: "Publish a release from a git tag" },
-  { name: "LangChain", brand: "langchain", how: "Tools generated from the OpenAPI spec" },
-  { name: "Zapier", brand: "zapier", how: "Triggers for sales, releases and reviews" },
-  { name: "n8n", brand: "n8n", how: "Nodes for the REST API and webhooks" },
-  { name: "Discord", brand: "discord", how: "Sale and release notices for a creator's server" },
+  { name: "Any MCP client", icon: "plug", brand: "mcp", how: "The remote MCP server, with OAuth 2.1" },
+  { name: "Claude", icon: "chat", brand: "claude", how: "A plugin for Claude Code. A read-only connector for the directory, which doesn't allow connectors that move money." },
+  { name: "Cursor", icon: "window", brand: "cursor", how: "MCP server, with one-click setup" },
+  { name: "Windsurf", icon: "window", brand: "windsurf", how: "MCP server, with one-click setup" },
+  { name: "GitHub Copilot", icon: "code", brand: "copilot", how: "MCP server in VS Code" },
+  { name: "Gemini", icon: "star", brand: "gemini", how: "MCP server" },
+  { name: "Terminal", icon: "window", brand: "npm", how: "The fn7 CLI: search, add, publish, and a local MCP mode" },
+  { name: "GitHub", icon: "fork", brand: "github", how: "Publish a release from a git tag" },
+  { name: "LangChain", icon: "wrench", brand: "langchain", how: "Tools generated from the OpenAPI spec" },
+  { name: "Zapier", icon: "bolt", brand: "zapier", how: "Triggers for sales, releases and reviews" },
+  { name: "n8n", icon: "grid", brand: "n8n", how: "Nodes for the REST API and webhooks" },
+  { name: "Discord", icon: "chat", brand: "discord", how: "Sale and release notices for a creator's server" },
 ];
 
 export const MCP_TOOLS: Array<{ tool: string; does: string }> = [
@@ -140,6 +141,20 @@ export const FAQ: Array<{ q: string; a: string }> = [
 ];
 
 export const CHANGELOG: Array<{ date: string; title: string; items: string[] }> = [
+  {
+    date: "24 November 2026",
+    title: "The market preview, the plugin and the story",
+    items: [
+      "A market preview you can search, filter and sort, with listing pages and six booths. Everything in it is a labeled sample.",
+      "A booth builder: pick a name, a pixel avatar, an accent, a banner and one of five layouts, and watch a sample booth change.",
+      "A plugin for Claude Code, and setup for Claude, Codex, ChatGPT, Cursor, VS Code, Windsurf and Gemini, each checked against the tool's own guide. They connect when the server ships in M5.",
+      "Why fn/7: what the name means, why the market exists, and who gains from it.",
+      "One sale shown coin by coin, an earnings calculator, and the small print behind the 90%.",
+      "A page of ways to support the project. Donations open once the wallets and the sponsor profile exist.",
+      "Every page checked from 320 pixels wide to 2560, and on phones held sideways.",
+      "Fixes from the first code review: menus, focus rings, touch targets, and pages that still read if scripts fail.",
+    ],
+  },
   {
     date: "24 November 2026",
     title: "The first build",

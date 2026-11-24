@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
 import { egg } from "@/lib/eggs";
+
+export const metadata: Metadata = { title: "Page not found" };
 
 export default function NotFound() {
   return (

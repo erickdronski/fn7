@@ -40,7 +40,7 @@ export const EGGS = {
     id: "konami",
     where: "Anywhere on the landing page",
     trigger: "Typing the Konami code",
-    line: "The whole market throws a short street party.",
+    line: "The whole market throws a short party.",
     nodsTo: "Konami",
   },
   neverChanges: {

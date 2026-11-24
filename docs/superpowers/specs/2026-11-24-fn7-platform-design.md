@@ -293,7 +293,7 @@ fn/7 is a love letter to the tech and tech-dystopia stories its audience grew up
 | The pay button, on hover | "Shut up and take my money." | Futurama |
 | A failed upload | Actions labeled "Abort, Retry, Fail?" | MS-DOS |
 | The loading bar | A light that sweeps side to side. | Knight Rider |
-| Typing the Konami code | The whole market throws a short street party. | Konami |
+| Typing the Konami code | The whole market throws a short party. | Konami |
 | `/fees` | "The 90% never changes." | Fallout |
 | Sign-in greeting | "Hello, friend." | Mr. Robot |
 

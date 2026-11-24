@@ -6,6 +6,13 @@ import { ROUTES } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
+/**
+ * Every real document is prerendered below, so a navigation here is already
+ * served from the static copy. Only an address that isn't a document waits on
+ * the server, and that one answers "not found".
+ */
+export const instant = false;
+
 export function generateStaticParams() {
   return LEGAL_DOCS.map((doc) => ({ slug: doc.slug }));
 }

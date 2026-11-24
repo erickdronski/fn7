@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { LEGAL_DOCS } from "@/lib/legal";
 import { ROUTES, SITE } from "@/lib/site";
 
-const PAGES = [ROUTES.agents, ROUTES.creators, ROUTES.rank, ROUTES.payments, ROUTES.trust, ROUTES.docs, ROUTES.faq, ROUTES.openSource, ROUTES.changelog, ROUTES.security, ROUTES.legal];
+/** Every page in ROUTES, once. A hash is a place on a page, and home is listed on its own. */
+const PAGES = [...new Set(Object.values(ROUTES).map((route) => route.split("#")[0]))].filter((path) => path !== ROUTES.home);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

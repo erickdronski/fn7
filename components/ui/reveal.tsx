@@ -11,6 +11,8 @@ export function Reveal({ delay = 0, className, children }: { delay?: number; cla
   const [seen, setSeen] = useState(false);
 
   useEffect(() => {
+    // Tells the guard in the root layout that scripts are running.
+    (window as unknown as { __fn7ready?: boolean }).__fn7ready = true;
     const element = ref.current;
     if (!element) return;
     const observer = new IntersectionObserver(

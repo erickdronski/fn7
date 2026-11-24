@@ -1,0 +1,814 @@
+/* Storytelling pieces: the coin flow, the ticker, the outlined panels, the scan and the name. */
+
+/* ---------- Money flow ---------- */
+.flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 20px clamp(28px, 6vw, 72px);
+  align-items: center;
+  max-width: 520px;
+  margin-top: 30px;
+}
+
+.flow-source {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.flow-pile {
+  display: inline-block;
+  padding: 12px 16px;
+  font-size: 22px;
+  font-weight: 500;
+  color: #0c0f1c;
+  background: var(--amber);
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 3px, 100% 3px, 100% calc(100% - 3px), calc(100% - 4px) calc(100% - 3px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 3px), 0 calc(100% - 3px), 0 3px, 4px 3px);
+}
+
+.flow-caption {
+  max-width: 14ch;
+  font-size: 13.5px;
+  color: var(--text-faint);
+}
+
+.flow-pots {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.flow-pot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-s);
+  background: var(--bg-raise);
+  box-shadow: var(--shadow-1);
+  font-size: 15.5px;
+}
+
+.flow-pot dt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.flow-pot dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.flow-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: var(--cyan);
+}
+
+.flow-pot-1 .flow-dot {
+  background: var(--violet);
+}
+
+.flow-pot-2 .flow-dot {
+  background: var(--mint);
+}
+
+.flow-pot-0 {
+  font-size: 18px;
+}
+
+.flow-coin {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #0c0f1c;
+  background: var(--cyan);
+  pointer-events: none;
+  opacity: 0;
+  clip-path: polygon(3px 0, calc(100% - 3px) 0, calc(100% - 3px) 3px, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 3px calc(100% - 3px), 0 calc(100% - 3px), 0 3px, 3px 3px);
+}
+
+.flow-coin-1 {
+  background: var(--violet);
+}
+
+.flow-coin-2 {
+  background: var(--mint);
+}
+
+.figure sup {
+  font-family: var(--font-sans);
+  font-size: 0.16em;
+  letter-spacing: 0;
+  vertical-align: top;
+  position: relative;
+  top: 0.9em;
+  margin-left: 0.1em;
+  color: var(--cyan);
+}
+
+.star-mark {
+  color: var(--cyan);
+}
+
+.footnote {
+  max-width: 62ch;
+  margin-top: 22px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-faint);
+}
+
+.footnote a {
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Ticker ---------- */
+.ticker {
+  overflow: hidden;
+  margin-top: 44px;
+  border-block: 1px solid var(--line);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 46s linear infinite;
+}
+
+.ticker:hover .ticker-track,
+.ticker:focus-visible .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-row {
+  display: flex;
+  flex: none;
+  gap: 44px;
+  padding: 18px 22px;
+}
+
+.ticker-row li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  font-size: 16.5px;
+  color: var(--text-dim);
+}
+
+.ticker-row svg {
+  flex: none;
+  color: var(--cyan);
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Everyone wins: outlined panels ---------- */
+.wins {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 56px;
+}
+
+.wins > li {
+  display: grid;
+}
+
+.win {
+  position: relative;
+  height: 100%;
+  padding: 28px 26px 30px;
+}
+
+/* The outline is its own layer, so it can wipe in after the content resolves. */
+.win::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-m);
+  pointer-events: none;
+}
+
+.js .win.reveal::before {
+  clip-path: inset(0 100% 100% 0);
+}
+
+.js .win.reveal.is-in::before {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 900ms var(--ease-in-out) calc(var(--d, 0ms) + 180ms);
+}
+
+.win svg {
+  color: var(--cyan);
+}
+
+.win-who {
+  margin-top: 22px;
+  font-size: 14.5px;
+  color: var(--cyan);
+}
+
+.win h3 {
+  margin-top: 4px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.win ul {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.win ul li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  color: var(--text-dim);
+}
+
+.win ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  background: var(--cyan);
+}
+
+/* ---------- Icon beside a section lead ---------- */
+.lead-icon {
+  display: inline-block;
+  margin-right: 12px;
+  vertical-align: -0.08em;
+}
+
+/* ---------- The Gate's icons get scanned once ---------- */
+.scan {
+  position: relative;
+  display: block;
+  width: max-content;
+  margin: 0 auto 24px;
+}
+
+.scan svg {
+  margin: 0;
+}
+
+.scan::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  top: 0;
+  height: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  opacity: 0;
+}
+
+.js .reveal.is-in .scan::after {
+  animation: scan 1100ms var(--ease-in-out) calc(var(--d, 0ms) + 350ms) 1 both;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(84px);
+    opacity: 0;
+  }
+}
+
+/* ---------- Purpose statement ---------- */
+.purpose {
+  max-width: 900px;
+}
+
+.purpose p {
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.purpose p + p {
+  margin-top: 0.8em;
+  color: var(--text-dim);
+}
+
+/* ---------- The name ---------- */
+.signature {
+  margin-top: 44px;
+  padding: 26px clamp(18px, 3vw, 30px);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--line);
+  background: var(--bg-raise);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: clamp(14px, 1.7vw, 19px);
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.signature .arg {
+  color: var(--cyan);
+}
+
+.signature .ret {
+  display: inline-block;
+  color: var(--amber);
+}
+
+/* The call runs once: each argument is bound in turn, then the receipt comes back. */
+.js .reveal .signature .arg {
+  opacity: 0.32;
+}
+
+.js .reveal .signature .ret {
+  clip-path: inset(0 100% 0 0);
+}
+
+.js .reveal.is-in .signature .arg {
+  animation: arg-bound 300ms steps(3, end) calc(var(--d, 0ms) + 420ms + var(--n) * 230ms) both;
+}
+
+.js .reveal.is-in .signature .ret {
+  animation: receipt-back 520ms steps(7, end) calc(var(--d, 0ms) + 520ms + var(--n) * 230ms) both;
+}
+
+@keyframes arg-bound {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes receipt-back {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.args {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px 36px;
+  margin-top: 48px;
+  counter-reset: arg;
+}
+
+.args li {
+  counter-increment: arg;
+}
+
+.args h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 20px;
+}
+
+.args h3::before {
+  content: counter(arg);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--cyan);
+}
+
+.args code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+.args p {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 15.5px;
+}
+
+.backing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 48px;
+}
+
+.back {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  height: 100%;
+  padding: 26px;
+  border-radius: var(--radius-m);
+  background: var(--bg-raise);
+  box-shadow: var(--shadow-1);
+}
+
+.back svg {
+  color: var(--cyan);
+}
+
+.back h3 {
+  font-size: 21px;
+}
+
+.back p {
+  color: var(--text-dim);
+  font-size: 15.5px;
+}
+
+.back .btn,
+.back .state {
+  justify-self: start;
+  margin-top: 8px;
+}
+
+/* On a narrow screen the call is written one argument to a line, so nothing is cut off. */
+@media (max-width: 760px) {
+  .signature {
+    white-space: normal;
+    overflow-x: visible;
+    line-height: 1.8;
+  }
+
+  .signature .sig-part {
+    display: block;
+  }
+
+  .signature .sig-arg {
+    padding-left: 2ch;
+  }
+}
+
+@media (max-width: 620px) {
+  .flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .flow-source {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+
+  .flow-caption {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .ticker-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+  }
+
+  .ticker-row {
+    flex-wrap: wrap;
+    gap: 14px 28px;
+  }
+
+  .ticker-row[aria-hidden="true"] {
+    display: none;
+  }
+
+  .js .win.reveal::before,
+  .js .win.reveal.is-in::before {
+    clip-path: none;
+    transition: none;
+  }
+
+  .js .reveal.is-in .scan::after {
+    animation: none;
+  }
+
+  .js .reveal .signature .arg,
+  .js .reveal.is-in .signature .arg {
+    opacity: 1;
+    animation: none;
+  }
+
+  .js .reveal .signature .ret,
+  .js .reveal.is-in .signature .ret {
+    clip-path: none;
+    animation: none;
+  }
+}
+
+.copy > p.footnote {
+  margin-top: 22px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-faint);
+}
+
+/* ---------- Earnings calculator ---------- */
+.calc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: stretch;
+  margin-top: 44px;
+}
+
+.calc-controls {
+  display: grid;
+  align-content: start;
+  gap: 34px;
+}
+
+.calc-field {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.calc-field > legend,
+.calc-field > label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 14px;
+  font-size: 15.5px;
+  color: var(--text-dim);
+}
+
+.calc-value {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--text);
+}
+
+.calc-tiers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* A price chip that can be picked. The tone only fills in once it is chosen. */
+.calc-tier {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  min-width: 56px;
+  min-height: 40px;
+  padding: 0 12px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 3px, 100% 3px, 100% calc(100% - 3px), calc(100% - 4px) calc(100% - 3px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 3px), 0 calc(100% - 3px), 0 3px, 4px 3px);
+  transition:
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-hover) ease,
+    color var(--dur-hover) ease;
+}
+
+.calc-tier:active {
+  transform: scale(0.97);
+}
+
+.calc-tier.chip-coral {
+  --tone: var(--coral);
+}
+
+.calc-tier.chip-mint {
+  --tone: var(--mint);
+}
+
+.calc-tier.chip-amber {
+  --tone: var(--amber);
+}
+
+.calc-tier.chip-cyan {
+  --tone: var(--cyan);
+}
+
+.calc-tier.chip-violet {
+  --tone: var(--violet);
+}
+
+.calc-tier.chip-top {
+  --tone: linear-gradient(90deg, var(--magenta), var(--violet), var(--cyan));
+}
+
+.calc-tier[data-on="false"] {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.calc-tier[data-on="false"]:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.calc-tier[data-on="true"] {
+  color: #0c0f1c;
+  background: var(--tone, var(--amber));
+}
+
+/* The chip is clipped, so its focus ring is drawn inside it. */
+.calc-tier:has(:focus-visible) {
+  box-shadow: inset 0 0 0 2px var(--text);
+}
+
+.calc-tier[data-on="true"]:has(:focus-visible) {
+  box-shadow: inset 0 0 0 2px #0c0f1c;
+}
+
+.calc-range {
+  display: block;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  accent-color: var(--cyan);
+  cursor: pointer;
+}
+
+.calc-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.calc-rank {
+  font-size: 15px;
+  color: var(--text-dim);
+}
+
+.calc-rank a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.calc-result {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px 24px;
+  align-items: end;
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: var(--radius-m);
+  background: var(--bg-raise);
+  box-shadow: var(--shadow-1);
+}
+
+.calc-keep {
+  min-width: 0;
+}
+
+.calc-keep-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15.5px;
+  color: var(--cyan);
+}
+
+.calc-figure {
+  margin-top: 6px;
+  font-size: clamp(38px, 5.4vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.calc-lines {
+  display: grid;
+  gap: 8px;
+  margin-top: 22px;
+  font-size: 14.5px;
+}
+
+.calc-lines > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.calc-lines dt {
+  color: var(--text-faint);
+}
+
+.calc-lines dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+
+/* The coin stack: one coin per third of a power of ten, newest on top. */
+.calc-stack {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
+  width: 56px;
+  min-height: 126px;
+}
+
+.calc-coin {
+  display: block;
+  width: 52px;
+  height: 6px;
+  background: linear-gradient(to bottom, var(--amber) 0 4px, #b9772a 4px 6px);
+  clip-path: polygon(3px 0, calc(100% - 3px) 0, calc(100% - 3px) 2px, 100% 2px, 100% calc(100% - 2px), calc(100% - 3px) calc(100% - 2px), calc(100% - 3px) 100%, 3px 100%, 3px calc(100% - 2px), 0 calc(100% - 2px), 0 2px, 3px 2px);
+  animation: coin-drop 260ms var(--ease-out) both;
+}
+
+@keyframes coin-drop {
+  from {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+}
+
+.calc-caveat {
+  grid-column: 1 / -1;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  color: var(--text-faint);
+}
+
+@media (max-width: 860px) {
+  .calc {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (pointer: coarse) {
+  .calc-tier {
+    min-height: 44px;
+  }
+
+  .calc-range {
+    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calc-coin {
+    animation: none;
+  }
+}
+
+/* ---------- A donation address ---------- */
+.give-address {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.give-address p {
+  font-size: 14px;
+  color: var(--text-faint);
+}
+
+.give-address code {
+  max-width: 100%;
+  font-size: 13.5px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,8 @@
+# fn/7 for Codex. Add this table to ~/.codex/config.toml,
+# or to .codex/config.toml in a project you trust.
+#
+# The fn/7 MCP server is not live yet. It ships in milestone M5.
+# After that, sign in with: codex mcp login fn7
+
+[mcp_servers.fn7]
+url = "https://fn7.ai/mcp"

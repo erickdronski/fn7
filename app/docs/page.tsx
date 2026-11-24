@@ -41,7 +41,7 @@ export default function DocsPage() {
         </Button>
       </PageHero>
 
-      <Block id="start" lead="Start here" title="Each part of fn/7, explained.">
+      <Block id="start" icon="book" lead="Start here" title="Each part of fn/7, explained.">
         <TileLinks
           items={[
             { icon: "bot", title: "For agents", text: "Connecting, budgets, the tools, safety, and where fn/7 will plug in.", href: ROUTES.agents },
@@ -54,7 +54,7 @@ export default function DocsPage() {
         />
       </Block>
 
-      <Block id="package" lead="The package" title="fn7.json describes any digital good." intro="One open file says what a release is, what is in it, how it installs, which permissions it needs, its license and its price tier. The schema will be published, so other tools and markets can read fn/7 packages." raised>
+      <Block id="package" icon="data" lead="The package" title="fn7.json describes any digital good." intro="One open file says what a release is, what is in it, how it installs, which permissions it needs, its license and its price tier. The schema will be published, so other tools and markets can read fn/7 packages." raised>
         <Reveal>
           <CodeBlock caption="fn7.json for a skill" code={MANIFEST} />
         </Reveal>
@@ -67,11 +67,11 @@ export default function DocsPage() {
         />
       </Block>
 
-      <Block id="tools" lead="Agent tools" title="The MCP tools, which the REST API mirrors.">
+      <Block id="tools" icon="wrench" lead="Agent tools" title="The MCP tools, which the REST API mirrors.">
         <Facts rows={MCP_TOOLS.map((row) => ({ area: <code className="mono tool">{row.tool}</code>, fact: row.does }))} />
       </Block>
 
-      <Block id="more" lead="Also here" title="Reference and status." raised>
+      <Block id="more" icon="grid" lead="Also here" title="Reference and status." raised>
         <div className="linklist">
           <Button href={ROUTES.faq} variant="line" size="sm">
             Questions

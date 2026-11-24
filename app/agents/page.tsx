@@ -5,10 +5,12 @@ import { AgentStory } from "@/components/product/agent-story";
 import { StarButton, StarButtonFallback } from "@/components/site/star-button";
 import { BrandIcon } from "@/components/ui/brand-icon";
 import { Button } from "@/components/ui/button";
-import { CopyButton } from "@/components/ui/copy-button";
+import { PixelIcon } from "@/components/ui/pixel-icon";
 import { Reveal } from "@/components/ui/reveal";
 import { CONNECTORS, MCP_TOOLS } from "@/lib/content";
+import { LOWEST_PRICE, SHARE } from "@/lib/copy";
 import { FACTS, SPEC_SHEET } from "@/lib/facts";
+import { canShowMark } from "@/lib/marks";
 import { ROUTES } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -39,7 +41,7 @@ export default function AgentsPage() {
         </Button>
       </PageHero>
 
-      <Block id="setup" lead="Set up in minutes" title="Connect, set a budget, let it shop.">
+      <Block id="setup" icon="plug" lead="Set up in minutes" title="Connect, set a budget, let it shop.">
         <Steps
           items={[
             { title: "Connect", text: "Paste one URL into your agent's MCP config. Or let the agent ask to connect, and approve it with a short code." },
@@ -48,11 +50,11 @@ export default function AgentsPage() {
           ]}
         />
         <Reveal>
-          <CodeBlock caption="Add to your agent's MCP config" code={MCP_CONFIG} action={<CopyButton text={MCP_CONFIG} />} />
+          <CodeBlock caption="What your agent's MCP config will look like" code={MCP_CONFIG} />
         </Reveal>
       </Block>
 
-      <Block id="story" lead="What it looks like" title="Four calls from a task to an installed skill." raised>
+      <Block id="story" icon="play" lead="What it looks like" title="Four calls from a task to an installed skill." raised>
         <div className="story-wide">
           <Reveal>
             <AgentStory />
@@ -60,11 +62,11 @@ export default function AgentsPage() {
         </div>
       </Block>
 
-      <Block id="tools" lead="The tools" title="Everything on the site, as structured calls." intro="The MCP tools and the REST API mirror each other one for one. Every response is stable JSON with a link a person can follow.">
+      <Block id="tools" icon="wrench" lead="The tools" title="Everything on the site, as structured calls." intro="The MCP tools and the REST API mirror each other one for one. Every response is stable JSON with a link a person can follow.">
         <Facts rows={MCP_TOOLS.map((row) => ({ area: <code className="mono tool">{row.tool}</code>, fact: row.does }))} />
       </Block>
 
-      <Block id="safety" lead="Designed for safety" title="An agent can spend. It can't run away with the card." raised>
+      <Block id="safety" icon="lock" lead="Designed for safety" title="An agent can spend. It can't run away with the card." raised>
         <Reasons
           items={[
             { icon: "lock", title: "A dedicated budget.", text: "An agent spends a prepaid balance, never a card. It can't raise its own cap, load money or change payout details." },
@@ -77,13 +79,13 @@ export default function AgentsPage() {
         />
       </Block>
 
-      <Block id="connect" lead="Where it will plug in" title="One marketplace, reachable from the tools agents already use.">
+      <Block id="connect" icon="grid" lead="Where it will plug in" title="One marketplace, reachable from the tools agents already use.">
         <ul className="connectors">
           {CONNECTORS.map((connector, index) => (
             <li key={connector.name}>
               <Reveal delay={(index % 4) * 50}>
                 <div className="connector">
-                  {connector.brand ? <BrandIcon name={connector.brand} size={26} /> : null}
+                  {connector.brand && canShowMark(connector.brand) ? <BrandIcon name={connector.brand} size={26} /> : <PixelIcon name={connector.icon} size={26} />}
                   <h3>{connector.name}</h3>
                   <p>{connector.how}</p>
                 </div>
@@ -91,15 +93,16 @@ export default function AgentsPage() {
             </li>
           ))}
         </ul>
-        <p className="fineprint">Each mark belongs to its owner and names a planned integration. None of them endorses fn/7.</p>
+        <p className="fineprint">Each name and mark belongs to its owner and names a planned integration. None of them endorses fn/7.</p>
       </Block>
 
-      <Block id="pay" lead="How an agent pays" title="A balance first. On-chain when it has a wallet." raised>
+      <Block id="pay" icon="wallet" lead="How an agent pays" title="A balance first. On-chain when it has a wallet." raised>
         <Facts
           rows={[
-            { area: "Balance", fact: "The default. Prepaid store credit, spent inside the agent's cap. Works from $1." },
-            { area: "On-chain", fact: "USDC, SOL or ETH from the agent's own wallet. One transaction pays the creator 90% and fn/7 10%." },
-            { area: "Agent payment standards", fact: "fn/7 will support the standards that keep a creator's 90% whole and never put fn/7 in custody of anyone's funds. They are being evaluated one by one." },
+            { area: "Balance", fact: `The default. Prepaid store credit, spent inside the agent's cap. Works from ${LOWEST_PRICE}.` },
+            { area: "On-chain", fact: `USDC, SOL or ETH from the agent's own wallet. One transaction pays the creator ${SHARE.creator} and fn/7 ${SHARE.fn7}.` },
+            { area: "Agent wallets", fact: "An agent paying through a wallet its owner approved, such as a chat product's wallet or a card network's agent token, arrives as an ordinary card payment." },
+            { area: "Agent payment standards", fact: `Planned in this order: Stripe's shared payment tokens, then x402 on Solana. fn/7 adds a standard only if the creator's ${SHARE.creator} holds and fn/7 never holds anyone's funds.` },
           ]}
         />
         <div className="linklist">
@@ -112,7 +115,7 @@ export default function AgentsPage() {
         </div>
       </Block>
 
-      <Block id="spec" lead="Spec sheet" title="The technical facts, in one table.">
+      <Block id="spec" icon="code" lead="Spec sheet" title="What fn/7 is being built to, in one table." intro="Each row is a design decision. None of it is live yet.">
         <Facts rows={SPEC_SHEET} />
       </Block>
     </>

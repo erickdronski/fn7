@@ -10,8 +10,10 @@ const COLUMNS: Array<{ title: string; items: Item[] }> = [
   {
     title: "The market",
     items: [
+      { label: "Browse the market", href: ROUTES.market },
       { label: "For agents", href: ROUTES.agents },
       { label: "For creators", href: ROUTES.creators },
+      { label: "Build a booth", href: ROUTES.buildABooth },
       { label: "Earned pricing", href: ROUTES.rank },
       { label: "Payments", href: ROUTES.payments },
       { label: "Trust and the Gate", href: ROUTES.trust },
@@ -20,6 +22,8 @@ const COLUMNS: Array<{ title: string; items: Item[] }> = [
   {
     title: "Resources",
     items: [
+      { label: "Why fn/7", href: ROUTES.about },
+      { label: "Add fn/7 to your tools", href: ROUTES.install },
       { label: "Docs", href: ROUTES.docs },
       { label: "Questions", href: ROUTES.faq },
       { label: "Changelog", href: ROUTES.changelog },
@@ -32,6 +36,7 @@ const COLUMNS: Array<{ title: string; items: Item[] }> = [
     items: [
       { label: "Open source", href: ROUTES.openSource },
       { label: "Roadmap", href: ROUTES.roadmap },
+      { label: "Support the project", href: ROUTES.support },
       { label: "Contributing guide", href: SITE.repo.contributing },
       { label: "Good first issues", href: SITE.repo.goodFirstIssues },
       { label: "Discussions", href: SITE.repo.discussions },

@@ -46,19 +46,41 @@ export const ROUTES = {
   changelog: "/changelog",
   security: "/security",
   legal: "/legal",
+  about: "/about",
+  support: "/support",
+  install: "/install",
+  market: "/market",
+  buildABooth: "/build-a-booth",
 } as const;
+
+/** A listing's page. */
+export function listingHref(slug: string): string {
+  return `/g/${slug}`;
+}
+
+/** A booth's public page. */
+export function boothHref(alias: string): string {
+  return `/booth/${alias}`;
+}
 
 export type NavLink = { label: string; href: string; note?: string };
 
 export const NAV_LINKS: NavLink[] = [
+  { label: "Market", href: ROUTES.market },
   { label: "Agents", href: ROUTES.agents },
   { label: "Creators", href: ROUTES.creators },
   { label: "Earned pricing", href: ROUTES.rank },
-  { label: "Payments", href: ROUTES.payments },
-  { label: "Trust", href: ROUTES.trust },
+];
+
+export const HOW_MENU: NavLink[] = [
+  { label: "Payments", href: ROUTES.payments, note: "Every way to pay, and where the money goes" },
+  { label: "Trust and the Gate", href: ROUTES.trust, note: "How a release is scanned, reviewed and signed" },
+  { label: "Build a booth", href: ROUTES.buildABooth, note: "Set one up and see it before it opens" },
+  { label: "Add fn/7 to your tools", href: ROUTES.install, note: "Claude, Codex, Cursor and others" },
 ];
 
 export const RESOURCES_MENU: NavLink[] = [
+  { label: "Why fn/7", href: ROUTES.about, note: "What it is for, and what the name means" },
   { label: "Docs", href: ROUTES.docs, note: "How fn/7 works, and where to read more" },
   { label: "Questions", href: ROUTES.faq, note: "Short answers to common questions" },
   { label: "Changelog", href: ROUTES.changelog, note: "What shipped, newest first" },
@@ -68,9 +90,18 @@ export const RESOURCES_MENU: NavLink[] = [
 export const BUILD_MENU: NavLink[] = [
   { label: "Open source", href: ROUTES.openSource, note: "How fn/7 is built, and how to help" },
   { label: "Roadmap", href: ROUTES.roadmap, note: "Eleven milestones, M0 to M10" },
+  { label: "Support the project", href: ROUTES.support, note: "Ways to back the work" },
   { label: "Share feedback", href: SITE.repo.feedback, note: "Tell us what you think" },
   { label: "Contribute", href: SITE.repo.contributing, note: "Send a pull request" },
   { label: "Read the design", href: SITE.design.platform, note: "The full platform design" },
+];
+
+/** The same links, grouped for the small-screen sheet. */
+export const NAV_GROUPS: Array<{ title: string; links: NavLink[] }> = [
+  { title: "The market", links: NAV_LINKS },
+  { title: "How it works", links: HOW_MENU },
+  { title: "Resources", links: RESOURCES_MENU },
+  { title: "Build with us", links: BUILD_MENU },
 ];
 
 export function isExternal(href: string): boolean {

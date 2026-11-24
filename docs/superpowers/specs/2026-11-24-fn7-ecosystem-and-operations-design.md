@@ -33,14 +33,18 @@ Erick's brief: everything a person or an agent could need, reachable from their 
 | --- | --- | --- |
 | **`fn7` CLI** | `npx fn7`: `search`, `add`, `list`, `update`, `init`, `check`, `publish`, `status`, `login`, `mcp`. Homebrew later. | M5 |
 | **SDKs** | TypeScript and Python clients generated from the OpenAPI spec, published to npm and PyPI. | M5 |
-| **Claude** | A listing in Claude's connector directory, and a Claude Code plugin with the MCP server, a skill for shopping well, and commands for search and install. | M5, after the server is stable |
-| **ChatGPT** | A connector or app built on the same MCP server. | After M5 |
+| **Claude** | A Claude Code plugin with the MCP server, a skill for shopping well, and commands for search and install. A read-only connector for Claude's directory, whose rules reject connectors that move money. | M5, after the server is stable |
+| **ChatGPT** | A read-only connector: search and library. Its store doesn't allow selling digital goods. | After M5 |
 | **Cursor, Windsurf, VS Code, Gemini, Copilot** | One-click install links for the MCP server, and a listing wherever each has a directory. | After M5 |
 | **The official MCP Registry** | A published server entry, so any client that reads the registry can find fn/7. | M5 |
 | **Agent frameworks** | Thin tool packages for LangChain, the Vercel AI SDK, the OpenAI Agents SDK and others, generated from the OpenAPI spec. | After M5 |
 | **GitHub** | A GitHub App that publishes a release from a version tag, and an Action that runs `fn7 check` in a creator's CI. | M10 |
 | **Automation** | Zapier, Make and n8n connectors built on the webhooks and the API. | After M10 |
 | **Chat** | Discord and Slack apps that post a creator's sales and releases to a channel. | After M10 |
+
+The settings for each tool are in `integrations/`, the plugin is in `plugins/fn7`, and `/install` shows both. Each was checked against the tool's own guide on 24 November 2026 and connects when the server ships in M5.
+
+**Names and marks.** fn/7 names a tool only to say what a setting is for. A tool's mark is shown only where its owner's published rule allows it without asking first. Where the owner asks to be asked, or no rule could be confirmed, the name is in text beside one of fn/7's own icons. `lib/marks.ts` holds the list and one switch, `SHOW_MARKS_ON_HOLD`, that shows them all once permission is in hand. `lib/install.ts` records each rule with its source.
 
 ### 2.3 For people
 
@@ -88,25 +92,34 @@ fn/7 accepts a way to pay only if all four hold:
 
 ### 4.2 The rails
 
+Checked against live sources on 24 November 2026. The research brief has the detail and the links.
+
 | Rail | For | Who holds the money in between | Status |
 | --- | --- | --- | --- |
-| Cards, Apple Pay, Google Pay, Link | People | Stripe, then the creator's Stripe account | M4 |
+| Cards, Apple Pay, Google Pay, Link | People. Also agents paying through a wallet a person approved: ChatGPT's wallet, Link's agent wallet and the card networks' agent tokens all arrive as ordinary card payments. | Stripe, then the creator's Stripe account | M4, with no extra work for the agent wallets |
 | fn/7 balance | People and their agents | Stripe (it is prepaid store credit) | M4 |
 | USDC, SOL, ETH with an on-chain split | People and agents with a wallet | Nobody. One transaction pays everyone. | M7 |
-| Coinbase wallets and onramp | People funding USDC; agents with Coinbase wallets | Nobody on fn/7's side | With M7, through standard wallet connections |
-| **x402** | Agents paying per request with stablecoins, with no fn/7 account | To be confirmed: the split has to stay in one settlement | After M7, once the research brief confirms how |
-| **Agent checkout standards** (the Agentic Commerce Protocol, the Agent Payments Protocol, and the card networks' agent tokens) | Agents shopping from inside a chat product | Stripe or the card network, the same as a card | After M5, in the order the research brief recommends |
+| **Stripe shared payment tokens over the Machine Payments Protocol** | Agents paying by card with no checkout page | Stripe. The 90/10 split stays inside Connect. | After M5: one endpoint behind `checkout` |
+| **x402 on Solana** | Agents paying USDC per request, with no fn/7 account | Nobody, if the facilitator supports the new multi-recipient split. Confirm that first. | With or after M7 |
+| x402 on Base | The same | It has no native split, so the non-custodial rule fails | Wait, or route through Stripe |
+| The Universal Commerce Protocol, with the Agent Payments Protocol inside it | Agents shopping from large chat products | Card rails | Join the waitlists. Build when digital goods are confirmed. |
 | PayPal and Venmo | People | PayPal | Later |
-| Shop Pay | People | Only if it is offered to stores that aren't on Shopify | Not planned until confirmed |
 | Bitcoin over Lightning | People and agents | Only if the split can stay non-custodial | Later |
 
-An agent paying through a chat product's checkout is, to fn/7, a card payment with extra proof of what the user approved. That proof maps onto fn/7's own approvals: the mandate is stored with the order.
+**Skipped, and why**
+- **OpenAI's checkout endpoints.** OpenAI pulled back general Instant Checkout in March 2026, and its plugins can't sell digital goods.
+- **Shop Pay.** Not available to a store outside Shopify on terms that fit.
+- **Coinbase's merchant product.** Coinbase Commerce closed in March 2026 and its replacement holds the funds. Buyers can still pay from a Coinbase wallet through a normal wallet connection.
+- **Direct work with the card networks' agent programs and smaller agent-payment vendors.** They reach fn/7 through Stripe.
 
-### 4.3 What fn/7 exposes so others can sell fn/7 listings
+### 4.3 What fn/7 publishes so agents can find it
 
-- A **product feed** of every Live listing in the formats the agent checkout standards ask for, generated from the catalog.
-- **Checkout endpoints** that take a cart, reprice it on the server, and return an order.
-- The same permissions, trust and attestation data an fn/7 agent gets, so a chat product can show why a release is safe.
+- A `server.json` entry in the official MCP Registry.
+- A Server Card at `/mcp/server-card`, and an AI Catalog under `/.well-known/`.
+- An agent-to-agent card for the read-only shopkeeper.
+- A listing in Stripe's directory of agent-payable services.
+- **Claude's connector directory:** its rules reject connectors that move money, so fn/7 submits a read-only connector (search, listings, library). Buying from Claude goes through the Claude Code plugin and the `fn7` CLI.
+- **ChatGPT and Copilot:** read-only as well, for the same kind of rule.
 
 ## 5. How the operator gets paid
 
@@ -136,6 +149,10 @@ Paying the fund its 1% on-chain, directly, makes the public fund ledger checkabl
 - **Stripe Connect** is opened in the entity's name, in test mode until launch.
 - The **smart-contract audit** and the **penetration test** are done.
 - The **legal drafts** on the site are reviewed and put in force.
+
+### 5.3a Donations
+
+Separate from sales. `/support` lists three ways to give: GitHub Sponsors, a wallet on Solana or Base, and Open Collective. Each way stays "Not open yet" until its public link or address is set in the deployment's settings (`NEXT_PUBLIC_DONATE_*` in `.env.example`) and passes a shape check in `lib/support.ts`, which also refuses anything shaped like a private key. The donation wallet is a multisig Erick creates, like the treasury. Donations pay for hosting, the security test, the contract audit, legal review and art. They are gifts: no reward, no share, no vote.
 
 ### 5.4 The operator console (`/operator`, M8)
 
@@ -191,7 +208,9 @@ Added to the milestone table in the catalog design, section 14.
 | After M5 | Connector and directory listings, the Claude Code plugin, framework tool packages |
 | M7 | The three-way on-chain split (creator, operator, fund), Coinbase wallet and onramp support |
 | M8 | The operator console, treasury addresses, payout bookkeeping |
-| After M8 | x402, then the agent checkout standards, in the order the research brief recommends |
+| After M5 | Shared payment tokens over the Machine Payments Protocol, and the discovery files in 4.3 |
+| With or after M7 | x402 on Solana, once the facilitator's split support is confirmed |
+| Later | The Universal Commerce Protocol, when it accepts digital goods |
 | Later | Organizations, referrals, remix licenses, the agent-to-agent shopkeeper, automation and chat connectors |
 
 ## 10. Calls made in this document for Erick to check
@@ -200,7 +219,10 @@ Added to the milestone table in the catalog design, section 14.
 2. The on-chain split pays three ways, so the fund's 1% goes straight to its own wallet.
 3. Treasury wallets are multisigs with hardware signers, created by Erick. The app only ever knows their public addresses.
 4. A rail is added only if it passes the four tests in 4.1.
-5. Outside agent payment standards come after fn/7's own MCP server and API work, in the order the research recommends.
-6. Shop Pay is not planned unless it is confirmed to be available to stores outside Shopify.
+5. Outside agent payment standards come after fn/7's own MCP server and API work, in this order: Stripe's shared payment tokens, x402 on Solana, then the Universal Commerce Protocol.
+6. Skipped: OpenAI's checkout endpoints, Shop Pay and Coinbase's custodial merchant product. Claude's and ChatGPT's directories get read-only connectors, because their rules don't allow ones that move money.
 7. Organizations, referrals and remix licenses are new, and come later with their own designs.
 8. A sandbox with test keys ships with the API.
+9. "90%*" on the site means 90% of the price the buyer pays, on every way to pay. The asterisk says who covers the cost of moving the money: fn/7 pays card processing out of its 10%, the buyer pays the network fee on-chain, and a refund or a lost card dispute reverses the sale. If the share itself should vary by way to pay, the Money rule and `lib/prices.ts` change.
+10. Third-party marks are held back where the owner asks to be asked first (Anthropic, Google, Windsurf, GitHub Copilot, and the MCP mark, which has no published rule). One switch shows them.
+11. Donations open one way at a time, when Erick sets the public link or address. Nothing is collected before then.

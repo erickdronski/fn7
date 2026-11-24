@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { isExternal } from "@/lib/site";
 
 /** The top of an inner page: one statement in the display face, one paragraph, and the actions. */
-export function PageHero({ title, lead, note, children }: { title: string; lead: string; note?: string; children?: ReactNode }) {
+export function PageHero({ title, lead, note, children }: { title: ReactNode; lead: string; note?: string; children?: ReactNode }) {
   return (
     <section className="page-hero">
       <div className="wrap">
@@ -18,16 +18,28 @@ export function PageHero({ title, lead, note, children }: { title: string; lead:
   );
 }
 
+/** The accent line of a section headline, with an optional pixel icon that tells the story at a glance. */
+export function Lead({ icon, children }: { icon?: PixelIconName; children: ReactNode }) {
+  return (
+    <span className="lead">
+      {icon ? <PixelIcon name={icon} size={26} className="lead-icon" /> : null}
+      {children}
+    </span>
+  );
+}
+
 /** A section with the two-tone headline: an accent line that names the idea, then the claim. */
 export function Block({
   id,
   lead,
+  icon,
   title,
   intro,
   raised = false,
   children,
 }: {
   id?: string;
+  icon?: PixelIconName;
   lead?: string;
   title: string;
   intro?: string;
@@ -39,7 +51,7 @@ export function Block({
       <div className="wrap">
         <Reveal className="copy copy-wide">
           <h2>
-            {lead ? <span className="lead">{lead}</span> : null}
+            {lead ? <Lead icon={icon}>{lead}</Lead> : null}
             {title}
           </h2>
           {intro ? <p>{intro}</p> : null}

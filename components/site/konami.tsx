@@ -5,7 +5,7 @@ import { EGGS_ENABLED } from "@/lib/eggs";
 
 const CODE = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
 
-/** Easter egg: the Konami code makes the market throw a short street party. */
+/** Easter egg: the Konami code makes the market throw a short party. */
 export function Konami() {
   useEffect(() => {
     if (!EGGS_ENABLED) return;

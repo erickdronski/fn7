@@ -2,27 +2,29 @@
 
 import { useEffect, useState } from "react";
 
-/** Copies text. The icon swaps to a check, and a live region announces it. */
+type State = "idle" | "done" | "failed";
+
+/** Copies text. The icon swaps to a check, and a live region says what happened, including a failure. */
 export function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) {
-  const [done, setDone] = useState(false);
+  const [state, setState] = useState<State>("idle");
 
   useEffect(() => {
-    if (!done) return;
-    const timer = window.setTimeout(() => setDone(false), 1800);
+    if (state === "idle") return;
+    const timer = window.setTimeout(() => setState("idle"), 1800);
     return () => window.clearTimeout(timer);
-  }, [done]);
+  }, [state]);
 
   async function copy() {
     try {
       await navigator.clipboard.writeText(text);
-      setDone(true);
+      setState("done");
     } catch {
-      setDone(false);
+      setState("failed");
     }
   }
 
   return (
-    <button type="button" className="minibtn" data-done={done} onClick={copy}>
+    <button type="button" className="minibtn" data-done={state === "done"} onClick={copy}>
       <span className="copy-icons" aria-hidden="true">
         <svg className="copy-sheet" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
           <rect x="4.5" y="4.5" width="8" height="8" rx="1.5" />
@@ -32,7 +34,7 @@ export function CopyButton({ text, label = "Copy" }: { text: string; label?: str
           <path d="m2.5 7.5 3 3 6-7" />
         </svg>
       </span>
-      <span aria-live="polite">{done ? "Copied" : label}</span>
+      <span aria-live="polite">{state === "done" ? "Copied" : state === "failed" ? "Copy failed. Select the text instead." : label}</span>
     </button>
   );
 }

@@ -24,7 +24,7 @@ export default function ChangelogPage() {
         <div className="wrap narrow">
           <ol className="log">
             {CHANGELOG.map((entry) => (
-              <li key={entry.date}>
+              <li key={entry.title}>
                 <Reveal>
                   <p className="log-date mono">{entry.date}</p>
                   <h2>{entry.title}</h2>

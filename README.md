@@ -52,15 +52,31 @@ pnpm typecheck
 pnpm test
 ```
 
+## Add fn/7 to your tools
+
+The fn/7 MCP server ships in milestone M5 and is **not live yet**. The settings are written and checked against each tool's own guide, so they connect the day it is.
+
+In Claude Code, this repository is a plugin marketplace:
+
+```
+/plugin marketplace add erickdronski/fn7
+/plugin install fn7@fn7
+```
+
+The plugin is an MCP connection, a skill that teaches an agent to shop safely, and two commands. Settings for Claude, Codex, ChatGPT, Cursor, VS Code, Windsurf, Gemini and any other MCP client are in [`integrations/`](integrations/README.md).
+
 ## Where things are
 
 | Path | What lives there |
 | --- | --- |
 | `app/` | Pages and routes (Next.js App Router) |
 | `components/` | Interface, landing sections and the pixel market scene |
-| `lib/` | The rules: price tiers, ranks, points, facts, links. Tested. |
+| `lib/` | The rules: price tiers, ranks, the split of a sale, points, facts, links. Tested. |
+| `lib/seed.ts` | Sample booths and listings for the market preview. None of them is real. |
+| `plugins/fn7/` | The Claude Code plugin: MCP connection, skill and commands |
+| `integrations/` | One setup file per AI tool, with the guide each was checked against |
 | `styles/` | Design tokens, motion and component styles |
-| `docs/superpowers/specs/` | The two design documents and the approved mockups |
+| `docs/superpowers/specs/` | The three design documents and the approved mockups |
 | `docs/superpowers/plans/` | The build plan for the milestone in progress |
 
 ## Help build it
@@ -75,6 +91,8 @@ pnpm test
 - [Ask a question or start a discussion](https://github.com/erickdronski/fn7/discussions)
 
 **Send a pull request.** Start with [CONTRIBUTING.md](CONTRIBUTING.md). A merged pull request earns the Builder badge once accounts exist.
+
+**Back the work.** Donations are not open yet. The [support page](app/support/page.tsx) lists the ways that will open, and what the money is for.
 
 Everyone taking part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 

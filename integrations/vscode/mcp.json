@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "fn7": {
+      "type": "http",
+      "url": "https://fn7.ai/mcp"
+    }
+  }
+}

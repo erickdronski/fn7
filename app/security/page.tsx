@@ -23,7 +23,7 @@ export default function SecurityPage() {
         </Button>
       </PageHero>
 
-      <Block id="report" lead="Reporting" title="Three steps, all private.">
+      <Block id="report" icon="chat" lead="Reporting" title="Three steps, all private.">
         <Steps
           items={[
             { title: "Open the Security tab", text: "On the GitHub repository, choose Security, then Report a vulnerability." },
@@ -33,7 +33,7 @@ export default function SecurityPage() {
         />
       </Block>
 
-      <Block id="scope" lead="Scope" title="What counts, and what doesn't." raised>
+      <Block id="scope" icon="lens" lead="Scope" title="What counts, and what doesn't." raised>
         <Facts
           rows={[
             { area: "In scope", fact: "This repository's code. The official site, once it is live. The fn7.json package format and the Gate's checks, including ways to get a hostile package past them." },
@@ -43,7 +43,7 @@ export default function SecurityPage() {
         />
       </Block>
 
-      <Block id="practice" lead="How fn/7 is built to be safe" title="Layers, not one wall.">
+      <Block id="practice" icon="shield" lead="How fn/7 is built to be safe" title="Layers, not one wall.">
         <Points
           items={[
             "A verified person or business answers for every booth.",

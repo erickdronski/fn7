@@ -3,10 +3,13 @@ import { Suspense } from "react";
 import { Block, Facts, PageHero, Steps, TileLinks } from "@/components/page/blocks";
 import { StarButton, StarButtonFallback } from "@/components/site/star-button";
 import { Button } from "@/components/ui/button";
+import { EarningsCalculator } from "@/components/story/earnings-calculator";
+import { ShareFootnote } from "@/components/story/share-footnote";
 import { PixelIcon } from "@/components/ui/pixel-icon";
 import { PriceChip } from "@/components/ui/price-chip";
 import { Reveal } from "@/components/ui/reveal";
 import { CATEGORIES } from "@/lib/content";
+import { SHARE } from "@/lib/copy";
 import { FACTS } from "@/lib/facts";
 import { creatorCut } from "@/lib/prices";
 import { ROUTES } from "@/lib/site";
@@ -14,7 +17,7 @@ import { PRICE_TIERS, formatPrice } from "@/lib/tiers";
 
 export const metadata: Metadata = {
   title: "For creators",
-  description: "Sell skills, code, courses and tools to AI agents and people. Keep 90% of every sale, with no listing fee and no monthly fee.",
+  description: `Sell skills, code, courses and tools to AI agents and people. Keep ${SHARE.creator} of every sale, with no listing fee and no monthly fee.`,
   alternates: { canonical: ROUTES.creators },
 };
 
@@ -24,8 +27,12 @@ export default function CreatorsPage() {
   return (
     <>
       <PageHero
-        title={`Keep ${FACTS.creatorSharePct}% of every sale`}
-        lead={`List anything digital and sell it to agents and people. No listing fee and no monthly fee. fn/7 takes 10% only when something sells: ${FACTS.platformPct}% runs the market and ${FACTS.fundPct}% goes to a public open-source fund.`}
+        title={
+          <>
+            Keep {FACTS.creatorSharePct}%<span className="star-mark">*</span> of every sale
+          </>
+        }
+        lead={`List anything digital and sell it to agents and people. No listing fee and no monthly fee. fn/7 takes ${SHARE.fn7} only when something sells: ${FACTS.platformPct}% runs the market and ${FACTS.fundPct}% goes to a public open-source fund.`}
         note="Booths open in milestones M2 and M3. This page describes how selling will work."
       >
         <Suspense fallback={<StarButtonFallback />}>
@@ -36,7 +43,7 @@ export default function CreatorsPage() {
         </Button>
       </PageHero>
 
-      <Block id="publish" lead="Publishing" title="Five steps from a folder to a live release.">
+      <Block id="publish" icon="window" lead="Publishing" title="Five steps from a folder to a live release.">
         <Steps
           items={[
             { title: "Package", text: "Drop a folder. fn/7 detects what it is and writes fn7.json, the open file that describes it." },
@@ -48,7 +55,7 @@ export default function CreatorsPage() {
         />
       </Block>
 
-      <Block id="doors" lead="Four ways in" title="Publish from wherever you work." raised>
+      <Block id="doors" icon="key" lead="Four ways in" title="Publish from wherever you work." raised>
         <TileLinks
           items={[
             { icon: "window", title: "The Console", text: "A stepped page in the browser, with a live preview of the card, the page and what an agent sees.", href: ROUTES.docs },
@@ -59,7 +66,7 @@ export default function CreatorsPage() {
         <p className="fineprint">An agent with permission to sell can also publish through MCP or the API, through the same pipeline.</p>
       </Block>
 
-      <Block id="catalog" lead="Anything digital" title="Eight categories, one open package format.">
+      <Block id="catalog" icon="grid" lead="Anything digital" title="Eight categories, one open package format.">
         <ul className="cats">
           {CATEGORIES.map((category, index) => (
             <li key={category.name}>
@@ -75,7 +82,12 @@ export default function CreatorsPage() {
         </ul>
       </Block>
 
-      <Block id="keep" lead="What you keep" title="The same share at every price tier." intro="Prices are fixed tiers. Your rank decides which ones you can use." raised>
+      <Block id="math" icon="coin" lead="Do the math" title="Pick a price and a number of sales.">
+        <EarningsCalculator />
+        <ShareFootnote />
+      </Block>
+
+      <Block id="keep" icon="gem" lead="What you keep" title="The same share at every price tier." intro="Prices are fixed tiers. Your rank decides which ones you can use." raised>
         <Facts
           rows={PRICE_TIERS.filter((cents) => cents > 0).map((cents) => ({
             area: <PriceChip cents={cents} />,
@@ -93,12 +105,12 @@ export default function CreatorsPage() {
         </div>
       </Block>
 
-      <Block id="paid" lead="Getting paid" title="On-chain at once. Everything else monthly.">
+      <Block id="paid" icon="wallet" lead="Getting paid" title="On-chain at once. Everything else monthly.">
         <Facts
           rows={[
-            { area: "On-chain sales", fact: "Your 90% lands in your own wallet in the same transaction as the sale. fn/7 never holds it." },
+            { area: "On-chain sales", fact: `Your ${SHARE.creator} lands in your own wallet in the same transaction as the sale. fn/7 never holds it.` },
             { area: "Card and balance sales", fact: "Paid out monthly through Stripe, once each sale is settled: 14 days old with no refund." },
-            { area: "Co-creators", fact: "A listing can split your 90% with up to four co-creators, automatically, on every way to pay." },
+            { area: "Co-creators", fact: `A listing can split your ${SHARE.creator} with up to four co-creators, automatically, on every way to pay.` },
             { area: "Who can sell", fact: "People, businesses and agents. Every booth has a verified person or business behind it, kept private." },
           ]}
         />

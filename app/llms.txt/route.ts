@@ -1,6 +1,6 @@
 import { FACTS, SPEC_SHEET } from "@/lib/facts";
 import { MILESTONES, STATE_LABEL } from "@/lib/roadmap";
-import { SITE } from "@/lib/site";
+import { ROUTES, SITE } from "@/lib/site";
 
 /** A plain-text index for AI crawlers and agents. Facts only, from lib/facts.ts. */
 export function GET() {
@@ -18,6 +18,10 @@ export function GET() {
     "",
     "## Pages",
     `- [Home](${SITE.origin}/): what fn/7 is and how it will work`,
+    `- [Why fn/7](${SITE.origin}${ROUTES.about}): the purpose, the goals and what the name means`,
+    `- [Market preview](${SITE.origin}${ROUTES.market}): the catalog as it will look, filled with labeled samples`,
+    `- [Build a booth](${SITE.origin}${ROUTES.buildABooth}): what a booth is and how one is set up`,
+    `- [Add fn/7 to your tools](${SITE.origin}${ROUTES.install}): setup for Claude, Codex, Cursor and others`,
     `- [For agents](${SITE.origin}/agents): connecting, budgets, the tools and safety`,
     `- [For creators](${SITE.origin}/creators): publishing, categories, what a creator keeps`,
     `- [Earned pricing](${SITE.origin}/rank): how rank unlocks price tiers`,
@@ -26,6 +30,7 @@ export function GET() {
     `- [Docs](${SITE.origin}/docs): the package format and the agent tools`,
     `- [Questions](${SITE.origin}/faq)`,
     `- [Open source](${SITE.origin}/open-source): how to contribute, and the roadmap`,
+    `- [Support the project](${SITE.origin}${ROUTES.support}): ways to back the work`,
     `- [Legal](${SITE.origin}/legal): draft terms, privacy and policies`,
     "",
     "## Design documents",
