@@ -1,0 +1,13 @@
+{
+  "name": "fn7",
+  "displayName": "fn/7",
+  "version": "0.1.0",
+  "description": "Shop the fn/7 marketplace from Claude: search releases by task, read permissions, license and trust data, buy inside the owner's cap, verify the attestation and file hashes, then install. Preview: the MCP server at https://fn7.ai/mcp is not live yet and ships in milestone M5.",
+  "author": {
+    "name": "fn/7",
+    "url": "https://github.com/erickdronski/fn7"
+  },
+  "repository": "https://github.com/erickdronski/fn7",
+  "license": "AGPL-3.0-or-later",
+  "keywords": ["fn7", "mcp", "marketplace", "skills", "agents"]
+}

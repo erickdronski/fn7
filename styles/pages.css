@@ -1,0 +1,447 @@
+/* Inner pages: shared blocks, the legal documents and the thin legal bar. */
+
+.narrow {
+  max-width: 820px;
+}
+
+.page-note {
+  margin-top: 26px !important;
+  font-size: 14.5px !important;
+  color: var(--text-faint) !important;
+}
+
+.fineprint {
+  max-width: 70ch;
+  margin-top: 28px;
+  font-size: 13.5px;
+  color: var(--text-faint);
+}
+
+.tool {
+  font-size: 14px;
+  color: var(--cyan);
+  word-break: break-word;
+}
+
+/* ---------- Steps: a real sequence ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 36px 32px;
+  margin-top: 52px;
+  counter-reset: none;
+}
+
+.steps-n {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--cyan);
+}
+
+.steps h3 {
+  font-size: 21px;
+}
+
+.steps p {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 15.5px;
+}
+
+.split .steps {
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 0;
+}
+
+/* ---------- Reasons ---------- */
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 44px 40px;
+  margin-top: 56px;
+}
+
+.reasons svg {
+  margin-bottom: 20px;
+  color: var(--cyan);
+}
+
+.reasons h3 {
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.reasons p {
+  margin-top: 10px;
+  color: var(--text-dim);
+  font-size: 15.5px;
+}
+
+/* ---------- Points ---------- */
+.points {
+  display: grid;
+  gap: 14px;
+  max-width: 74ch;
+  margin-top: 36px;
+}
+
+.points li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--text-dim);
+  font-size: 16.5px;
+}
+
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  background: var(--cyan);
+}
+
+/* ---------- Ways to pay ---------- */
+.railgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.rail {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  height: 100%;
+  min-height: 178px;
+  padding: 22px;
+  border-radius: var(--radius-m);
+  background: var(--bg-raise);
+  box-shadow: var(--shadow-1);
+}
+
+.rail-mark {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 6px;
+}
+
+.rail-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.rail-wordmark {
+  font-size: 20px;
+}
+
+.rail h3 {
+  font-size: 18px;
+}
+
+.rail p {
+  color: var(--text-dim);
+  font-size: 14.5px;
+}
+
+.rail .state {
+  justify-self: start;
+  margin-top: 6px;
+}
+
+.rails li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- Connectors ---------- */
+.connectors {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.connector {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  height: 100%;
+  min-height: 150px;
+  padding: 22px;
+  border-radius: var(--radius-m);
+  background: var(--bg-raise);
+  box-shadow: var(--shadow-1);
+}
+
+.connector h3 {
+  font-size: 18px;
+}
+
+.connector p {
+  color: var(--text-dim);
+  font-size: 14.5px;
+}
+
+.gate .rail,
+.gate .connector,
+.gate .ladder {
+  background: var(--bg);
+}
+
+/* ---------- Rank table ---------- */
+.ladder-split {
+  margin-top: 48px;
+  align-items: start;
+}
+
+.ladder-split .spec {
+  margin-top: 0;
+}
+
+.ladder-split .spec th {
+  width: 110px;
+}
+
+.rank-need,
+.rank-booth {
+  display: block;
+}
+
+.rank-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.rank-booth {
+  font-size: 14px;
+  color: var(--text-faint);
+}
+
+.story-wide {
+  max-width: 640px;
+  margin-top: 48px;
+}
+
+.cat-static {
+  cursor: default;
+}
+
+/* ---------- Reasons on the landing page ---------- */
+.rank-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(36px, 6vw, 88px);
+  align-items: start;
+  margin-top: 56px;
+}
+
+.rank-feature .reasons {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+  margin-top: 0;
+}
+
+.rank-feature .reasons li > div {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 20px;
+}
+
+.rank-feature .reasons svg {
+  grid-row: span 2;
+  margin: 2px 0 0;
+}
+
+.rank-feature .reasons p {
+  grid-column: 2;
+}
+
+/* ---------- Changelog and document lists ---------- */
+.log > li {
+  padding: 34px 0;
+  border-top: 1px solid var(--line);
+}
+
+.log-date {
+  font-size: 14px;
+  color: var(--cyan);
+}
+
+.log h2 {
+  margin-top: 8px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.log .points {
+  margin-top: 20px;
+}
+
+.doclist {
+  display: grid;
+  gap: 14px;
+}
+
+.docrow {
+  padding: 22px 24px;
+}
+
+.docrow h2 {
+  font-size: 20px;
+}
+
+.docrow p {
+  margin-top: 6px;
+  color: var(--text-dim);
+  font-size: 15.5px;
+}
+
+/* ---------- Legal documents ---------- */
+.prose-page {
+  padding: clamp(64px, 9vw, 110px) 0 clamp(84px, 11vw, 140px);
+}
+
+.crumb {
+  margin-bottom: 26px;
+  font-size: 14.5px;
+}
+
+.prose-page h1 {
+  font-size: clamp(42px, 5.6vw, 72px);
+  line-height: 1.04;
+}
+
+.prose-lead {
+  margin-top: 20px;
+  font-size: 19px;
+  color: var(--text-dim);
+}
+
+.draft-note {
+  margin-top: 30px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--amber);
+  background: var(--bg-raise);
+  font-size: 15px;
+  color: var(--text-dim);
+}
+
+.draft-note strong {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.prose {
+  margin-top: 20px;
+}
+
+.prose section {
+  padding-top: 40px;
+}
+
+.prose h2 {
+  font-size: 24px;
+  letter-spacing: -0.015em;
+}
+
+.prose p,
+.prose li {
+  max-width: 70ch;
+  margin-top: 14px;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--text-dim);
+}
+
+.prose ul {
+  margin-top: 6px;
+}
+
+.prose li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.prose li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 7px;
+  height: 7px;
+  background: var(--cyan);
+}
+
+.prose-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Footer additions and the thin legal bar ---------- */
+.footer {
+  padding-bottom: 0;
+}
+
+.footer-about p {
+  max-width: 34ch;
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--text-faint);
+}
+
+.legalbar {
+  margin-top: 64px;
+  /* Clears the home indicator on phones without a button. */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid var(--line);
+  background: var(--bg-raise);
+}
+
+.legalbar-in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 32px;
+  padding-block: 16px;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.legalbar ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+}
+
+.legalbar-link {
+  padding: 4px 0;
+  color: var(--text-dim);
+  transition: color var(--dur-hover) ease;
+}
+
+.legalbar-link:hover {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .rank-feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ladder-split .spec th {
+    width: 96px;
+  }
+}

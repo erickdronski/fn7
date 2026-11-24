@@ -1,35 +1,25 @@
 # Agent rules
 
-Read [HANDOFF.md](HANDOFF.md) before writing product code. It is the briefing. The business plan and the build spec are the long versions behind it.
+Read these before writing product code:
 
-## What to build
+1. [Platform design](docs/superpowers/specs/2026-11-24-fn7-platform-design.md)
+2. [Catalog and publishing design](docs/superpowers/specs/2026-11-24-fn7-catalog-and-publishing-design.md)
+3. The current plan in `docs/superpowers/plans/`
 
-- Build **one phase** from the build spec. If the task does not name a phase, build Phase 1 and stop.
-- Do not pull later phases forward. Payments, accounts, points, and the MCP server have their own phases.
-- Do not add a vendor, a payment rail, or a feature the handoff does not list.
-- When code starts, license it AGPL-3.0-or-later. Do not add a token, or a vote that can change the 90% creator share.
-- New goods go to the Yard. House gate agents can hold or reject. They cannot publish to the Street. Default agent search is the Street only.
-- The pixel market is a skin on a fast catalog. Do not build a walking simulator, a game loop, inventory weight, or combat.
+`HANDOFF.md`, `docs/business-plan.md` and `docs/build-spec.md` are the earlier plan. Where they disagree with the two designs, the designs win.
 
-## Brand
+## Rules that are easy to break
 
-- The name is **fn/7**. The sign has the slash. The hostname is fn7.ai. Screens read the product-name constant. An agent's public name is an alias, not the product name.
-- Original pixel art only. Do not copy Star Wars, Alien, Pokémon, Nintendo, or any other studio's characters, ships, or sprites.
-- Prices render as stamps the booth has earned. Everyone starts at `$1`, `$3`, and `$5`. Higher stamps are `$10`, `$15`, `$20`, `$35`, and `$50`. Never `$0.99` and never a typed-in price.
-- Event prices are computed on the server at checkout. A sticker in the browser is not the price.
-
-## Money
-
-- Do not invent fees. Use the rates in the business plan until a task says they changed.
-- A card or PayPal charge under the minimum in the plan must be refused.
-- Buyer balances are closed-loop. No cash-out, no peer transfer.
-- Creator share is 90% of the price the buyer paid for that line. fn/7 keeps 10%. Never less for the creator.
-
-## Taste
-
-- Real copy. No lorem, no "Welcome to your marketplace."
-- Empty, loading, and error states are part of the phase, not a follow-up.
-- Desktop and a narrow phone width both have to work. The market street can scroll sideways. Checkout cannot.
+- **Words.** Use the glossary in the platform design, section 4.11. Its retired words must not appear in the product, the docs or the API.
+- **Facts.** Numbers and claims come from `lib/facts.ts`, `lib/tiers.ts` and `lib/prices.ts`. Never type a fee, a tier or a share into a page.
+- **Money.** A creator keeps 90% of the price paid for a line, floored. Never less. No token, and no vote that can change the 90%.
+- **Honesty.** No invented number, rating, testimonial or logo. A count that can't be fetched is not shown. No button leads to a page that doesn't exist.
+- **Craft.** Every screen meets the craft floor (platform design, 4.8) and the motion rules (4.9), at desktop width and at 390px, with reduced motion respected.
+- **Art.** Original pixel art only. Pop-culture references are short winks in our own words, registered in `lib/eggs.ts`.
+- **Tests.** Anything in `lib/` that encodes a rule gets its failing test first.
+- **Vendors.** Don't add a service the designs don't name. Open an issue first.
+- **Secrets.** Never commit one. `.env.example` lists the names with empty values.
+- **License.** Code is AGPL-3.0-or-later. Brand and art are reserved (`brand/LICENSE.md`).
 
 <!-- BEGIN:nextjs-agent-rules -->
 
