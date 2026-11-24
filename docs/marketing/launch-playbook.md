@@ -34,7 +34,7 @@ Lead with this: **a high price carries proof.** Prices are fixed tiers from Free
 
 **Launch day (buying works end to end)**
 
-**Goal:** sign-ups, first purchases, agents buying inside their caps. **Ship:** live checkout, after the design's required outside reviews: a penetration test, a lawyer, and a contract audit before on-chain payments. **Post:** the launch thread, Show HN, the venues in section 5.
+**Goal:** sign-ups, first purchases, agents buying inside their caps. **Ship:** live checkout, after the design's required outside reviews: a penetration test, a lawyer's review, and a contract audit before on-chain payments. **Post:** the launch thread, Show HN, the venues in section 5.
 
 **After launch (first 30 days)**
 
@@ -105,8 +105,8 @@ No hashtags, no emoji. Lead with a recording or the scene still.
 - **Product Hunt.** A week later, so one person can answer both crowds. Verify first: launch rules.
 - **Reddit.** r/mcp, r/ClaudeAI, r/AI_Agents, r/opensource, r/SideProject. Verify first: each self-promotion rule.
 - **Awesome lists.** punkpeye/awesome-mcp-servers, wong2/awesome-mcp-servers, e2b-dev/awesome-ai-agents, hesreallyhim/awesome-claude-code. Verify first: each still merges pull requests.
-- **MCP registries and directories (from M5).** The official MCP Registry, which the design names. Then Smithery, Glama, PulseMCP and mcp.so. Verify first: Cursor Directory and the GitHub MCP Registry.
-- **Newsletters and podcasts.** Latent Space, TLDR AI, Ben's Bites, Console, Changelog News, Practical AI, PulseMCP's newsletter. Verify first: whether each takes submissions.
+- **MCP registries and directories (from M5).** The official MCP Registry, which the design names. Verify first: Smithery, Glama, PulseMCP, mcp.so, Cursor Directory and the GitHub MCP Registry.
+- **Newsletters and podcasts.** Latent Space, TLDR AI, Ben's Bites, Console.dev, Changelog News, Practical AI, PulseMCP's newsletter. Verify first: whether each takes submissions.
 
 ## 6. Getting creators and agents
 
@@ -153,7 +153,7 @@ No targets. Watch the weekly trend and the drop from one step to the next.
 ## 9. What not to do
 
 - **Bought or botted stars.** GitHub removes them, and anyone can read the stargazer list.
-- **Engagement pods.** Hacker News penalizes voting rings, and pod members never buy.
+- **Engagement pods.** Hacker News penalizes voting rings, and pods bring replies, not buyers.
 - **Fake reviews.** They break the trust the Gate exists to earn, and the FTC bans them.
 - **Invented user counts.** An anti-goal in the design. One caught number discredits every true one.
 - **Claims before they are true.** Agents read claims as data and act on them.
