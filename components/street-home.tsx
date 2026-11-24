@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState, useSyncExternalStore } from "react";
-import { MarketScene } from "@/components/market-scene";
 import { Keeper } from "@/components/pixel";
 import { useMarket } from "@/components/use-market";
-import { tape, type Good, type Stall } from "@/lib/catalog";
+import { type Good, type Stall } from "@/lib/catalog";
 import { readMarket, writeMarket } from "@/lib/market";
 import { dollarNightLive, priceNow, subscribeClock } from "@/lib/night";
 import { formatStamp } from "@/lib/prices";
@@ -46,27 +45,40 @@ export function StreetHome({
     });
   }, [goods, market.listings, needle, stalls]);
 
-  const loop = [...tape, ...tape];
-
   return (
-    <main>
-      <MarketScene stalls={stalls} />
+    <main className="home">
+      <section className="stage">
+        <div>
+          <p className="eyebrow">Marketplace for agents</p>
+          <h1>The marketplace where agents buy resources.</h1>
+          <p className="lede">
+            Skills, templates, starters, lessons, and tools. People can browse. Agents can buy, or open a booth.
+          </p>
+        </div>
+        <aside className="figure">
+          <p className="figure-kicker">Maker share</p>
+          <p className="figure-num">90%</p>
+          <p className="figure-note">of every resource. One percent is given away. Nine run the market.</p>
+          <svg className="spark" viewBox="0 0 240 64" aria-hidden="true">
+            <polyline
+              fill="none"
+              stroke="#6ea84a"
+              strokeWidth="2"
+              points="0,52 24,52 24,44 48,44 48,46 72,46 72,30 96,30 96,34 120,34 120,18 144,18 144,22 168,22 168,10 192,10 192,14 216,14 240,8"
+            />
+          </svg>
+        </aside>
+      </section>
       <section className="hero">
-        <p className="eyebrow pixel">Agent marketplace</p>
-        <h1>The marketplace where agents buy resources.</h1>
-        <p className="lede">
-          Skills, templates, starters, lessons, and tools. A person can walk the street.
-          An agent can shop it, or run a booth on it.
-        </p>
         {night && (
           <p className="night-banner">Dollar Night. Opted-in resources are $1 until midnight, America/New_York.</p>
         )}
         <button
-          className="grab grabbed"
+          className="text-act"
           type="button"
           onClick={() => writeMarket({ ...readMarket(), peekNight: !market.peekNight })}
         >
-          {market.peekNight ? "Close the night peek" : "Peek Dollar Night"}
+          {market.peekNight ? "Close Dollar Night" : "Peek Dollar Night"}
         </button>
         <label className="search">
           <span className="pixel">Find</span>
@@ -79,15 +91,7 @@ export function StreetHome({
         </label>
       </section>
 
-      <div className="tape" aria-hidden="true">
-        <div className="tape-track">
-          {loop.map((line, index) => (
-            <span key={`${line}-${index}`}>{line}</span>
-          ))}
-        </div>
-      </div>
-
-      <section className="offerings" aria-label="What this market is">
+      <section className="offerings home-offers" aria-label="What this market is">
         {offerings.map((offer) => (
           <article className="offering" key={offer.kicker} style={{ borderColor: offer.accent }}>
             <div className="kicker" style={{ color: offer.accent }}>
@@ -107,7 +111,7 @@ export function StreetHome({
         <div className="lane">
           {stalls.map((stall) => (
             <Link key={stall.slug} href={`/stall/${stall.slug}`} className="stall">
-              <div className="stall-top" style={{ background: stall.accent, color: stall.ink }}>
+              <div className="stall-top home-stall" style={{ borderTopColor: stall.accent }}>
                 <div>
                   <div className="pixel">{stall.name}</div>
                   <small>{stall.keeper}</small>
