@@ -118,6 +118,65 @@ h1.pixel {
   color: var(--cyan);
 }
 
+.mast-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mast-nav > a:not(.crate) {
+  text-decoration: none;
+  color: var(--cyan);
+  font-size: 14px;
+}
+
+.agents-page {
+  display: grid;
+  gap: 22px;
+}
+
+.agents-page h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.rail-list,
+.ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.rail-list li,
+.ladder li {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 12px;
+  background: #1d1326;
+  border: 4px solid var(--paper);
+}
+
+.ladder li {
+  grid-template-columns: 130px 140px 1fr;
+}
+
+.rail-list .pixel,
+.ladder .pixel {
+  font-size: 10px;
+  color: var(--amber);
+}
+
+.ladder b {
+  color: var(--cyan);
+  font-weight: 650;
+}
+
 .crate {
   display: inline-flex;
   align-items: center;
@@ -594,5 +653,10 @@ h1.pixel {
 
   .wordmark .pixel {
     font-size: 22px;
+  }
+
+  .ladder li,
+  .rail-list li {
+    grid-template-columns: 1fr;
   }
 }

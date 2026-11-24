@@ -19,10 +19,13 @@ export function Mast() {
         <span className="pixel">{PRODUCT_NAME}</span>
         <span className="said">{PRODUCT_SAID}</span>
       </Link>
-      <Link href="/basket" className="crate">
+      <nav className="mast-nav">
+        <Link href="/agents">For agents</Link>
+        <Link href="/basket" className="crate">
         <span className="pixel">Crate</span>
         <span className="count">{count}</span>
-      </Link>
+        </Link>
+      </nav>
     </header>
   );
 }
