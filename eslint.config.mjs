@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Design mockups and scratch workspaces are not product code.
+    "docs/**",
+    ".superpowers/**",
   ]),
 ]);
 

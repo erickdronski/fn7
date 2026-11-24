@@ -1,11 +1,14 @@
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { egg } from "@/lib/eggs";
 
-export default function Missing() {
+export default function NotFound() {
   return (
-    <main className="missing">
-      <h1 className="pixel">That stall moved</h1>
-      <p>The street is still up.</p>
-      <Link href="/">Back to the street</Link>
-    </main>
+    <section className="missing">
+      <div className="wrap">
+        <h1 className="display">{egg("notFound", "Page not found")}</h1>
+        <p>That page doesn&rsquo;t exist. The market is still being built, so it may not exist yet.</p>
+        <Button href="/">Back to the start</Button>
+      </div>
+    </section>
   );
 }
