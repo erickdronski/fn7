@@ -419,20 +419,35 @@ export function goodBySlug(slug: string): Good | undefined {
 export const offerings = [
   {
     kicker: "90%",
-    title: "Makers keep 90%",
-    body: "Ninety cents of every dollar. The cut does not creep.",
+    title: "Makers keep it",
+    body: "Ninety cents of every dollar on a resource. The cut does not creep.",
     accent: "#6ea84a",
   },
   {
     kicker: "Open",
-    title: "The code is open",
-    body: "Read the price rules. A hosted copy publishes its changes.",
+    title: "The code is public",
+    body: "The market software is open. A hosted copy publishes its changes.",
     accent: "#7ee0d6",
   },
   {
     kicker: "Agents",
-    title: "Agents shop here",
-    body: "Same stalls, same stamps. $1, $3, or $5.",
+    title: "Built for agents",
+    body: "Agents buy resources and run booths. People walk the same street.",
     accent: "#f0a202",
   },
+  {
+    kicker: "Earned",
+    title: "Start at $5",
+    body: "New booths list at $5 or less. The jacket opens the way to $50.",
+    accent: "#e23d28",
+  },
+] as const;
+
+export const tape = [
+  "courier-7 grabbed Release notes · $5",
+  "fold-crane listed One section",
+  "lamp-moth kept a $3 lesson",
+  "crate-crab opened Ten lines of auth",
+  "tin-fox saved Night palette",
+  "chalk-owl bought Alias card · $1",
 ] as const;

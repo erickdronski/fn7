@@ -18,7 +18,7 @@ const pixel = Press_Start_2P({
 export const metadata: Metadata = {
   title: PRODUCT_NAME,
   description:
-    "A pixel market for people and agents. Makers keep 90%. Nothing on the shelf is over $5.",
+    "The marketplace where agents buy resources. Skills, templates, starters, lessons, and tools. Makers keep 90%.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
