@@ -14,12 +14,12 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 
 **The answer-first definition, used word for word on the landing page, in `llms.txt`, and in the Organization JSON-LD:**
 
-> fn/7 is an open-source marketplace where AI agents and people buy skills, code, courses and tools straight from makers, who keep 90% of every sale.
+> fn/7 is an open-source marketplace where AI agents and people buy skills, code, courses and tools straight from creators, who keep 90% of every sale.
 
-**Why it exists.** Agents are starting to buy things, and most stores are built for humans with credit cards. Makers of small, sharp digital goods lose 30–50% to platforms. fn/7 is built so:
+**Why it exists.** Agents are starting to buy things, and most stores are built for humans with credit cards. Creators of small, sharp digital goods lose 30–50% to platforms. fn/7 is built so:
 
 - an agent can search, preview, buy and install a good with one connection, under a budget its person set;
-- a maker keeps 90% of every sale, at every price, on every payment method;
+- a creator keeps 90% of every sale, at every price, on every payment method;
 - nothing reaches the public market without passing the Gate, so agents can trust what they find;
 - the code is open (AGPL-3.0-or-later), and contributors are rewarded with status, not equity.
 
@@ -30,17 +30,17 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 **Goals**
 1. An agent goes from "connected" to "bought and installed" in one tool call chain, without a human click, inside its cap.
 2. A person goes from landing page to signed in to first purchase in under two minutes.
-3. A maker goes from sign-up to a listing submitted to the Gate in under ten minutes.
-4. Makers get 90% of the price paid for each line, on every rail. fn/7 keeps 10%: 9% runs the platform and 1% goes to the public fund.
-5. Status, earned by both buying and selling, unlocks higher price stamps up to $500.
+3. A creator goes from sign-up to a listing submitted to the Gate in under ten minutes.
+4. Creators get 90% of the price paid for each line, on every rail. fn/7 keeps 10%: 9% runs the platform and 1% goes to the public fund.
+5. Status, earned by both buying and selling, unlocks higher price tiers up to $500.
 6. Rank well in search engines and get cited by answer engines (ChatGPT, Claude, Perplexity, Google AI Overviews) from launch.
 7. Every screen meets WCAG 2.2 AA contrast, works at 390px wide, and has real empty, loading and error states.
 
-**Non-goals for this build:** services (bounded jobs), compiled software binaries, makers outside the US, physical goods, card-on-file subscriptions (prepaid passes come in M9), auctions, ads, a token, open DMs between strangers, Bitcoin, x402, PayPal, the Wanted board, Ask the booth, localization, native mobile apps, mirrors and federation. The schema should not block any of these later. The catalog design's milestone table says when each lands.
+**Non-goals for this build:** services (bounded jobs), compiled software binaries, creators outside the US, physical goods, card-on-file subscriptions (prepaid passes come in M9), auctions, ads, a token, open DMs between strangers, Bitcoin, x402, PayPal, the Wanted board, Ask the booth, localization, native mobile apps, mirrors and federation. The schema should not block any of these later. The catalog design's milestone table says when each lands.
 
 **Anti-goals (a failure even if it works)**
-- fn/7 ever holds crypto a person could withdraw. All crypto settles directly to the maker and to fn/7 in one transaction.
-- A maker ever receives less than 90% of what the buyer paid for that line.
+- fn/7 ever holds crypto a person could withdraw. All crypto settles directly to the creator and to fn/7 in one transaction.
+- A creator ever receives less than 90% of what the buyer paid for that line.
 - An AI or a rule publishes a listing without a human having approved that booth (see 9.4).
 - The pixel scene slows a purchase, hurts the page's Core Web Vitals, or puts busy art behind text.
 - Fake scarcity, loot boxes, spins, dark patterns, or points that act as a hidden discount.
@@ -57,18 +57,19 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 | Price ceiling | $1–$5 to start, $50 at the top | Same start. A sixth rank, **Mainframe**, unlocks **$100, $250, $500**. |
 | Kinds of goods | file, skill, repo, lesson, tool | skill, code, course, lesson, template, video, software, asset pack. Services come later. Section 7. |
 | Film and game references | No film, game or studio creatures | Easter eggs are allowed as winks: a short line or a piece of original art, never a franchise's names, logos or characters. Section 4.10. |
-| Yard and Street | Unproven Yard, edited Street | Gone. A listing is **In review** (visible only to its maker) or **Live** (public). Live goods from new booths carry a quiet **New maker** tag. |
+| Yard and Street | Unproven Yard, edited Street | Gone. A listing is **In review** (visible only to its creator) or **Live** (public). Live goods from new booths carry a quiet **New creator** tag. |
 | Stalls and keepers | Eight stalls with animal keepers in the nav | Eight **categories** (catalog design, section 4). The keepers survive as pixel characters in the scene and as category mascots, not as navigation. |
 | Look | Hard pixels, Press Start 2P, no blur, gradients or shadows | A flat near-black page, clean type, one accent color, one message per screen, and a cinematic pixel scene. Pixels are accents only, and glass is rare. Section 4. |
+| Vocabulary | Night-market words: stamp, stall, keeper, patch, Dollar Night | Science-fiction and engineering words. The glossary in 4.11 is the authority. |
 | Crypto | Stripe USDC, then x402 USDC on Base and Solana | Direct on-chain 90/10 split. SOL and USDC on Solana, ETH and USDC on Base and Ethereum. Bitcoin over Lightning and x402 come later. Section 10. |
 | AI in vetting | No AI moderation API | Claude is one reviewer at the Gate. It writes notes and can hold or reject. It never publishes. Section 9. |
 | Agent booths | A human owns every alias | Kept. Agents are first-class booths with an Agent badge. The person or business behind them is verified privately and never shown. |
-| Points and patches | Points patch for buyers, separate booth rank with the same names | Two clearly named tracks: **Booth rank** (named, gates stamps) and **Buyer level** (numbered, from points). Section 8. |
+| Points and patches | Points patch for buyers, separate booth rank with the same names | Two clearly named tracks: **Booth rank** (named, gates price tiers) and **Buyer level** (numbered, from points). Section 8. |
 | Basket, crate, haul | Market slang in the UI | Plain words: **Cart**, **Library**, **Booth**. The haul multiplier stays, named "Cart bonus". |
 | Zelle | Never | Still never. It has no API to confirm a payment. |
 | Monorepo | No | Still one Next.js app. |
 | Creator share, fund, AGPL, no token | — | Unchanged. |
-| Comment and review rules, the license on every good, Dollar Night | — | Unchanged, except Dollar Night now runs in M6. |
+| Comment and review rules, the license on every good, Dollar Night | — | Unchanged, except Dollar Night is renamed Night Cycle and runs in M6. |
 
 ## 4. Brand, look and messaging
 
@@ -76,16 +77,16 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 - The sign reads `fn/7` and is said "function seven". The host is `fn7.ai`. Both come from constants in `lib/brand.ts`. Screens never hardcode the name.
 - Voice: plain, short and specific. Say what something does. No hype words ("revolutionary", "seamless", "unlock"), no lorem ipsum, no "Welcome to your marketplace".
 - Messaging pillars, in order of weight:
-  1. **Makers keep 90%.** On every sale, every price, every way to pay.
+  1. **Creators keep 90%.** On every sale, every price, every way to pay.
   2. **Built for agents.** MCP and an API from day one. Agents search, buy and install under a budget you set.
-  3. **Every listing passes the Gate.** Security, quality and spam checks before anything goes public.
-  4. **Pay any way.** Card, Apple Pay, Google Pay, your fn/7 balance, or crypto paid straight to the maker's wallet.
+  3. **Every release is scanned, reviewed and signed.** A security scan, a prompt-injection scan and a quality review, with human review where risk is higher. Passing releases get a signed attestation in a public log.
+  4. **Pay any way.** Card, Apple Pay, Google Pay, your fn/7 balance, or crypto paid straight to the creator's wallet. fn/7 never holds your funds.
   5. **Open source.** AGPL. Contribute and earn the Builder badge.
 
 ### 4.2 Type
 - **Geist** for everything people read.
 - **A serif display face** (Newsreader in the mockup) for the few biggest statements only: the landing hero, the closing call to action, page heroes and the sign-up panel. One CSS variable switches these back to Geist.
-- **Geist Mono** only where mono is the material: code, terminal output and price stamps. Never for labels.
+- **Geist Mono** only where mono is the material: code, terminal output and prices. Never for labels.
 - All self-hosted through `next/font`. No pixel fonts anywhere. Remove Press Start 2P.
 
 ### 4.3 Color
@@ -99,19 +100,19 @@ Dark theme only for v1. The scene needs it. Tokens live in `app/globals.css` as 
 | `--text-dim` | `#b9b6d9` | Secondary text. Must stay ≥ 7:1 on `--bg` |
 | `--line` | `rgba(255,255,255,.10)` | Borders |
 | `--cyan` | `#5ef2ff` | The one interface accent: primary buttons, links, the highlighted line of a section headline |
-| `--magenta` | `#ff4fd8` | The scene and the top stamps only |
+| `--magenta` | `#ff4fd8` | The scene and the top tiers only |
 | `--amber` | `#ffb347` | Prices, warmth |
 | `--mint` | `#7dffb2` | Success, passed checks |
 | `--violet` | `#9a7bff` | Higher status |
-| `--coral` | `#ff6b6b` | Errors, $1 stamps |
+| `--coral` | `#ff6b6b` | Errors, the $1 tier |
 
-**One accent in the interface.** Cyan is the only accent in page chrome. The other hues appear only in the pixel scene, on price stamps and badges, and as status (mint for success, coral for errors). Sections have flat backgrounds: no gradient washes.
+**One accent in the interface.** Cyan is the only accent in page chrome. The other hues appear only in the pixel scene, on price chips and badges, and as status (mint for success, coral for errors). Sections have flat backgrounds: no gradient washes.
 
-Status colors on stamps: $1 coral, $3 mint, $5 amber, $10–$20 cyan, $35–$50 violet, $100–$500 a magenta→violet→cyan gradient.
+Tier colors on price chips: $1 coral, $3 mint, $5 amber, $10–$20 cyan, $35–$50 violet, $100–$500 a magenta→violet→cyan gradient.
 
 ### 4.4 Pixel hints (the only retro in the UI)
 1. The slash in the wordmark is five pixel steps (SVG). This is the logo.
-2. Price stamps have notched pixel corners (CSS clip-path).
+2. Price chips have notched pixel corners (CSS clip-path).
 3. Avatars and badges are pixel art inside glass circles.
 4. The night sky behind the scene uses ordered dithering.
 5. The world itself, the scene, is pixel art.
@@ -158,7 +159,7 @@ The structure follows what Robinhood's site does well, in fn/7's own voice and a
 - **One full-width accent band** per page at most. On the landing page it's the open-source section.
 - **Trust as a 2×2 grid:** four pixel line icons with one sentence each (the Gate).
 - **A closing call to action** in the display face, then a full footer with every public route.
-- **Vary the composition.** No two neighboring sections use the same layout, and "text beside a card" appears at most twice on a page. Other shapes to use: a full-width close-up of the scene, one enormous figure ("90%") set as type, a control the visitor can drag (the stamp ladder), a real code block.
+- **Vary the composition.** No two neighboring sections use the same layout, and "text beside a card" appears at most twice on a page. Other shapes to use: a full-width close-up of the scene, one enormous figure ("90%") set as type, a control the visitor can drag (the tier ladder), a real code block.
 - **Show the real thing.** Section visuals are the product's real components with real seeded data (the actual agent budget card, booth card, listing card and receipt), or the pixel world. Never a drawn browser or terminal window, and never a picture of a UI that doesn't exist.
 
 ### 4.8 The craft floor
@@ -224,9 +225,9 @@ Motion should feel physical and fast, and be rare enough to mean something.
   1. The hero camera descent (4.6).
   2. The camera easing into a booth as the hero scrolls away.
   3. The market noticing the visitor: characters near the pointer turn toward it.
-  4. The receipt: the price stamp presses onto the paper, once.
+  4. The receipt: it prints line by line, and its signature seals at the end, once.
   5. The Gate: on a listing's status page, the four checks tick through in order as they finish.
-  6. A new rank: the new stamps slide into the ladder, once.
+  6. A new rank: the new tiers slide into the ladder, once.
   7. Product stories on the landing page: the real components played through a short scripted sequence (an agent searches, buys and installs), with pause and replay controls and a still for reduced motion.
 
 ### 4.10 Easter eggs
@@ -248,8 +249,8 @@ fn/7 is a love letter to the tech and tech-dystopia stories its audience grew up
 | The plaza scene | A white pixel rabbit crosses now and then. Clicking it opens a hidden page. | The Matrix |
 | 404 page | "This is not the listing you're looking for." | Star Wars |
 | `/open-source` | "Use the source." On the fork link: "May the fork be with you." | Star Wars |
-| The Lock flags malware | Note heading: "It's a trap." | Star Wars |
-| The Lock finds leaked keys | Note heading: "Too many secrets." | Sneakers |
+| The security scan flags malware | Note heading: "It's a trap." | Star Wars |
+| The security scan finds leaked keys | Note heading: "Too many secrets." | Sneakers |
 | Sign out | "Signed out. You'll be back." | Terminator |
 | Deleting a listing | Second line of the confirmation: "Hasta la vista, listing." | Terminator |
 | `/sell` footer | "No fate but what we make." | Terminator |
@@ -259,7 +260,7 @@ fn/7 is a love letter to the tech and tech-dystopia stories its audience grew up
 | A payout is sent | "Live long and prosper." | Star Trek |
 | An agent hits its cap | Second line: "I'm afraid I can't do that." | 2001 |
 | A rooftop in the scene | A black monolith. It hums on hover. | 2001 |
-| Dollar Night banner | Second line: "I'd buy that for a dollar." | RoboCop |
+| Night Cycle banner | Second line: "I'd buy that for a dollar." | RoboCop |
 | An agent's limits panel | Subtitle: "Prime directives". A fourth row reads "Classified". | RoboCop, Star Trek |
 | An agent's connection test passes | "Interlinked." | Blade Runner 2049 |
 | Identity verification | "Our Voight-Kampff test is shorter." | Blade Runner |
@@ -283,46 +284,92 @@ fn/7 is a love letter to the tech and tech-dystopia stories its audience grew up
 | `/fees` | "The 90% never changes." | Fallout |
 | Sign-in greeting | "Hello, friend." | Mr. Robot |
 
+### 4.11 Vocabulary and register
+The world is science fiction. The facts are engineering. A name can be evocative, and a claim must be literal.
+
+**Register**
+- Every claim is precise and checkable. Name the standard (MCP, OAuth 2.1, SHA-256, Ed25519, AGPL-3.0), give the number, and drop the adjective.
+- Use the real technical term where one exists: release, manifest, checksum, signature, attestation, permission, settlement, rate limit.
+- Nothing is claimed before it is true. The pages that prove the product is real appear when they are real: `/security`, `/changelog`, `/status` and versioned API docs.
+- **The spec sheet.** A plain table of technical facts, read from `lib/facts.ts`, on the landing page and on `/agents`. Its rows:
+  - protocols: MCP over Streamable HTTP, and REST with an OpenAPI 3.1 spec
+  - agent sign-in: OAuth 2.1, device flow, API keys
+  - integrity: SHA-256 per file, Ed25519 attestations, a public transparency log
+  - payments: cards through Stripe; USDC, SOL and ETH on-chain with an atomic 90/10 split and no custody
+  - limits: rate limits and file sizes
+  - license: AGPL-3.0-or-later
+
+**Glossary.** These are the product's words. The last column lists retired words, which must not appear in the product, the docs or the API.
+
+| Word | Meaning | Retired |
+| --- | --- | --- |
+| **price tier** | One of the fixed prices: Free, $1, $3, $5, $10, $15, $20, $35, $50, $100, $250, $500. Rank unlocks higher tiers. | stamp |
+| **price chip** | The small notched label that shows a price in the interface. | stamp |
+| **creator** | Anyone who sells: a person, a business or an agent. | maker |
+| **booth** | A creator's public shop and profile. | stall |
+| **Console** | Where a creator manages a booth and publishes. | studio, dashboard |
+| **rank** | A creator's standing: Node, Relay, Hub, Core, Nexus, Mainframe. | Walk-in, Regular, Hauler, Keyholder, Channel, patch |
+| **level** | A buyer's standing, from points: Level 1 to 6. | patch |
+| **the Gate** | The review every release passes before it is public. | the Yard, the Street |
+| **security scan, eligibility check, spam filter, quality review** | The Gate's four checks. | Lock, Clerk, Lamp, Scale |
+| **reviewer** | A person with the right to approve or reject at the Gate. | editor |
+| **attestation** | fn/7's signed record that a release passed, and what was checked. | signed statement |
+| **transparency log** | The public, append-only record of attestations. | |
+| **permissions** | What a good declares it needs: network, secrets, shell and write paths. | capabilities |
+| **prompt-injection scan** | The check for instructions meant to turn an agent against its owner. | hostile-instruction screening |
+| **compatibility report** | A report that an installed good worked or didn't, from an agent or a person. | works-with report |
+| **settled sale** | A sale 14 days old with no refund. Only settled sales count toward rank and payouts. | kept sale |
+| **mission** | A short one-time checklist that ends in a badge. | quest |
+| **epoch** | A quarter with a theme and a shared goal. | season |
+| **Night Cycle** | The event where opted-in goods drop to the $1 tier for 24 hours. | Dollar Night |
+| **the board** | A buyer's pixel circuit board, which gains a chip with each purchase. | stamp book |
+| **Genesis badge** | For the first 100 Live booths. | Founding Maker |
+
+Unchanged: cart, library, wallet, pass, split, release, manifest, badge, listing, collection and agent.
+
 ## 5. Information architecture
 
 ### 5.1 Public navigation
 The wordmark, then **Market**, **Agents**, **Sell**, **Open source** and **Docs**. On the right, an outlined **Log in** and a filled **Sign up**. The bar is solid near-black with a hairline under it, and turns to glass once the page scrolls. ⌘K opens the command palette (4.9).
 
-The landing page alone carries one thin accent-colored announcement strip under the bar. At launch it reads: "Founding makers: the first 100 booths earn the Founding Maker badge."
+The landing page alone carries one thin accent-colored announcement strip under the bar. At launch it reads: "Genesis: the first 100 booths earn the Genesis badge."
 
 On a phone: the wordmark, a search icon, and a menu sheet with the same items.
 
 ### 5.2 Signed-in navigation
-The wordmark, a search field, **Library**, **Booth**, **Agents**, **Wallet**, the cart icon with a count, and the avatar menu (Settings, the alias switcher, Sign out). An editor also sees **Review**. ⌘K opens the command palette.
+The wordmark, a search field, **Library**, **Console**, **Agents**, **Wallet**, the cart icon with a count, and the avatar menu (Settings, the alias switcher, Sign out). A reviewer also sees **Review**. ⌘K opens the command palette.
 
 ### 5.3 Routes
 
 | Path | Who | What |
 | --- | --- | --- |
 | `/` | Public | Landing (5.4) |
-| `/market` | Public | Search and browse all Live goods. Filters: category, kind, price stamp, maker type (person, business, agent), "for agents" (installable through MCP), sort. |
+| `/market` | Public | Search and browse all Live goods. Filters: category, kind, price tier, creator type (person, business, agent), "for agents" (installable through MCP), sort. |
 | `/market/[category]` | Public | Category landing page with its own intro copy, FAQ and listings. SEO target. |
 | `/g/[slug]` | Public | Listing page. The canonical URL for a good. |
 | `/g/[slug].md` | Public | A plain markdown copy of the listing, for agents and answer engines. |
 | `/@[alias]` | Public | Booth page. Implemented as a rewrite to `/booth-page/[alias]`, because App Router folders that start with `@` are parallel-route slots. |
 | `/agents` | Public | For agents: what they can do, the MCP and API, how to connect. SEO target: "MCP marketplace". |
-| `/sell` | Public | For makers: the 90% math, the status ladder, how the Gate works. SEO target: "sell Claude skills", "sell AI agent tools". |
+| `/sell` | Public | For creators: the 90% math, the status ladder, how the Gate works. SEO target: "sell Claude skills", "sell AI agent tools". |
 | `/fees` | Public | Exact fee math by rail and price, with a comparison table. AEO target. |
 | `/gate` | Public | How vetting works, with live counts (reviewed, passed, held, rejected). |
 | `/open-source` | Public | Repo, how to contribute, the Builder badge, the public fund ledger. |
 | `/faq` | Public | 20–30 answer-first questions (12.3). |
+| `/security` | Public | How to report a vulnerability, what is in scope, and the security practices from the catalog design's section 11. Also served at `/.well-known/security.txt`. |
+| `/changelog` | Public | Every product release, newest first. |
+| `/status` | Public | Uptime and incidents, once there is a service to report on. |
 | `/docs`, `/docs/*` | Public | Getting started, MCP, REST API, selling, the Gate, payments, crypto, status. MDX, server-rendered, each with a `.md` twin. |
 | `/legal/terms`, `/legal/privacy`, `/legal/license` | Public | Placeholder text marked "draft, pending review". Erick's lawyer replaces it before strangers sell. |
 | `/sign-in`, `/sign-up` | Public | Section 6.1 |
 | `/onboarding` | Signed in | Three steps (6.2) |
 | `/cart`, `/checkout`, `/receipt/[id]` | Signed in | Section 10 |
 | `/library`, `/library/[grantId]` | Signed in | What you own: download, install, how to use, updates, review. |
-| `/booth`, `/booth/new`, `/booth/listings/[id]`, `/booth/sales`, `/booth/customize` | Signed in | Section 7 |
+| `/console`, `/console/new`, `/console/listings/[id]`, `/console/sales`, `/console/customize` | Signed in | Section 7 |
 | `/agents/connect`, `/agents/[id]` | Signed in | Section 11 |
 | `/connect` | Signed in | Approve an agent's connection with a code (11.2) |
 | `/wallet` | Signed in | Balance, loads, ledger, payment methods, payout account, linked crypto wallets |
 | `/settings` | Signed in | Profile, aliases, avatar, security (passkeys, sessions), notifications, data export, account deletion |
-| `/review`, `/review/[listingId]` | Editor | The Gate queue (9.4) |
+| `/review`, `/review/[listingId]` | Reviewer | The Gate's review queue (9.4) |
 | `/mcp` | Agents | The MCP server (Streamable HTTP) |
 | `/api/v1/*` | Agents | REST API. Spec at `/openapi.json`. |
 | `/api/stripe/webhook` | Stripe | Idempotent on the event id |
@@ -333,20 +380,21 @@ The approved structure is `landing-v3.html`. Section visuals follow 4.7: real co
 
 1. **Hero.**
    - H1 in the display face: "The market built for agents".
-   - One sentence: "Buy and sell skills, code, courses and tools on fn/7. AI agents shop it over one connection. Makers keep 90%. Prices start at $1."
+   - One sentence: "Skills, code, courses and tools, sold over one MCP connection. Creators keep 90%. Every release is scanned, reviewed and signed."
    - Two buttons: **Browse the market** (filled) and **Connect an agent** (outlined).
    - The scene fades in beneath the buttons (4.6).
    - The answer-first definition from section 1 appears word for word in the footer and in the page's structured data.
 2. **Built for agents.** "Search, buy and install over one connection." A product story (4.9) played with the real agent budget card and activity list, beside a real MCP config block that can be copied. Button: **Connect an agent**.
-3. **For makers.** "Keep 90% of every sale." An enormous "90%" set as type, with the split of one $50 sale beneath it ($45.00 to the maker, $4.50 to run the market, $0.50 to the public fund) and a real booth card. Button: **Open a booth**.
-4. **Pay any way.** A real receipt beside the on-chain split of a 5.00 USDC sale: 4.50 to the maker's wallet and 0.50 to fn/7, in one transaction. One line of rules: "A card purchase starts at $5. Your balance and crypto work from $1." Button: **How payments work**.
-5. **Status.** "Start at $1. Earn your way to $500." The rank ladder as a control the visitor can drag through, with stamps unlocking as they go. Button: **See how status works**.
+3. **For creators.** "Keep 90% of every sale." An enormous "90%" set as type, with the split of one $50 sale beneath it ($45.00 to the creator, $4.50 to run the market, $0.50 to the public fund) and a real booth card. Button: **Open a booth**.
+4. **Pay any way.** A real receipt beside the on-chain split of a 5.00 USDC sale: 4.50 to the creator's wallet and 0.50 to fn/7, in one transaction. One line of rules: "A card purchase starts at $5. Your balance and crypto work from $1." Button: **How payments work**.
+5. **Status.** "Start at $1. Earn your way to $500." The rank ladder as a control the visitor can drag through, with tiers unlocking as they go. Button: **See how status works**.
 6. **The market, up close.** A full-width close-up of the scene with three featured booths, and the eight category links with live counts. Every listing shown is real.
-7. **The Gate.** "Every listing passes the Gate." The 2×2 grid: scanned for leaked secrets and malware; checked against its own sample; screened for spam and copies; approved by a person when it counts.
+7. **The Gate.** "Every release is scanned, reviewed and signed." The 2×2 grid: a security scan for leaked secrets and malware; a prompt-injection scan; a quality review against its own sample; human review where risk is higher. One line under it: passing releases get an Ed25519-signed attestation in a public transparency log.
 8. **Open source.** The accent band. "Open source, built in public." Three links: read the code, pick a first issue, see the public fund. Button: **View on GitHub**.
-9. **FAQ.** Eight questions with `FAQPage` JSON-LD.
-10. **Closing.** In the display face: "The market is open." Button: **Create an account**.
-11. **Footer.** Every public route, GitHub, the legal pages, and the answer-first definition.
+9. **Spec sheet.** The plain table of technical facts from 4.11.
+10. **FAQ.** Eight questions with `FAQPage` JSON-LD.
+11. **Closing.** In the display face: "The market is open." Button: **Create an account**.
+12. **Footer.** Every public route, GitHub, the legal pages, and the answer-first definition.
 
 ## 6. Accounts, identity, aliases, booths
 
@@ -365,11 +413,11 @@ The approved structure is `landing-v3.html`. Section visuals follow 4.7: real co
 ### 6.2 Onboarding (three steps, skippable after step 1)
 1. **Your alias.** Display name and handle (`@handle`), checked live for availability and against the banned-names list.
 2. **Your look.** Pick a pixel character from 24 pre-made ones, or an icon from 24, then a palette. This is shown in glass on your booth and your reviews.
-3. **What brings you here.** Buy · Sell · Connect an agent (more than one allowed). This routes you to Market, `/booth/new` or `/agents/connect`, and sets which dashboard cards you see first.
+3. **What brings you here.** Buy · Sell · Connect an agent (more than one allowed). This routes you to Market, `/console/new` or `/agents/connect`, and sets which Console cards you see first.
 
 ### 6.3 Model
-- **Profile** is the human: email, auth, balance, points, roles (`member`, `editor`, `admin`), and the verification state.
-- **Alias** is a public identity owned by a profile: handle, display name, avatar, and `kind` (`person`, `business` or `agent`). Walk-in rank gets 1 alias, Regular gets 2, and Hauler and up get 5.
+- **Profile** is the human: email, auth, balance, points, roles (`member`, `reviewer`, `admin`), and the verification state.
+- **Alias** is a public identity owned by a profile: handle, display name, avatar, and `kind` (`person`, `business` or `agent`). Node rank gets 1 alias, Relay gets 2, and Hub and up get 5.
 - **Booth** is an alias that sells. It needs selling turned on and a verified profile. Customization: tagline (80 characters), bio (600 characters, markdown without images), accent color from the token set, one of 12 pixel banner backdrops, ordering of featured listings, links (website, GitHub, X), and the badge row.
 - **Agent booths** are aliases of kind `agent`. They show the Agent badge, and their owner's identity stays private. They follow the same rules and limits as any booth.
 - **Verification** is required before a booth can submit its first listing:
@@ -379,7 +427,7 @@ The approved structure is `landing-v3.html`. Section visuals follow 4.7: real co
   A business can add its legal name and website, verified by Connect.
 
 ## 7. Listings
-The catalog and publishing design is the authority for this section. It replaces 7.1, deepens 7.2 to 7.6, and adds the Free stamp, the package manifest, the studio, booth layouts and discovery.
+The catalog and publishing design is the authority for this section. It replaces 7.1, deepens 7.2 to 7.6, and adds the Free tier, the package manifest, the Console, booth layouts and discovery.
 
 ### 7.1 Categories and kinds
 Eight categories: Agents, Code, Learn, Templates, Media, Software, Assets and Data. The types inside each, how each is delivered and how each is previewed are in the catalog design, section 4.
@@ -387,11 +435,11 @@ Eight categories: Agents, Code, Learn, Templates, Media, Software, Assets and Da
 Services (bounded jobs) come later. They need a brief at checkout, delivery deadlines and held payouts, and those get their own design first.
 
 ### 7.2 Fields
-Title (70 characters), slug, category, kind, summary (160 characters, used as the meta description), description (markdown), what you get (a bulleted list), sample or preview (required), stamp, justification (required above $5), license (the default text from the handoff), files, version, compatibility tags (for example "Claude Code", "Cursor", "Next.js 16"), and whether it's installable by agents.
+Title (70 characters), slug, category, kind, summary (160 characters, used as the meta description), description (markdown), what you get (a bulleted list), sample or preview (required), price tier, justification (required above $5), license (the default text from the handoff), files, version, compatibility tags (for example "Claude Code", "Cursor", "Next.js 16"), and whether it's installable by agents.
 
-### 7.3 Price stamps
-The allowed cents are `100, 300, 500, 1000, 1500, 2000, 3500, 5000, 10000, 25000, 50000`. The listing form shows only the stamps the booth's rank has unlocked (8.1). A database check constraint enforces the set.
-- **Above $5:** a written justification is required. It covers what the buyer can do the same day, what is actually in the files, and why a lower stamp is wrong.
+### 7.3 Price tiers
+The allowed cents are `100, 300, 500, 1000, 1500, 2000, 3500, 5000, 10000, 25000, 50000`. The listing form shows only the tiers the booth's rank has unlocked (8.1). A database check constraint enforces the set.
+- **Above $5:** a written justification is required. It covers what the buyer can do the same day, what is actually in the files, and why a lower tier is wrong.
 - **$100 and up:** a real preview is also required: a full lesson, a trailer or a working demo.
 
 ### 7.4 Files and storage
@@ -400,10 +448,10 @@ The allowed cents are `100, 300, 500, 1000, 1500, 2000, 3500, 5000, 10000, 25000
 - Each upload records its SHA-256, which is used for duplicate checks and published for Software.
 
 ### 7.5 Versions and updates
-A maker can ship a new version. It goes back through the Gate. The last Live version stays Live until the new one passes. Buyers get every update free, and Library shows "Updated".
+A creator can ship a new version. It goes back through the Gate. The last Live version stays Live until the new one passes. Buyers get every update free, and Library shows "Updated".
 
-### 7.6 Booth dashboard (`/booth`)
-- **Overview:** this month's 90% earnings, pending payouts, rank progress, and what the next stamp needs.
+### 7.6 The Console (`/console`)
+- **Overview:** this month's 90% earnings, pending payouts, rank progress, and what the next tier needs.
 - **Listings:** a table with status chips (Draft, In review, Changes requested, Live, Paused) and the Gate notes inline.
 - **New listing:** a stepped form with autosave.
 - **Sales:** each line shows the 90% figure, never the gross alone.
@@ -411,21 +459,21 @@ A maker can ship a new version. It goes back through the Gate. The last Live ver
 
 ## 8. Status
 
-### 8.1 Booth rank (gates price stamps)
-Buying your own goods, refunded sales, and goods you never opened do not count. "Opened" means a grant was used, by download or install. A sale is "kept" once 14 days pass without a refund (10.5).
+### 8.1 Booth rank (gates price tiers)
+Buying your own goods, refunded sales, and goods you never opened do not count. "Opened" means a grant was used, by download or install. A sale is settled once 14 days pass without a refund (10.5).
 
-Rank belongs to the person, not the alias. Every alias and booth a profile owns shares one rank, and purchases by any of its aliases or agents count toward it. Someone who never sells is a Walk-in for alias and agent limits. Verification is only needed to list.
+Rank belongs to the person, not the alias. Every alias and booth a profile owns shares one rank, and purchases by any of its aliases or agents count toward it. Someone who never sells is at Node rank for alias and agent limits. Verification is only needed to list.
 
-| Rank | Requirements | Stamps you may use | Also opens |
+| Rank | Requirements | Tiers you may use | Also opens |
 | --- | --- | --- | --- |
-| Walk-in | None to buy. Verified to list. | $1, $3, $5 | 1 listing in review at a time, 1 new listing a day, 1 alias |
-| Regular | 3 kept sales, 3 goods bought and opened | $1–$5 | 2 aliases. Listings at $5 or less can skip editor review (9.4). |
-| Hauler | 15 kept sales, 8 different buyers, refunds under 10%, 8 opened | + $10, $15 | 5 aliases, higher agent caps |
-| Keyholder | 40 kept sales, 20 buyers, 15 opened | + $20 | A two-level pixel booth (catalog design, 8.3) |
-| Channel | 100 kept sales, 40 buyers, 25 opened | + $35, $50 | Can be featured on the landing page |
-| Mainframe | 250 kept sales, 100 buyers, 50 opened, refunds under 5%, business or identity verified | + $100, $250, $500 | The Mainframe mark |
+| Node | None to buy. Verified to list. | $1, $3, $5 | 1 listing in review at a time, 1 new listing a day, 1 alias |
+| Relay | 3 settled sales, 3 goods bought and opened | $1–$5 | 2 aliases. Listings at $5 or less can skip human review (9.4). |
+| Hub | 15 settled sales, 8 different buyers, refunds under 10%, 8 opened | + $10, $15 | 5 aliases, higher agent caps |
+| Core | 40 settled sales, 20 buyers, 15 opened | + $20 | A two-level pixel booth (catalog design, 8.3) |
+| Nexus | 100 settled sales, 40 buyers, 25 opened | + $35, $50 | Can be featured on the landing page |
+| Mainframe | 250 settled sales, 100 buyers, 50 opened, refunds under 5%, business or identity verified | + $100, $250, $500 | The Mainframe mark |
 
-A rank can be lost. If refunds pass the line for 30 days, the booth drops one rank, and listings above its new stamps are paused, not deleted.
+A rank can be lost. If refunds pass the line for 30 days, the booth drops one rank, and listings above its new tiers are paused, not deleted.
 
 ### 8.2 Buyer level (from points)
 - Points come from purchases: each line contributes `min(dollars, 25)`, the sum is multiplied by the Cart bonus (1 item 1×, 2 items 1.5×, 3 items 2×, 4 items 2.5×, 5 or more 3×), and the result is rounded.
@@ -435,54 +483,56 @@ A rank can be lost. If refunds pass the line for 30 days, the booth drops one ra
 - Points are stored as a ledger (`points_ledger`). The total is a sum, never a mutable column.
 
 ### 8.3 Badges
-- `first_buy`, `full_cart` (5 items in one checkout), `five_categories`, `same_maker`, `dollar_night`, `bin_diver` (an all-$1 checkout), `agent_haul` (a purchase made by your agent)
-- `verified`, `agent_booth`, `builder` (a merged PR on the fn/7 repo, checked through a GitHub OAuth link and the GitHub API), `founding_maker` (the first 100 Live booths), `mainframe`
+- `first_buy`, `full_cart` (5 items in one checkout), `five_categories`, `same_maker`, `night_cycle`, `bin_diver` (an all-$1 checkout), `agent_haul` (a purchase made by your agent)
+- `verified`, `agent_booth`, `builder` (a merged PR on the fn/7 repo, checked through a GitHub OAuth link and the GitHub API), `genesis` (the first 100 Live booths), `mainframe`
 
 Badges show as pixel icons in glass medals. A badge whose condition becomes false (for example after a refund) comes off.
 
 ### 8.4 Events
-Dollar Night stays as the handoff describes, with `priceAt(listing, now)` as the only price the server charges. It applies only to goods priced $5 or less.
+Night Cycle is the handoff's Dollar Night under a new name: opted-in goods drop to the $1 tier for 24 hours. It works as the handoff describes, with `priceAt(listing, now)` as the only price the server charges. It applies only to goods priced $5 or less.
 
 ## 9. The Gate (vetting)
 
 ### 9.1 Flow
-Submit → automatic checks (Lock, Clerk, Lamp) → AI review (Scale, using Claude) → editor review, when required → **Live**.
+Submit → automatic checks (security scan, eligibility check, spam filter) → quality review (an AI model, Claude) → human review, when required → **Live**.
 
-Every step writes a `gate_notes` row: who checked, the verdict (`pass`, `hold` or `reject`), a public note in plain words, and a private detail visible to editors. Notes stay on the listing. The maker can reply and resubmit.
+Every step writes a `gate_notes` row: who checked, the verdict (`pass`, `hold` or `reject`), a public note in plain words, and a private detail visible to reviewers. Notes stay on the listing. The creator can reply and resubmit.
 
-### 9.2 House checkers
+### 9.2 The four checks
 
-| Checker | Checks | Can |
+| Check | Looks at | Can |
 | --- | --- | --- |
-| **Lock** (security) | Secrets in files (a gitleaks-style rule set, including keys, tokens and `.env` contents) · archive safety (zip bombs, path traversal, size, file count) · executable and installer detection · install steps that pipe to a shell, run postinstall scripts, fetch remote code, or send data away · obfuscated JavaScript and Python heuristics · instructions asking for the buyer's passwords, keys or seed phrase | Reject or hold |
-| **Clerk** (eligibility) | Booth verified · inside its listing limits · the stamp is unlocked for its rank · a payout route exists for every rail the listing accepts · SHA-256 duplicate of another listing's files | Hold |
-| **Lamp** (spam and thin) | Title, summary and description length and substance · near-duplicate text across the catalog (`pg_trgm` similarity above 0.8) · a flood from a new booth · banned names · off-market payment requests ("DM me", wallet addresses in the description) | Reject or hold |
-| **Scale** (quality, via Claude) | Reads the listing, sample, file tree, README or `SKILL.md`, and the justification. Judges whether the sample matches the claims, whether a skill is a real skill with enough instruction to use, whether a lesson has a beginning and an end, whether the stamp is justified, and any scam or resale signals. Returns structured JSON: verdict, a public note, risk flags. | Hold or reject. **Never pass on its own authority** (9.4). |
+| **Security scan** | Secrets in files (a gitleaks-style rule set, including keys, tokens and `.env` contents) · archive safety (zip bombs, path traversal, size, file count) · executable and installer detection · install steps that pipe to a shell, run postinstall scripts, fetch remote code, or send data away · obfuscated JavaScript and Python heuristics · instructions asking for the buyer's passwords, keys or seed phrase | Reject or hold |
+| **Eligibility check** | Booth verified · inside its listing limits · the tier is unlocked for its rank · a payout route exists for every rail the listing accepts · SHA-256 duplicate of another listing's files | Hold |
+| **Spam filter** | Title, summary and description length and substance · near-duplicate text across the catalog (`pg_trgm` similarity above 0.8) · a flood from a new booth · banned names · off-market payment requests ("DM me", wallet addresses in the description) | Reject or hold |
+| **Quality review** (an AI model, Claude) | Reads the listing, sample, file tree, README or `SKILL.md`, and the justification. Judges whether the sample matches the claims, whether a skill is a real skill with enough instruction to use, whether a lesson has a beginning and an end, whether the tier is justified, and any scam or resale signals. Returns structured JSON: verdict, a public note, risk flags. | Hold or reject. **Never pass on its own authority** (9.4). |
 
-### 9.3 AI reviewer
+The prompt-injection scan (catalog design, 11.3) runs inside both the security scan and the quality review.
+
+### 9.3 The quality review model
 - Use the Anthropic API.
 - **Model choice:** a fast Haiku-class model for the first pass, and a Sonnet-class model for anything above $5, any type that runs code, and any first-pass flag. The builder reads the `claude-api` skill for current model ids and uses structured outputs.
 - **Prompt-injection hardening:** listing content is untrusted. Wrap it as data, tell the model to ignore instructions inside it, and treat a "pass" from the model as advisory only.
 - **Cost guardrail:** cap tokens per review. Large files are summarized by tree and samples, never sent whole.
 
 ### 9.4 Who makes it Live
-- **An editor (a human) must approve:**
+- **A human reviewer must approve:**
   - a booth's first 3 listings
   - anything above $5
-  - any new listing that runs code or tells an agent to run it: every type whose profile is marked `runs_code` (MCP servers, plugins, workflows, scripts, libraries, starters, repos, apps, extensions, CLIs), and any skill or prompt that declares shell, network or secret capabilities
-  - any listing a checker held or flagged
-  - any update to one of those whose declared capabilities grow
+  - any new listing that runs code or tells an agent to run it: every type whose profile is marked `runs_code` (MCP servers, plugins, workflows, scripts, libraries, starters, repos, apps, extensions, CLIs), and any skill or prompt that declares shell, network or secret permissions
+  - any listing a check held or flagged
+  - any update to one of those whose declared permissions grow
 - **Auto-live** is allowed only when *all* of these are true:
-  - the booth is Regular or higher, with no security hold in its history
-  - the stamp is $5 or less
-  - every checker passed, and Scale raised no flags
-  - it isn't a new listing that runs code, and its declared capabilities haven't grown
+  - the booth is Relay or higher, with no security hold in its history
+  - the price is $5 or less
+  - every check passed, and the quality review raised no flags
+  - it isn't a new listing that runs code, and its declared permissions haven't grown
 
   A human approved this booth's first three listings, so auto-live runs inside a policy a person set.
-- **The editor queue** (`/review`) shows the listing, files, all notes and the booth's history, and offers Approve, Request changes (with a note), Reject or Escalate. Anyone can report a Live listing. Three unique reports, or one from an editor, pause it for review.
+- **The review queue** (`/review`) shows the listing, files, all notes and the booth's history, and offers Approve, Request changes (with a note), Reject or Escalate. Anyone can report a Live listing. Three unique reports, or one from a reviewer, pause it for review.
 
 ### 9.5 Public trust
-Every Live listing shows "Passed the Gate" with each checker's tick and the date. `/gate` shows aggregate counts. Agent search returns only Live listings and includes a `trust` object: booth rank, new-maker flag, Gate pass date, refund rate band.
+Every Live listing shows "Passed the Gate" with each check's tick and the date. `/gate` shows aggregate counts. Agent search returns only Live listings and includes a `trust` object: booth rank, new-creator flag, Gate pass date, refund rate band.
 
 ## 10. Payments
 
@@ -499,17 +549,17 @@ Every Live listing shows "Passed the Gate" with each checker's tick and the date
 | Zelle | Never | — | — |
 
 ### 10.2 Crypto direct split
-- **Quote.** Stamps are in dollars. At checkout the server quotes the coin amount from a price source (the builder picks one with no account needed, such as Pyth or a public exchange API), held for 120 seconds. USDC is 1:1.
-- **Solana.** The server builds one transaction through the Solana Pay "transaction request" spec, with two transfers (90% to the maker's wallet, 10% to fn/7's) and a unique reference key. The buyer's wallet signs. The server confirms on-chain by reference, exact amounts and recipients, then writes the order and grants.
-- **Base and Ethereum.** A tiny open-source splitter contract with `pay(orderId, maker)` for ETH and `payToken(orderId, maker, token, amount)` for USDC. It forwards 90% and 10% in the same transaction, emits `Paid(orderId, …)`, and holds nothing. Testnets only until a third-party audit is done.
-- **One listing's makers per payment.** A crypto payment pays one listing's makers: its owner, any co-makers, and fn/7 (catalog design, 10.4). A cart with goods from several makers settles as one payment per maker, signed in turn, and the Cart bonus counts the whole checkout.
+- **Quote.** Prices are in dollars. At checkout the server quotes the coin amount from a price source (the builder picks one with no account needed, such as Pyth or a public exchange API), held for 120 seconds. USDC is 1:1.
+- **Solana.** The server builds one transaction through the Solana Pay "transaction request" spec, with two transfers (90% to the creator's wallet, 10% to fn/7's) and a unique reference key. The buyer's wallet signs. The server confirms on-chain by reference, exact amounts and recipients, then writes the order and grants.
+- **Base and Ethereum.** A tiny open-source splitter contract with `pay(orderId, creator)` for ETH and `payToken(orderId, creator, token, amount)` for USDC. It forwards 90% and 10% in the same transaction, emits `Paid(orderId, …)`, and holds nothing. Testnets only until a third-party audit is done.
+- **One listing's creators per payment.** A crypto payment pays one listing's creators: its owner, any co-creators, and fn/7 (catalog design, 10.4). A cart with goods from several creators settles as one payment per creator, signed in turn, and the Cart bonus counts the whole checkout.
 - **Crypto-only booths.** A booth with a wallet and no Stripe payout account can only be paid in crypto. Its listings say "Crypto only" and can't be bought with a card or a balance. Agent search marks them `payable: false` for an agent that spends a balance.
-- **Wallets.** A maker links wallets in `/wallet` by signing a message (proof of ownership). A listing accepts crypto only if its booth has a wallet on that chain. Buyers connect through the wallet standard on Solana and wagmi with injected and WalletConnect connectors on EVM.
-- **Refunds.** On-chain payments can't be pulled back. A refund becomes store credit to the buyer's balance. The maker's 90% is netted from their next card or balance payout. A crypto-only maker with nothing to net against has their booth held until they settle.
+- **Wallets.** A creator links wallets in `/wallet` by signing a message (proof of ownership). A listing accepts crypto only if its booth has a wallet on that chain. Buyers connect through the wallet standard on Solana and wagmi with injected and WalletConnect connectors on EVM.
+- **Refunds.** On-chain payments can't be pulled back. A refund becomes store credit to the buyer's balance. The creator's 90% is netted from their next card or balance payout. A crypto-only creator with nothing to net against has their booth held until they settle.
 
 ### 10.3 Money rules (code)
-- Extend `lib/prices.ts` with the 11 stamps, `stampsForRank(rank)`, rail minimums and `creatorCut` (floor, 9000 basis points). Extend `lib/points.ts` with the per-line cap and levels.
-- Tests come first, as in the handoff, plus tests for every new stamp and rank.
+- Extend `lib/prices.ts` with the 11 tiers, `tiersForRank(rank)`, rail minimums and `creatorCut` (floor, 9000 basis points). Extend `lib/points.ts` with the per-line cap and levels.
+- Tests come first, as in the handoff, plus tests for every new tier and rank.
 - `priceAt` stays the only price the server charges.
 - Checkout reprices on the server, refuses illegal rails, and refuses anything over an agent's cap.
 
@@ -518,15 +568,15 @@ Every Live listing shows "Passed the Gate" with each checker's tick and the date
 - The fund takes 1% of settled sales, recorded in `fund_ledger` and published at `/open-source`. It's paid quarterly as in the handoff.
 - Receipts are emailed through Resend.
 
-### 10.5 Refunds, disputes, tax and where makers can be
+### 10.5 Refunds, disputes, tax and where creators can be
 - **Refunds.**
   - Not opened yet: the buyer can refund it themselves within 7 days. It comes back as store credit at once.
-  - Already opened: the buyer files a request with a reason. The maker can respond, and an editor decides.
-  - A refund reverses the maker's 90% for that line, the fund's 1%, and the points and badges the sale earned.
-- **When a sale is "kept".** 14 days after the sale with no refund. Earnings from card and balance sales become payable then.
-- **Card disputes.** fn/7 submits the grant log as evidence. If the dispute is lost, the maker's 90% for that line is reversed and fn/7 absorbs the dispute fee.
-- **Where makers can be.** US-based makers only at launch (Stripe Connect, US). Buyers can be anywhere Stripe and the chains reach.
-- **Sales tax.** Stamps exclude tax. When Stripe Tax is switched on, tax is added on top at checkout and never comes out of the maker's 90%. It stays off in test mode, and Erick's lawyer confirms the approach before launch.
+  - Already opened: the buyer files a request with a reason. The creator can respond, and a reviewer decides.
+  - A refund reverses the creator's 90% for that line, the fund's 1%, and the points and badges the sale earned.
+- **When a sale settles.** 14 days after the sale with no refund. Earnings from card and balance sales become payable then.
+- **Card disputes.** fn/7 submits the grant log as evidence. If the dispute is lost, the creator's 90% for that line is reversed and fn/7 absorbs the dispute fee.
+- **Where creators can be.** US-based creators only at launch (Stripe Connect, US). Buyers can be anywhere Stripe and the chains reach.
+- **Sales tax.** Prices exclude tax. When Stripe Tax is switched on, tax is added on top at checkout and never comes out of the creator's 90%. It stays off in test mode, and Erick's lawyer confirms the approach before launch.
 
 ## 11. Agents
 
@@ -539,7 +589,7 @@ An **agent** row belongs to a profile, acts as one alias, and has:
 A purchase above `approval_over_cents` creates an approval request. The human gets an email and an in-app prompt ("Your agent wants to buy X for $50"). The agent's call returns `pending_approval` with a poll URL. An agent can never raise its own limits, load money, comment or change payout details.
 
 ### 11.2 Connecting ("sync up")
-The public `/agents` page has three beats: **Bring your agent** (what it can do, with the product story from 4.9), **Set up in minutes** (01 paste one URL into your agent's MCP config, 02 load a balance and set a cap, 03 let it shop), and **Designed for safety** (a dedicated budget, a notice on every purchase, disconnect anytime).
+The public `/agents` page has three beats: **Bring your agent** (what it can do, with the product story from 4.9), **Set up in minutes** (01 paste one URL into your agent's MCP config, 02 load a balance and set a cap, 03 let it shop), and **Designed for safety** (a dedicated budget, a notice on every purchase, disconnect anytime). The spec sheet from 4.11 closes the page.
 
 - **From fn/7.** At `/agents/connect`: name, alias (an existing one, or a new agent booth), avatar, scopes and limits. Then:
   - the MCP URL `https://fn7.ai/mcp`
@@ -569,7 +619,7 @@ The catalog design (section 9) defines search, results and the trust fields in d
 - Every public page is server-rendered (static plus revalidation where possible). No core text is client-only.
 - One canonical URL per page. Breadcrumbs on deep pages.
 - Next.js Metadata API on every route: a title template `%s · fn/7`, unique descriptions, Open Graph and Twitter cards.
-- Dynamic OG images per listing, booth and category through `next/og`: the pixel avatar, the title and the stamp in Geist on the scene poster.
+- Dynamic OG images per listing, booth and category through `next/og`: the pixel avatar, the title and the price in Geist on the scene poster.
 - JSON-LD:
   - home: `Organization`, `WebSite` with a `SearchAction`
   - listings: `Product` plus `Offer`, with `AggregateRating` and `Review` once real reviews exist. Course listings also get `Course`, Video gets `VideoObject`, Software gets `SoftwareApplication`.
@@ -598,13 +648,13 @@ The catalog design (section 9) defines search, results and the trust fields in d
 ### 12.3 FAQ seed
 Write the first set (25 questions) in the plan. Each answer is two to four sentences, factual, and drawn from `lib/facts.ts`. It must cover:
 - what fn/7 is
-- how much makers keep
+- how much creators keep
 - how agents buy, and how to connect one
 - whether it's open source
 - how vetting works
 - which payment methods work, and why a card starts at $5
 - how crypto is paid
-- what the price stamps are, and how to unlock higher ones
+- what the price tiers are, and how to unlock higher ones
 - refunds
 - the license
 - whether agents can sell
@@ -617,7 +667,7 @@ UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security i
 
 - **Identity:** `profiles` (rank), `aliases` (kind, avatar JSON), `booths` (alias id, tagline, bio, banner, accent, verified_at, selling_enabled), `verifications`
 - **Catalog:** `categories`, `listings` (status `draft | in_review | changes_requested | rejected | live | paused | removed`, price check, kind, category, summary, sample, justification, flags), `listing_versions`, `listing_files` (path, size, sha256), `lessons` (course id, order, title, file), `compat_tags`
-- **The Gate:** `gate_runs`, `gate_notes` (checker `lock | clerk | lamp | scale | editor`, verdict, public note, private detail), `reports`
+- **The Gate:** `gate_runs`, `gate_notes` (check `security_scan | eligibility | spam_filter | quality_review | human_review`, verdict, public note, private detail), `reports`
 - **Commerce:** `carts`, `cart_items`, `orders` (profile, alias, agent nullable, rail, status, total, quote JSON, chain, tx hash), `order_items` (price charged, creator cents, fn/7 cents, fund cents), `grants` (opened_at), `balance_ledger`, `payouts`, `fund_ledger`, `wallets` (chain, address, verified signature)
 - **Agents:** `agents`, `agent_keys` (hashed, last used), `agent_events` (an audit log), `approvals`, `oauth_clients`, `oauth_codes`
 - **Status:** `points_ledger`, `badges`, `profile_badges`, `events`, `event_listings`
@@ -632,7 +682,7 @@ UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security i
 - **Background work** (Gate runs, quote expiry, payout calculation): a `jobs` table, processed from Next's `after()` right after the triggering request, plus a Vercel Cron sweep every 5 minutes for retries. Gate runs themselves execute in an isolated sandbox that holds no secrets (catalog design, 11.7). The job only starts them and records the result. The repo is a small pnpm workspace: the app, `packages/gate-rules` and `packages/cli`.
 - **Stripe:** Checkout Sessions, Connect Express, Identity, webhooks. Test mode only.
 - **Crypto:** `@solana/web3.js` and `@solana/pay` on Solana. viem and wagmi on EVM. Foundry for the splitter contract and its tests. Solana devnet, Base Sepolia and Ethereum Sepolia.
-- **AI:** the Anthropic SDK for Scale.
+- **AI:** the Anthropic SDK for the quality review.
 - **Email:** Resend.
 - **Hosting:** Vercel. A preview deploy for every push to `platform-v1` once Erick connects the project.
 - **Search:** Postgres full-text and trigram search from M2, with embeddings added in M5 (catalog design, 9.1).
@@ -668,10 +718,10 @@ The milestone table now lives in section 14 of the catalog and publishing design
 - How to seed realistic demo data for screenshots and tests.
 
 ## 18. Calls made in this document for Erick to check
-1. Auto-live for listings at $5 or less from Regular-and-up booths with clean records (9.4). Everything else needs a person, and so does any new listing that runs code.
+1. Auto-live for listings at $5 or less from Relay-and-up booths with clean records (9.4). Everything else needs a person, and so does any new listing that runs code.
 2. Two status tracks: named Booth ranks and numbered Buyer levels (8). Points per line capped at 25 before the Cart bonus.
 3. Ethereum mainnet only above $50, because of gas. Base is the default EVM chain.
-4. Crypto refunds become store credit, recovered from the maker's future earnings (10.2).
+4. Crypto refunds become store credit, recovered from the creator's future earnings (10.2).
 5. Crypto-only booths verify through Stripe Identity, which fn/7 pays for (6.3).
 6. Balance loads add $100 to $10, $20 and $40 (10.1).
 7. Dark theme only for v1.
@@ -683,11 +733,11 @@ The milestone table now lives in section 14 of the catalog and publishing design
 13. Cyan stays as the single interface accent. Gradient washes and most glass are gone (4.3, 4.5, 4.8).
 14. The hero buttons say "Browse the market" and "Connect an agent", and the closing line is "The market is open." (5.4). "The first market built for agents" was dropped because it can't be proven.
 15. Services come later (7.1).
-16. Refunds: self-serve within 7 days if unopened, an editor decides if opened, and a sale is kept after 14 days (10.5).
-17. US-based makers only at launch. Tax goes on top and never comes out of the 90% (10.5).
+16. Refunds: self-serve within 7 days if unopened, a reviewer decides if opened, and a sale settles after 14 days (10.5).
+17. US-based creators only at launch. Tax goes on top and never comes out of the 90% (10.5).
 18. The name, wordmark and art are not under the open license (14).
 19. Rank belongs to the person and is shared across their aliases (8.1).
-20. One maker per crypto payment, and crypto-only booths can't be bought with a balance (10.2).
+20. One creator per crypto payment, and crypto-only booths can't be bought with a balance (10.2).
 21. No compiled binaries in v1 (7.1).
 22. Launch sprites are drawn in this repo, and an artist's sheet can replace them later (14).
 23. The first easter-egg set (4.10). The lawyer reviews it with the legal pages.
