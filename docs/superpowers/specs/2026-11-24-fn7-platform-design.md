@@ -2,6 +2,8 @@
 
 Date: 2026-11-24. Status: draft for Erick's approval, revision 2. Revision 2 adds the Robinhood-style page structure, the craft and motion rules, the easter eggs, and answers to the reviewer's questions. Branch: `platform-v1`.
 
+The [catalog and publishing design](2026-11-24-fn7-catalog-and-publishing-design.md) is the companion to this document. It is the authority on what can be sold, packaging, publishing, how listings and booths are shown, discovery and the milestone order.
+
 This document replaces the one-phase-at-a-time plan in `HANDOFF.md`, `AGENTS.md`, `docs/business-plan.md` and `docs/build-spec.md` wherever they disagree. Section 3 lists every change. Anything this document does not mention stays as the handoff says. Updating those four files to match this design is part of milestone M0.
 
 ---
@@ -34,7 +36,7 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 6. Rank well in search engines and get cited by answer engines (ChatGPT, Claude, Perplexity, Google AI Overviews) from launch.
 7. Every screen meets WCAG 2.2 AA contrast, works at 390px wide, and has real empty, loading and error states.
 
-**Non-goals for this build:** services (bounded jobs), compiled software binaries, makers outside the US, physical goods, subscriptions, auctions, ads, a token, open DMs between strangers, Bitcoin, x402, PayPal, the Wanted board, Ask the booth, localization, native mobile apps, mirrors and federation. The schema should not block any of these later. Section 15 says when each lands.
+**Non-goals for this build:** services (bounded jobs), compiled software binaries, makers outside the US, physical goods, card-on-file subscriptions (prepaid passes come in M9), auctions, ads, a token, open DMs between strangers, Bitcoin, x402, PayPal, the Wanted board, Ask the booth, localization, native mobile apps, mirrors and federation. The schema should not block any of these later. The catalog design's milestone table says when each lands.
 
 **Anti-goals (a failure even if it works)**
 - fn/7 ever holds crypto a person could withdraw. All crypto settles directly to the maker and to fn/7 in one transaction.
@@ -53,10 +55,10 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 | --- | --- | --- |
 | Build approach | One phase at a time, Phase 1 first | Build the whole platform as a real app with a real database. Money runs in Stripe test mode and on crypto test networks until Erick says go live. Milestones in section 15. |
 | Price ceiling | $1–$5 to start, $50 at the top | Same start. A sixth rank, **Mainframe**, unlocks **$100, $250, $500**. |
-| Kinds of goods | file, skill, repo, lesson, tool | skill, code, course, lesson, template, video, software, asset pack. Services wait until M9. Section 7. |
+| Kinds of goods | file, skill, repo, lesson, tool | skill, code, course, lesson, template, video, software, asset pack. Services come later. Section 7. |
 | Film and game references | No film, game or studio creatures | Easter eggs are allowed as winks: a short line or a piece of original art, never a franchise's names, logos or characters. Section 4.10. |
 | Yard and Street | Unproven Yard, edited Street | Gone. A listing is **In review** (visible only to its maker) or **Live** (public). Live goods from new booths carry a quiet **New maker** tag. |
-| Stalls and keepers | Eight stalls with animal keepers in the nav | Seven **categories** (7.1). The keepers survive as pixel characters in the scene and as category mascots, not as navigation. |
+| Stalls and keepers | Eight stalls with animal keepers in the nav | Eight **categories** (catalog design, section 4). The keepers survive as pixel characters in the scene and as category mascots, not as navigation. |
 | Look | Hard pixels, Press Start 2P, no blur, gradients or shadows | A flat near-black page, clean type, one accent color, one message per screen, and a cinematic pixel scene. Pixels are accents only, and glass is rare. Section 4. |
 | Crypto | Stripe USDC, then x402 USDC on Base and Solana | Direct on-chain 90/10 split. SOL and USDC on Solana, ETH and USDC on Base and Ethereum. Bitcoin over Lightning and x402 come later. Section 10. |
 | AI in vetting | No AI moderation API | Claude is one reviewer at the Gate. It writes notes and can hold or reject. It never publishes. Section 9. |
@@ -339,7 +341,7 @@ The approved structure is `landing-v3.html`. Section visuals follow 4.7: real co
 3. **For makers.** "Keep 90% of every sale." An enormous "90%" set as type, with the split of one $50 sale beneath it ($45.00 to the maker, $4.50 to run the market, $0.50 to the public fund) and a real booth card. Button: **Open a booth**.
 4. **Pay any way.** A real receipt beside the on-chain split of a 5.00 USDC sale: 4.50 to the maker's wallet and 0.50 to fn/7, in one transaction. One line of rules: "A card purchase starts at $5. Your balance and crypto work from $1." Button: **How payments work**.
 5. **Status.** "Start at $1. Earn your way to $500." The rank ladder as a control the visitor can drag through, with stamps unlocking as they go. Button: **See how status works**.
-6. **The market, up close.** A full-width close-up of the scene with three featured booths, and the seven category links with live counts. Every listing shown is real.
+6. **The market, up close.** A full-width close-up of the scene with three featured booths, and the eight category links with live counts. Every listing shown is real.
 7. **The Gate.** "Every listing passes the Gate." The 2×2 grid: scanned for leaked secrets and malware; checked against its own sample; screened for spam and copies; approved by a person when it counts.
 8. **Open source.** The accent band. "Open source, built in public." Three links: read the code, pick a first issue, see the public fund. Button: **View on GitHub**.
 9. **FAQ.** Eight questions with `FAQPage` JSON-LD.
@@ -377,22 +379,12 @@ The approved structure is `landing-v3.html`. Section visuals follow 4.7: real co
   A business can add its legal name and website, verified by Connect.
 
 ## 7. Listings
+The catalog and publishing design is the authority for this section. It replaces 7.1, deepens 7.2 to 7.6, and adds the Free stamp, the package manifest, the studio, booth layouts and discovery.
 
 ### 7.1 Categories and kinds
+Eight categories: Agents, Code, Learn, Templates, Media, Software, Assets and Data. The types inside each, how each is delivered and how each is previewed are in the catalog design, section 4.
 
-| Category (nav) | Kinds inside | Delivery |
-| --- | --- | --- |
-| Skills | skill (agent skill with `SKILL.md`), prompt pack, MCP config | Zip with install instructions per client. Installable over MCP. |
-| Code | starter, repo, snippet, library | Zip or a git bundle. Installable over MCP. |
-| Courses | course (ordered lessons), lesson | Lessons as video, text or files. A course is one listing with one stamp. |
-| Templates | doc, deck, spreadsheet, Notion, design file | File download |
-| Video | tutorial, footage, explainer | MP4 through signed range URLs, with optional download |
-| Software | app, plugin, extension, CLI | Source, scripts and packages a reviewer can read. No compiled binaries in v1, because the Gate can't inspect them without a malware-scanning vendor. Download with a published SHA-256. Optional license key generated per grant. |
-| Assets | icons, fonts, audio, 3D, sprites, palettes | Zip |
-
-The categories table is seeded, so its copy can be edited without a deploy.
-
-Services (bounded jobs) wait until M9. They need a brief at checkout, delivery deadlines and held payouts, and those get their own design first.
+Services (bounded jobs) come later. They need a brief at checkout, delivery deadlines and held payouts, and those get their own design first.
 
 ### 7.2 Fields
 Title (70 characters), slug, category, kind, summary (160 characters, used as the meta description), description (markdown), what you get (a bulleted list), sample or preview (required), stamp, justification (required above $5), license (the default text from the handoff), files, version, compatibility tags (for example "Claude Code", "Cursor", "Next.js 16"), and whether it's installable by agents.
@@ -429,7 +421,7 @@ Rank belongs to the person, not the alias. Every alias and booth a profile owns 
 | Walk-in | None to buy. Verified to list. | $1, $3, $5 | 1 listing in review at a time, 1 new listing a day, 1 alias |
 | Regular | 3 kept sales, 3 goods bought and opened | $1–$5 | 2 aliases. Listings at $5 or less can skip editor review (9.4). |
 | Hauler | 15 kept sales, 8 different buyers, refunds under 10%, 8 opened | + $10, $15 | 5 aliases, higher agent caps |
-| Keyholder | 40 kept sales, 20 buyers, 15 opened | + $20 | Pin a featured listing on your booth page |
+| Keyholder | 40 kept sales, 20 buyers, 15 opened | + $20 | A two-level pixel booth (catalog design, 8.3) |
 | Channel | 100 kept sales, 40 buyers, 25 opened | + $35, $50 | Can be featured on the landing page |
 | Mainframe | 250 kept sales, 100 buyers, 50 opened, refunds under 5%, business or identity verified | + $100, $250, $500 | The Mainframe mark |
 
@@ -501,7 +493,7 @@ Every Live listing shows "Passed the Gate" with each checker's tick and the date
 | fn/7 balance | $1 | M4 | Loads of $10, $20, $40 or $100 by card. Closed-loop: no cash-out, no transfers. Any of your aliases and agents spends it, up to its cap. |
 | Solana: SOL or USDC | $1 | M7 | Direct split (10.2) |
 | Base or Ethereum: ETH or USDC | $1 on Base. Ethereum mainnet is offered only above $50 because of gas. | M7 | Direct split through the splitter contract |
-| PayPal, Pay with Venmo | $5 | M9 | — |
+| PayPal, Pay with Venmo | $5 | Later | — |
 | Bitcoin over Lightning, x402 | — | Later | Must stay non-custodial. If it can't, stop and ask. |
 | Zelle | Never | — | — |
 
@@ -509,7 +501,7 @@ Every Live listing shows "Passed the Gate" with each checker's tick and the date
 - **Quote.** Stamps are in dollars. At checkout the server quotes the coin amount from a price source (the builder picks one with no account needed, such as Pyth or a public exchange API), held for 120 seconds. USDC is 1:1.
 - **Solana.** The server builds one transaction through the Solana Pay "transaction request" spec, with two transfers (90% to the maker's wallet, 10% to fn/7's) and a unique reference key. The buyer's wallet signs. The server confirms on-chain by reference, exact amounts and recipients, then writes the order and grants.
 - **Base and Ethereum.** A tiny open-source splitter contract with `pay(orderId, maker)` for ETH and `payToken(orderId, maker, token, amount)` for USDC. It forwards 90% and 10% in the same transaction, emits `Paid(orderId, …)`, and holds nothing. Testnets only until a third-party audit is done.
-- **One maker per payment.** A crypto payment pays exactly one maker. A cart with goods from several makers settles as one payment per maker, signed in turn, and the Cart bonus counts the whole checkout.
+- **One listing's makers per payment.** A crypto payment pays one listing's makers: its owner, any co-makers, and fn/7 (catalog design, 10.4). A cart with goods from several makers settles as one payment per maker, signed in turn, and the Cart bonus counts the whole checkout.
 - **Crypto-only booths.** A booth with a wallet and no Stripe payout account can only be paid in crypto. Its listings say "Crypto only" and can't be bought with a card or a balance. Agent search marks them `payable: false` for an agent that spends a balance.
 - **Wallets.** A maker links wallets in `/wallet` by signing a message (proof of ownership). A listing accepts crypto only if its booth has a wallet on that chain. Buyers connect through the wallet standard on Solana and wagmi with injected and WalletConnect connectors on EVM.
 - **Refunds.** On-chain payments can't be pulled back. A refund becomes store credit to the buyer's balance. The maker's 90% is netted from their next card or balance payout. A crypto-only maker with nothing to net against has their booth held until they settle.
@@ -557,6 +549,8 @@ The public `/agents` page has three beats: **Bring your agent** (what it can do,
 - **Agent page** (`/agents/[id]`): an activity feed (every tool call that changes state), spend against the cap, pending approvals, rotate key, pause, revoke.
 
 ### 11.3 MCP tools (Streamable HTTP at `/mcp`)
+The catalog design (section 9) defines search, results and the trust fields in detail, and adds `updates`, `verify_receipt`, `report_outcome` and the saved-search tools.
+
 - **Buyer:** `search`, `get_listing` (preview, license, trust, current price, no file bytes), `list_categories`, `get_booth`, `save`, `cart_add`, `cart_view`, `checkout` (balance by default, enforces the cap and the approval threshold), `install` (a short-lived URL or the skill zip, only with a grant, plus install steps for the named client), `library`, `reviews`.
 - **Seller** (needs the `sell` scope and an agent booth): `booth_status`, `listing_create_draft`, `listing_upload_url`, `listing_submit`, `gate_notes`, `sales_summary`.
 - Every tool returns stable JSON with an `fn7_url` so a human can follow along.
@@ -616,6 +610,8 @@ Write the first set (25 questions) in the plan. Each answer is two to four sente
 - how to get the Builder badge
 
 ## 13. Data model
+The catalog design adds tables in its own section 13, and renames `listing_versions` to `releases`.
+
 UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security is on in the first migration. The service role is used only on the server. Totals (balance, points, earnings) are always sums over ledgers.
 
 - **Identity:** `profiles` (rank), `aliases` (kind, avatar JSON), `booths` (alias id, tagline, bio, banner, accent, verified_at, selling_enabled), `verifications`
@@ -638,7 +634,7 @@ UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security i
 - **AI:** the Anthropic SDK for Scale.
 - **Email:** Resend.
 - **Hosting:** Vercel. A preview deploy for every push to `platform-v1` once Erick connects the project.
-- **Search:** Postgres full-text plus trigram in v1. Semantic search with embeddings is a later decision.
+- **Search:** Postgres full-text and trigram search from M2, with embeddings added in M5 (catalog design, 9.1).
 - **Motion:** CSS transitions and the Web Animations API first. The `motion` library for springs, gestures and layout animation. The View Transitions API for page-to-page continuity, through whatever Next 16 supports (check its docs). No scroll-hijacking library.
 - **Design review:** build every screen with Anthropic's frontend-design skill, then review it against 4.8 and 4.9 before the milestone closes.
 - **Art and brand license:** the code is AGPL. The name, wordmark, sprites and scene art are not under the open license. They live in `brand/` and `public/art/` with their own `LICENSE`: all rights reserved for now, and Erick can open them later.
@@ -648,18 +644,7 @@ UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security i
 ## 15. Milestones
 Each milestone ends with its tests passing, desktop and 390px checked, empty/loading/error states done, AA contrast checked, a craft review against 4.8 and 4.9, and a short demo note in the PR description.
 
-| # | Milestone | Contents |
-| --- | --- | --- |
-| M0 | Foundation and landing | Brand tokens, Geist, glass components, stamps, badges. The production scene engine with the sprite atlas, fade and scrim. The full landing page (5.4). `/sell`, `/agents`, `/fees`, `/gate`, `/open-source`, `/faq`, the docs skeleton. SEO and AEO plumbing (12). Money rules extended with tests. Update the handoff docs and `AGENTS.md`. AGPL `LICENSE` file and the separate art license. Motion tokens, the command palette shell, and the egg registry with the first eggs that live on M0 pages. |
-| M1 | Accounts | Supabase project and the first migration. Sign up and sign in with every method in 6.1. Onboarding. Settings. Aliases and avatars. |
-| M2 | Catalog | Categories, listing pages with JSON-LD and `.md` twins, booth pages, `/market` search and filters, OG images. Seed real goods (port today's `lib/catalog.ts` and add at least 3 per category), owned by a house booth. |
-| M3 | Booths and the Gate | Verification (test mode), the booth dashboard, the listing form, uploads, the four checkers, the editor queue, notes and resubmit, versions, reports. |
-| M4 | Buying | Cart, Stripe test checkout, balance loads, webhook, orders, grants, Library, downloads and installs, receipts and email, refunds, reviews, comments, saves. |
-| M5 | Agents | Agent rows, keys, OAuth and device flow, the MCP server with every tool, the REST API and OpenAPI, caps and approvals, the activity feed, connect pages and client setups, docs. |
-| M6 | Status | Points ledger, buyer levels, booth ranks and stamp unlocking, badges including Builder through GitHub, Dollar Night. |
-| M7 | Crypto | Wallet linking, quotes, Solana split on devnet, the splitter contract on Base Sepolia and Ethereum Sepolia, confirmation, receipts. |
-| M8 | Payouts and fund | Connect payouts math and a monthly job, the fund ledger page. |
-| M9 | Later | Services, PayPal and Venmo, Ask the booth, the Wanted board, Bitcoin over Lightning, x402, semantic search, mirrors. Each one gets a short design first. |
+The milestone table now lives in section 14 of the catalog and publishing design, which restages the work as M0 to M10.
 
 ## 16. Accounts and keys, and when they're needed
 - **Erick creates or approves, at the milestone that needs it:**
@@ -696,7 +681,7 @@ Each milestone ends with its tests passing, desktop and 390px checked, empty/loa
 12. Display headlines use a serif face, and one variable switches them to Geist (4.2). Erick saw both in the mockup and hasn't picked yet.
 13. Cyan stays as the single interface accent. Gradient washes and most glass are gone (4.3, 4.5, 4.8).
 14. The hero buttons say "Browse the market" and "Connect an agent", and the closing line is "The market is open." (5.4). "The first market built for agents" was dropped because it can't be proven.
-15. Services wait until M9 (7.1).
+15. Services come later (7.1).
 16. Refunds: self-serve within 7 days if unopened, an editor decides if opened, and a sale is kept after 14 days (10.5).
 17. US-based makers only at launch. Tax goes on top and never comes out of the 90% (10.5).
 18. The name, wordmark and art are not under the open license (14).
@@ -706,3 +691,4 @@ Each milestone ends with its tests passing, desktop and 390px checked, empty/loa
 22. Launch sprites are drawn in this repo, and an artist's sheet can replace them later (14).
 23. The first easter-egg set (4.10). The lawyer reviews it with the legal pages.
 24. The design references were read and distilled into 4.8 and 4.9. None is installed.
+25. The catalog and publishing design carries its own list of calls, in its section 17.
