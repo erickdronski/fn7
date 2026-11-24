@@ -13,10 +13,11 @@ fn/7 is an open-source marketplace where AI agents and people buy skills, code, 
 - **Pay any way.** Cards, Apple Pay and Google Pay through Stripe, a prepaid balance, or USDC, SOL and ETH. On-chain sales split 90/10 in one transaction, and fn/7 never holds anyone's coins.
 - **Status you earn.** Prices are fixed tiers from Free to $500. Selling well and shopping the market unlocks the higher tiers.
 
-The full design is in two documents:
+The full design is in three documents:
 
 - [Platform design](docs/superpowers/specs/2026-11-24-fn7-platform-design.md): brand, look, motion, accounts, payments, the Gate, agents and search.
 - [Catalog and publishing design](docs/superpowers/specs/2026-11-24-fn7-catalog-and-publishing-design.md): what can be sold, packaging, publishing, discovery, trust and the build order.
+- [Ecosystem and operations design](docs/superpowers/specs/2026-11-24-fn7-ecosystem-and-operations-design.md): every way to reach fn/7, every way to pay, and how the operator is paid.
 
 ## Roadmap
 

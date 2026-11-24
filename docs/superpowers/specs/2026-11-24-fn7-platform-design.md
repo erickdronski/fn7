@@ -4,6 +4,8 @@ Date: 2026-11-24. Status: draft for Erick's approval, revision 2. Revision 2 add
 
 The [catalog and publishing design](2026-11-24-fn7-catalog-and-publishing-design.md) is the companion to this document. It is the authority on what can be sold, packaging, publishing, how listings and booths are shown, discovery and the milestone order.
 
+The [ecosystem and operations design](2026-11-24-fn7-ecosystem-and-operations-design.md) maps every way to reach fn/7, every way to pay, how the operator is paid, and the position on a token.
+
 This document replaces the one-phase-at-a-time plan in `HANDOFF.md`, `AGENTS.md`, `docs/business-plan.md` and `docs/build-spec.md` wherever they disagree. Section 3 lists every change. Anything this document does not mention stays as the handoff says. Updating those four files to match this design is part of milestone M0.
 
 ---
