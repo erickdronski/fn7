@@ -16,3 +16,18 @@ export function parseRepoStats(json: unknown): RepoStats {
     openIssues: count(repo.open_issues_count),
   };
 }
+
+/**
+ * Asks for the counts and never throws. A refusal (GitHub rate-limits shared
+ * build machines), a dead network or a broken answer all come back as "no
+ * numbers" with `ok: false`, so a page can still be built and shown.
+ */
+export async function loadRepoStats(ask: () => Promise<Response>): Promise<{ ok: boolean; stats: RepoStats }> {
+  try {
+    const response = await ask();
+    if (!response.ok) return { ok: false, stats: NO_REPO_STATS };
+    return { ok: true, stats: parseRepoStats(await response.json()) };
+  } catch {
+    return { ok: false, stats: NO_REPO_STATS };
+  }
+}
