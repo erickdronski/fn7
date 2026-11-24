@@ -1,6 +1,6 @@
 # fn/7 platform design
 
-Date: 2026-11-24. Status: draft for Erick's approval. Branch: `platform-v1`.
+Date: 2026-11-24. Status: draft for Erick's approval, revision 2. Revision 2 adds the Robinhood-style page structure, the craft and motion rules, the easter eggs, and answers to the reviewer's questions. Branch: `platform-v1`.
 
 This document replaces the one-phase-at-a-time plan in `HANDOFF.md`, `AGENTS.md`, `docs/business-plan.md` and `docs/build-spec.md` wherever they disagree. Section 3 lists every change. Anything this document does not mention stays as the handoff says. Updating those four files to match this design is part of milestone M0.
 
@@ -34,7 +34,7 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 6. Rank well in search engines and get cited by answer engines (ChatGPT, Claude, Perplexity, Google AI Overviews) from launch.
 7. Every screen meets WCAG 2.2 AA contrast, works at 390px wide, and has real empty, loading and error states.
 
-**Non-goals for this build:** physical goods, subscriptions, auctions, ads, a token, open DMs between strangers, Bitcoin, x402, PayPal, the Wanted board, Ask the booth, localization, native mobile apps, mirrors and federation. The schema should not block any of these later. Section 15 says when each lands.
+**Non-goals for this build:** services (bounded jobs), compiled software binaries, makers outside the US, physical goods, subscriptions, auctions, ads, a token, open DMs between strangers, Bitcoin, x402, PayPal, the Wanted board, Ask the booth, localization, native mobile apps, mirrors and federation. The schema should not block any of these later. Section 15 says when each lands.
 
 **Anti-goals (a failure even if it works)**
 - fn/7 ever holds crypto a person could withdraw. All crypto settles directly to the maker and to fn/7 in one transaction.
@@ -43,7 +43,9 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 - The pixel scene slows a purchase, hurts the page's Core Web Vitals, or puts busy art behind text.
 - Fake scarcity, loot boxes, spins, dark patterns, or points that act as a hidden discount.
 - A booth with no verified human or business answerable for it.
-- Art copied from any film, game or studio. No Matrix names: Neo, Trinity, Morpheus, Zion, Oracle, Construct, Keymaker, Sentinel, Smith. No green code rain.
+- Names, logos, art or character likenesses taken from any film, game or studio. Pop-culture references are winks in fn/7's own words and its own art (4.10). The names the handoff bans stay banned for anything fn/7 names itself.
+- A page that reads as machine-made: any of the tells in 4.8.
+- An invented number, rating, testimonial, logo wall or customer count, anywhere.
 
 ## 3. What changes from the handoff
 
@@ -51,10 +53,11 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
 | --- | --- | --- |
 | Build approach | One phase at a time, Phase 1 first | Build the whole platform as a real app with a real database. Money runs in Stripe test mode and on crypto test networks until Erick says go live. Milestones in section 15. |
 | Price ceiling | $1–$5 to start, $50 at the top | Same start. A sixth rank, **Mainframe**, unlocks **$100, $250, $500**. |
-| Kinds of goods | file, skill, repo, lesson, tool | skill, code, course, lesson, template, video, software, asset pack, service (bounded job). Section 7. |
+| Kinds of goods | file, skill, repo, lesson, tool | skill, code, course, lesson, template, video, software, asset pack. Services wait until M9. Section 7. |
+| Film and game references | No film, game or studio creatures | Easter eggs are allowed as winks: a short line or a piece of original art, never a franchise's names, logos or characters. Section 4.10. |
 | Yard and Street | Unproven Yard, edited Street | Gone. A listing is **In review** (visible only to its maker) or **Live** (public). Live goods from new booths carry a quiet **New maker** tag. |
-| Stalls and keepers | Eight stalls with animal keepers in the nav | Eight **categories** in the nav (7.1). The keepers survive as pixel characters in the scene and as category mascots, not as navigation. |
-| Look | Hard pixels, Press Start 2P, no blur, gradients or shadows | "Glass over pixels": Geist type, pixel accents only, a cinematic layered pixel scene, glass UI. Section 4. |
+| Stalls and keepers | Eight stalls with animal keepers in the nav | Seven **categories** (7.1). The keepers survive as pixel characters in the scene and as category mascots, not as navigation. |
+| Look | Hard pixels, Press Start 2P, no blur, gradients or shadows | A flat near-black page, clean type, one accent color, one message per screen, and a cinematic pixel scene. Pixels are accents only, and glass is rare. Section 4. |
 | Crypto | Stripe USDC, then x402 USDC on Base and Solana | Direct on-chain 90/10 split. SOL and USDC on Solana, ETH and USDC on Base and Ethereum. Bitcoin over Lightning and x402 come later. Section 10. |
 | AI in vetting | No AI moderation API | Claude is one reviewer at the Gate. It writes notes and can hold or reject. It never publishes. Section 9. |
 | Agent booths | A human owns every alias | Kept. Agents are first-class booths with an Agent badge. The person or business behind them is verified privately and never shown. |
@@ -78,8 +81,10 @@ fn/7 is the marketplace where AI agents and people buy digital goods straight fr
   5. **Open source.** AGPL. Contribute and earn the Builder badge.
 
 ### 4.2 Type
-- **Geist** for everything people read, and **Geist Mono** in small doses for labels, prices, code and the eyebrow line. Both self-hosted through `next/font`.
-- No pixel fonts anywhere. Remove Press Start 2P.
+- **Geist** for everything people read.
+- **A serif display face** (Newsreader in the mockup) for the few biggest statements only: the landing hero, the closing call to action, page heroes and the sign-up panel. One CSS variable switches these back to Geist.
+- **Geist Mono** only where mono is the material: code, terminal output and price stamps. Never for labels.
+- All self-hosted through `next/font`. No pixel fonts anywhere. Remove Press Start 2P.
 
 ### 4.3 Color
 Dark theme only for v1. The scene needs it. Tokens live in `app/globals.css` as CSS variables:
@@ -91,12 +96,14 @@ Dark theme only for v1. The scene needs it. Tokens live in `app/globals.css` as 
 | `--text` | `#f3f2ff` | Body text (≥ 15:1 on `--bg`) |
 | `--text-dim` | `#b9b6d9` | Secondary text. Must stay ≥ 7:1 on `--bg` |
 | `--line` | `rgba(255,255,255,.10)` | Borders |
-| `--cyan` | `#5ef2ff` | Primary accent, links, agent trail |
-| `--magenta` | `#ff4fd8` | Secondary accent |
+| `--cyan` | `#5ef2ff` | The one interface accent: primary buttons, links, the highlighted line of a section headline |
+| `--magenta` | `#ff4fd8` | The scene and the top stamps only |
 | `--amber` | `#ffb347` | Prices, warmth |
 | `--mint` | `#7dffb2` | Success, passed checks |
 | `--violet` | `#9a7bff` | Higher status |
 | `--coral` | `#ff6b6b` | Errors, $1 stamps |
+
+**One accent in the interface.** Cyan is the only accent in page chrome. The other hues appear only in the pixel scene, on price stamps and badges, and as status (mint for success, coral for errors). Sections have flat backgrounds: no gradient washes.
 
 Status colors on stamps: $1 coral, $3 mint, $5 amber, $10–$20 cyan, $35–$50 violet, $100–$500 a magenta→violet→cyan gradient.
 
@@ -108,12 +115,13 @@ Status colors on stamps: $1 coral, $3 mint, $5 amber, $10–$20 cyan, $35–$50 
 5. The world itself, the scene, is pixel art.
 
 ### 4.5 Glass components
-- Glass surface: a vertical white gradient at 11%→3.5%, `backdrop-filter: blur(16px) saturate(160%)`, a 1px `rgba(255,255,255,.14)` border, an inner top highlight and a soft drop shadow. Used for the nav, primary cards, the cart drawer, modals and agent cards.
+- Glass is rare. Use it only where a surface really floats over the scene or over scrolling content: the nav once the page scrolls, the cart drawer, modals and the command palette. Every other surface is solid, with layered shadows (4.8).
+- Glass surface: a vertical white gradient at 11%→3.5%, `backdrop-filter: blur(16px) saturate(160%)`, a 1px `rgba(255,255,255,.14)` border, an inner top highlight and a soft drop shadow.
 - Fallback: when `backdrop-filter` is unsupported, or under `prefers-reduced-transparency`, use solid `--bg-raise` at 92%.
 - Text on glass must meet AA contrast **measured over the busiest part of the scene behind it**. If it fails, darken the glass. Never thin the text.
 
 ### 4.6 The scene (landing hero)
-The approved mockup is `visual-style-v2.html` from the brainstorm. Build its production version as a reusable engine in `components/scene/`.
+The approved mockups are in `docs/superpowers/specs/mockups/`: `visual-style-v2.html` is the scene and `landing-v3.html` is the page it sits in. Build its production version as a reusable engine in `components/scene/`.
 
 - **What it shows.** A floating plaza market above a night city, seen from a hovering camera:
   - curved rows of booths in at least 6 styles: awning stall, dome kiosk, open container, holo-screen booth, crate stack, food-style counter
@@ -129,9 +137,10 @@ The approved mockup is `visual-style-v2.html` from the brainstorm. Build its pro
   - Render at a finer logical resolution than the mockup, about 800×500 at 1440px wide. Keep chunky pixels on the far layers and finer detail up front.
 - **Faded and cinematic (Erick's request).**
   - The scene dissolves into the page at every edge: a CSS mask with a radial falloff plus top and bottom linear fades. The page background matches the scene's edge, so there is no box.
-  - The hero text sits on a soft, dark radial scrim. Nothing bright or moving passes behind the headline or body copy. The beacon beam stops below the headline.
-- **Opening.** On the first visit in a session, the camera descends from the stars to the market in under 4.5 seconds, then the copy rises in. Any scroll, key or click skips it. It never replays automatically. `prefers-reduced-motion` gets a still frame with no parallax.
-- **Scroll.** The scene stays pinned for about 120vh while the camera pans from the overview toward a row of booths. Three glass cards for featured booths, which are real listings, slide in. Then the page continues normally.
+  - The headline, sentence and buttons sit on clean near-black above the market, over a soft dark scrim. Only faint stars pass behind them. The market itself starts below the buttons, and the beacon beam stops below the headline.
+- **Opening.** The text is there from the first frame. On the first visit in a session, the camera descends from the stars to the market behind it in under 4 seconds. Any scroll, key or click skips it. It never replays automatically. `prefers-reduced-motion` gets a still frame with no parallax.
+- **Scroll.** Scrolling is native and never hijacked. As the hero leaves, the camera eases toward a row of booths, and a later section picks up that close-up with three featured booths, which are real listings (5.4).
+- **Hidden details.** The scene carries several of the easter eggs in 4.10. All of them are original art.
 - **Performance budget.**
   - The scene never blocks the LCP: the H1 is the LCP element and is server-rendered HTML. The scene initializes after the first paint, using `requestIdleCallback`.
   - Under 4ms per frame on an M1-class laptop.
@@ -139,15 +148,150 @@ The approved mockup is `visual-style-v2.html` from the brainstorm. Build its pro
   - A pre-rendered still image (AVIF/WebP) is the poster, the no-JS fallback, and the source for the home page's OG image.
 - **Accessibility.** `aria-hidden` on the canvas. Everything the scene shows that matters is also in the HTML text.
 
+### 4.7 Page rhythm
+The structure follows what Robinhood's site does well, in fn/7's own voice and art. The approved mockup is `landing-v3.html`.
+
+- **One message per screen.** Each section has one short headline, one or two sentences, one button and one large visual, with generous empty space. The hero headline is seven words or fewer.
+- **Two-tone section headlines.** The first line is in the accent color and names the audience or idea ("Built for agents"). The second line, in white, makes the claim ("Search, buy and install over one connection.").
+- **One full-width accent band** per page at most. On the landing page it's the open-source section.
+- **Trust as a 2×2 grid:** four pixel line icons with one sentence each (the Gate).
+- **A closing call to action** in the display face, then a full footer with every public route.
+- **Vary the composition.** No two neighboring sections use the same layout, and "text beside a card" appears at most twice on a page. Other shapes to use: a full-width close-up of the scene, one enormous figure ("90%") set as type, a control the visitor can drag (the stamp ladder), a real code block.
+- **Show the real thing.** Section visuals are the product's real components with real seeded data (the actual agent budget card, booth card, listing card and receipt), or the pixel world. Never a drawn browser or terminal window, and never a picture of a UI that doesn't exist.
+
+### 4.8 The craft floor
+Erick's bar is "no AI slop". These rules are drawn from the design references he named: Emil Kowalski's design-engineering skills, Vercel's Web Interface Guidelines, Jakub Krehel's "Make interfaces feel better", Hallmark, and Anthropic's frontend-design skill. They were read as reference, and none is installed as a dependency. Every screen is reviewed against this list before its milestone closes.
+
+**Never ship**
+- A purple-to-blue gradient, gradient text, or a glow used as decoration.
+- A card inside a card, or the same three-card row repeated down a page.
+- A drawn browser or OS window, a decorative status dot, or an emoji used as an icon.
+- A label in tracked capitals, an "eyebrow" line over a headline, or a string of facts joined by middle dots.
+- An invented number, rating, testimonial or logo wall. A fact that isn't true yet is left out.
+- Grey text that fails AA contrast, or any text over busy art.
+- `transition: all`, an animated `width`, `height`, `top` or `left`, `outline: none` without a replacement, or a `<div>` with a click handler.
+- A generic button label where a specific one fits: "Pay $5", "Connect an agent" and "Submit to the Gate", not "Continue" or "Submit".
+
+**Always**
+- Nested corners are concentric: outer radius = inner radius + padding.
+- Shadows show elevation (layered and transparent). Borders show structure and state.
+- Headings use `text-wrap: balance`, body text uses `text-wrap: pretty`, and every changing number uses `tabular-nums`.
+- Text is antialiased, with real typographic characters (… and curly quotes).
+- Every control has all its states designed: rest, hover, focus-visible, active, disabled, loading, error and success.
+- Hit areas are at least 44×44px on touch and 40×40px on desktop.
+- Hover and active states increase contrast. Focus rings are always visible for keyboard users.
+- The URL holds state: filters, tabs, pagination and open panels are links that can be shared.
+- Destructive actions ask first or offer undo.
+- Forms have real labels, the right input types and `autocomplete`, never block paste, and show errors beside the field with the fix.
+- Skeletons mirror the content they stand in for. Empty states say what belongs there and offer the next step.
+- Icons are one set with one stroke weight, colored by `currentColor`.
+- Two type families plus mono (4.2). One primary button style, one container width, and one radius per nesting level across the site.
+- `color-scheme: dark` on the root, and a matching `theme-color`.
+
+### 4.9 Motion and navigation
+Motion should feel physical and fast, and be rare enough to mean something.
+
+- **Should it move at all?** Decide by how often a person sees it.
+  - Hundreds of times a day (keyboard shortcuts, the command palette): no animation.
+  - Tens of times a day (hover, moving through a list): instant, or a color change of 150ms or less.
+  - Occasionally (modals, drawers, toasts, menus): a standard transition.
+  - Rarely (a first visit, a first sale, a new rank): room for delight.
+- **Tokens,** defined once in `app/globals.css`:
+  - `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for anything entering or leaving
+  - `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)` for things moving on screen
+  - `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for sheets and drawers
+  - durations: press 120–160ms, tooltips 150ms, menus 180–220ms, modals and drawers 300–450ms. Apart from those last two, interface motion stays under 300ms.
+- **Rules.**
+  - Never ease-in. Never start from `scale(0)`: enter from `scale(0.96)` with opacity 0.
+  - Animate only `transform`, `opacity`, `filter` and `clip-path`.
+  - Pressable things scale to 0.97 on press.
+  - Popovers and menus grow from the control that opened them.
+  - State changes use CSS transitions, so they can be interrupted. Gestures (dragging a drawer, swiping to dismiss) use springs and keep their velocity.
+  - Group entrances stagger by 30–80ms and never block input. Exits are quicker and smaller than entrances.
+  - Hover motion runs only on devices that hover.
+  - `prefers-reduced-motion` keeps fades and color changes, and removes movement, parallax and the scene's camera moves.
+  - Motion is never the only signal: every animated change also has a color, icon or text cue.
+- **Navigation.**
+  - Routes are prefetched, so a click feels instant.
+  - Shared elements carry across pages through the View Transitions API: a listing card's art and title become the listing page's header, and a booth avatar becomes the booth page's.
+  - Adding to the cart, saving and reviewing update at once and reconcile after.
+  - Scroll position is restored on back.
+  - Scrolling is always native. Nothing hijacks it, and there is no custom cursor.
+  - **Command palette (⌘K):** search listings, booths and docs, jump to any page, and run actions (connect an agent, start a listing, copy the MCP URL). It opens with no animation.
+- **Signature moments,** where the craft is spent:
+  1. The hero camera descent (4.6).
+  2. The camera easing into a booth as the hero scrolls away.
+  3. The market noticing the visitor: characters near the pointer turn toward it.
+  4. The receipt: the price stamp presses onto the paper, once.
+  5. The Gate: on a listing's status page, the four checks tick through in order as they finish.
+  6. A new rank: the new stamps slide into the ladder, once.
+  7. Product stories on the landing page: the real components played through a short scripted sequence (an agent searches, buys and installs), with pause and replay controls and a still for reduced motion.
+
+### 4.10 Easter eggs
+fn/7 is a love letter to the tech and tech-dystopia stories its audience grew up on: Terminator, The Matrix, Star Wars, Star Trek, Blade Runner, Tron, RoboCop, 2001, WarGames, the Hitchhiker's Guide, cyberpunk games and old computers. The references are sprinkled, hidden or in passing, and never in the way.
+
+**Rules**
+1. **Winks, not assets.** A reference is a short line in passing or a piece of original art. Never a franchise's name, logo, music, character likeness or screen-accurate art. Pixel characters stay original designs.
+2. **Plain first.** Anything a person must understand (prices, payments, security, errors that need action, legal) says the plain thing first. The wink is the second line, a tooltip or a detail.
+3. **Never in facts.** Nothing an agent reads as data carries a joke: MCP and API responses, JSON-LD, `llms.txt`, the docs and the FAQ stay literal.
+4. **Never required.** No feature depends on finding one.
+5. **One registry.** Every egg is an entry in `lib/eggs.ts`: its id, where it lives, its trigger, the line or art, and what it nods to. One flag turns them all off. Erick's lawyer reviews the list along with the legal pages.
+6. **Found eggs are kept.** Finding one while signed in records it. Finding ten earns a hidden badge, "Egg hunter".
+
+**The first set.** These are proposals; Erick edits them freely.
+
+| Where | The egg | Nods to |
+| --- | --- | --- |
+| A skill installs into an agent | Toast: "Installed. Your agent knows kung fu." | The Matrix |
+| The plaza scene | A white pixel rabbit crosses now and then. Clicking it opens a hidden page. | The Matrix |
+| 404 page | "This is not the listing you're looking for." | Star Wars |
+| `/open-source` | "Use the source." On the fork link: "May the fork be with you." | Star Wars |
+| The Lock flags malware | Note heading: "It's a trap." | Star Wars |
+| The Lock finds leaked keys | Note heading: "Too many secrets." | Sneakers |
+| Sign out | "Signed out. You'll be back." | Terminator |
+| Deleting a listing | Second line of the confirmation: "Hasta la vista, listing." | Terminator |
+| `/sell` footer | "No fate but what we make." | Terminator |
+| Final checkout step | Button tooltip: "Make it so." | Star Trek |
+| File upload | "Beam it up." | Star Trek |
+| Receipts | A stardate under the real date. | Star Trek |
+| A payout is sent | "Live long and prosper." | Star Trek |
+| An agent hits its cap | Second line: "I'm afraid I can't do that." | 2001 |
+| A rooftop in the scene | A black monolith. It hums on hover. | 2001 |
+| Dollar Night banner | Second line: "I'd buy that for a dollar." | RoboCop |
+| An agent's limits panel | Subtitle: "Prime directives". A fourth row reads "Classified". | RoboCop, Star Trek |
+| An agent's connection test passes | "Interlinked." | Blade Runner 2049 |
+| Identity verification | "Our Voight-Kampff test is shorter." | Blade Runner |
+| A booth counter in the scene | A tiny origami unicorn. Now and then it rains. | Blade Runner |
+| Response header on `/mcp` | `X-Greeting: Greetings, program.` | Tron |
+| End of the changelog | "End of line." | Tron |
+| 500 page | "Don't panic." in large, friendly letters. | The Hitchhiker's Guide |
+| A booth's 42nd sale | A hidden badge, "The answer". | The Hitchhiker's Guide |
+| 401 and 403 pages | "Ah ah ah. You didn't say the magic word." | Jurassic Park |
+| An idle terminal on `/agents` | "Shall we play a game?" | WarGames |
+| A hover car in the scene | At full speed it leaves two trails of fire. | Back to the Future |
+| Pausing an agent | "Wake me when you need me." | Halo |
+| Onboarding, the connect step | "It's dangerous to go alone. Take an agent." | The Legend of Zelda |
+| Characters in the scene | A "!" pops over one when the pointer startles it. | Metal Gear Solid |
+| A first sale | "This was a triumph." | Portal |
+| An empty search | "In space, no one can hear you search." | Alien |
+| The pay button, on hover | "Shut up and take my money." | Futurama |
+| A failed upload | Actions labeled "Abort, Retry, Fail?" | MS-DOS |
+| The loading bar | A light that sweeps side to side. | Knight Rider |
+| Typing the Konami code | The whole market throws a short street party. | Konami |
+| `/fees` | "The 90% never changes." | Fallout |
+| Sign-in greeting | "Hello, friend." | Mr. Robot |
+
 ## 5. Information architecture
 
 ### 5.1 Public navigation
-`fn/7` · **Market** · **Agents** · **Sell** · **Docs** · GitHub icon · [Sign in] [Get started]
+The wordmark, then **Market**, **Agents**, **Sell**, **Open source** and **Docs**. On the right, an outlined **Log in** and a filled **Sign up**. The bar is solid near-black with a hairline under it, and turns to glass once the page scrolls. ⌘K opens the command palette (4.9).
+
+The landing page alone carries one thin accent-colored announcement strip under the bar. At launch it reads: "Founding makers: the first 100 booths earn the Founding Maker badge."
 
 On a phone: the wordmark, a search icon, and a menu sheet with the same items.
 
 ### 5.2 Signed-in navigation
-The wordmark, a search field, **Library**, **Booth**, **Agents**, **Wallet**, the cart icon with a count, and the avatar menu (Settings, the alias switcher, Sign out). An editor also sees **Review**.
+The wordmark, a search field, **Library**, **Booth**, **Agents**, **Wallet**, the cart icon with a count, and the avatar menu (Settings, the alias switcher, Sign out). An editor also sees **Review**. ⌘K opens the command palette.
 
 ### 5.3 Routes
 
@@ -183,26 +327,30 @@ The wordmark, a search field, **Library**, **Booth**, **Agents**, **Wallet**, th
 | `/llms.txt`, `/llms-full.txt`, `/sitemap.xml`, `/robots.txt` | Crawlers | Section 12 |
 
 ### 5.4 Landing page, top to bottom
-1. **Hero (the scene).**
-   - Eyebrow: `OPEN SOURCE · AGENT NATIVE · MAKERS KEEP 90%`.
-   - H1: "The marketplace built for agents."
-   - Sub: the answer-first definition from section 1.
-   - Buttons: **Get started**, and **Connect an agent** with an MCP tag.
-   - A search field: "Search skills, code, courses…".
-2. **Proof strip.** Four glass chips: 90% to makers · MCP + REST API · Every listing passes the Gate · Open source (AGPL).
-3. **Explore the market.** The scroll-pinned camera pan with three featured booths, then a grid of eight category tiles with live counts.
-4. **How it works.** Three steps: *List* → *Pass the Gate* → *Agents and people buy*, each with one sentence and a small pixel illustration.
-5. **For agents.** A real MCP config snippet with a copy button, the tool list, and "Connect in 30 seconds".
-6. **For makers.** The 90% math for $5, $50 and $500 on card versus crypto, and the status ladder as a row of stamps.
-7. **Pay any way.** A row of payment logos and the rules in one line each, e.g. "A card starts at $5" and "Crypto goes straight to the maker's wallet".
-8. **Open source.** Repo stats, the Builder badge, the fund balance.
+The approved structure is `landing-v3.html`. Section visuals follow 4.7: real components and the pixel world, in varied layouts.
+
+1. **Hero.**
+   - H1 in the display face: "The market built for agents".
+   - One sentence: "Buy and sell skills, code, courses and tools on fn/7. AI agents shop it over one connection. Makers keep 90%. Prices start at $1."
+   - Two buttons: **Browse the market** (filled) and **Connect an agent** (outlined).
+   - The scene fades in beneath the buttons (4.6).
+   - The answer-first definition from section 1 appears word for word in the footer and in the page's structured data.
+2. **Built for agents.** "Search, buy and install over one connection." A product story (4.9) played with the real agent budget card and activity list, beside a real MCP config block that can be copied. Button: **Connect an agent**.
+3. **For makers.** "Keep 90% of every sale." An enormous "90%" set as type, with the split of one $50 sale beneath it ($45.00 to the maker, $4.50 to run the market, $0.50 to the public fund) and a real booth card. Button: **Open a booth**.
+4. **Pay any way.** A real receipt beside the on-chain split of a 5.00 USDC sale: 4.50 to the maker's wallet and 0.50 to fn/7, in one transaction. One line of rules: "A card purchase starts at $5. Your balance and crypto work from $1." Button: **How payments work**.
+5. **Status.** "Start at $1. Earn your way to $500." The rank ladder as a control the visitor can drag through, with stamps unlocking as they go. Button: **See how status works**.
+6. **The market, up close.** A full-width close-up of the scene with three featured booths, and the seven category links with live counts. Every listing shown is real.
+7. **The Gate.** "Every listing passes the Gate." The 2×2 grid: scanned for leaked secrets and malware; checked against its own sample; screened for spam and copies; approved by a person when it counts.
+8. **Open source.** The accent band. "Open source, built in public." Three links: read the code, pick a first issue, see the public fund. Button: **View on GitHub**.
 9. **FAQ.** Eight questions with `FAQPage` JSON-LD.
-10. **Footer.** Every public route, the GitHub link, and the legal pages.
+10. **Closing.** In the display face: "The market is open." Button: **Create an account**.
+11. **Footer.** Every public route, GitHub, the legal pages, and the answer-first definition.
 
 ## 6. Accounts, identity, aliases, booths
 
 ### 6.1 Sign up and sign in
-- **One page, two modes.** `/sign-up` and `/sign-in` share a layout: the scene, blurred and dimmed, behind a centered glass panel.
+- **Layout.** A split screen, as in `landing-v3.html`. On the left, a statement in the display face and a pixel line drawing of a booth that gains a part with each step. On the right, the form.
+- **One question per step,** with a progress bar and a specific button: email, then the 6-digit code, then the three onboarding steps (6.2). Sign-in is a single panel.
 - **Methods:**
   - email: a magic link, plus a 6-digit code for when links are blocked
   - passkeys: offered right after the first sign-in
@@ -239,11 +387,12 @@ The wordmark, a search field, **Library**, **Booth**, **Agents**, **Wallet**, th
 | Courses | course (ordered lessons), lesson | Lessons as video, text or files. A course is one listing with one stamp. |
 | Templates | doc, deck, spreadsheet, Notion, design file | File download |
 | Video | tutorial, footage, explainer | MP4 through signed range URLs, with optional download |
-| Software | app, plugin, extension, CLI | Download with a published SHA-256. Optional license key generated per grant. |
+| Software | app, plugin, extension, CLI | Source, scripts and packages a reviewer can read. No compiled binaries in v1, because the Gate can't inspect them without a malware-scanning vendor. Download with a published SHA-256. Optional license key generated per grant. |
 | Assets | icons, fonts, audio, 3D, sprites, palettes | Zip |
-| Services | a bounded job: written scope, a sample of past work, delivery the buyer keeps | Delivered file. Never needs the buyer's credentials or ongoing access. |
 
 The categories table is seeded, so its copy can be edited without a deploy.
+
+Services (bounded jobs) wait until M9. They need a brief at checkout, delivery deadlines and held payouts, and those get their own design first.
 
 ### 7.2 Fields
 Title (70 characters), slug, category, kind, summary (160 characters, used as the meta description), description (markdown), what you get (a bulleted list), sample or preview (required), stamp, justification (required above $5), license (the default text from the handoff), files, version, compatibility tags (for example "Claude Code", "Cursor", "Next.js 16"), and whether it's installable by agents.
@@ -271,11 +420,13 @@ A maker can ship a new version. It goes back through the Gate. The last Live ver
 ## 8. Status
 
 ### 8.1 Booth rank (gates price stamps)
-Buying your own goods, refunded sales, and goods you never opened do not count. "Opened" means a grant was used, by download or install.
+Buying your own goods, refunded sales, and goods you never opened do not count. "Opened" means a grant was used, by download or install. A sale is "kept" once 14 days pass without a refund (10.5).
+
+Rank belongs to the person, not the alias. Every alias and booth a profile owns shares one rank, and purchases by any of its aliases or agents count toward it. Someone who never sells is a Walk-in for alias and agent limits. Verification is only needed to list.
 
 | Rank | Requirements | Stamps you may use | Also opens |
 | --- | --- | --- | --- |
-| Walk-in | Verified | $1, $3, $5 | 1 listing in review at a time, 1 new listing a day, 1 alias |
+| Walk-in | None to buy. Verified to list. | $1, $3, $5 | 1 listing in review at a time, 1 new listing a day, 1 alias |
 | Regular | 3 kept sales, 3 goods bought and opened | $1–$5 | 2 aliases. Listings at $5 or less can skip editor review (9.4). |
 | Hauler | 15 kept sales, 8 different buyers, refunds under 10%, 8 opened | + $10, $15 | 5 aliases, higher agent caps |
 | Keyholder | 40 kept sales, 20 buyers, 15 opened | + $20 | Pin a featured listing on your booth page |
@@ -358,6 +509,8 @@ Every Live listing shows "Passed the Gate" with each checker's tick and the date
 - **Quote.** Stamps are in dollars. At checkout the server quotes the coin amount from a price source (the builder picks one with no account needed, such as Pyth or a public exchange API), held for 120 seconds. USDC is 1:1.
 - **Solana.** The server builds one transaction through the Solana Pay "transaction request" spec, with two transfers (90% to the maker's wallet, 10% to fn/7's) and a unique reference key. The buyer's wallet signs. The server confirms on-chain by reference, exact amounts and recipients, then writes the order and grants.
 - **Base and Ethereum.** A tiny open-source splitter contract with `pay(orderId, maker)` for ETH and `payToken(orderId, maker, token, amount)` for USDC. It forwards 90% and 10% in the same transaction, emits `Paid(orderId, …)`, and holds nothing. Testnets only until a third-party audit is done.
+- **One maker per payment.** A crypto payment pays exactly one maker. A cart with goods from several makers settles as one payment per maker, signed in turn, and the Cart bonus counts the whole checkout.
+- **Crypto-only booths.** A booth with a wallet and no Stripe payout account can only be paid in crypto. Its listings say "Crypto only" and can't be bought with a card or a balance. Agent search marks them `payable: false` for an agent that spends a balance.
 - **Wallets.** A maker links wallets in `/wallet` by signing a message (proof of ownership). A listing accepts crypto only if its booth has a wallet on that chain. Buyers connect through the wallet standard on Solana and wagmi with injected and WalletConnect connectors on EVM.
 - **Refunds.** On-chain payments can't be pulled back. A refund becomes store credit to the buyer's balance. The maker's 90% is netted from their next card or balance payout. A crypto-only maker with nothing to net against has their booth held until they settle.
 
@@ -372,6 +525,16 @@ Every Live listing shows "Passed the Gate" with each checker's tick and the date
 - The fund takes 1% of settled sales, recorded in `fund_ledger` and published at `/open-source`. It's paid quarterly as in the handoff.
 - Receipts are emailed through Resend.
 
+### 10.5 Refunds, disputes, tax and where makers can be
+- **Refunds.**
+  - Not opened yet: the buyer can refund it themselves within 7 days. It comes back as store credit at once.
+  - Already opened: the buyer files a request with a reason. The maker can respond, and an editor decides.
+  - A refund reverses the maker's 90% for that line, the fund's 1%, and the points and badges the sale earned.
+- **When a sale is "kept".** 14 days after the sale with no refund. Earnings from card and balance sales become payable then.
+- **Card disputes.** fn/7 submits the grant log as evidence. If the dispute is lost, the maker's 90% for that line is reversed and fn/7 absorbs the dispute fee.
+- **Where makers can be.** US-based makers only at launch (Stripe Connect, US). Buyers can be anywhere Stripe and the chains reach.
+- **Sales tax.** Stamps exclude tax. When Stripe Tax is switched on, tax is added on top at checkout and never comes out of the maker's 90%. It stays off in test mode, and Erick's lawyer confirms the approach before launch.
+
 ## 11. Agents
 
 ### 11.1 Agent identity
@@ -383,6 +546,8 @@ An **agent** row belongs to a profile, acts as one alias, and has:
 A purchase above `approval_over_cents` creates an approval request. The human gets an email and an in-app prompt ("Your agent wants to buy X for $50"). The agent's call returns `pending_approval` with a poll URL. An agent can never raise its own limits, load money, comment or change payout details.
 
 ### 11.2 Connecting ("sync up")
+The public `/agents` page has three beats: **Bring your agent** (what it can do, with the product story from 4.9), **Set up in minutes** (01 paste one URL into your agent's MCP config, 02 load a balance and set a cap, 03 let it shop), and **Designed for safety** (a dedicated budget, a notice on every purchase, disconnect anytime).
+
 - **From fn/7.** At `/agents/connect`: name, alias (an existing one, or a new agent booth), avatar, scopes and limits. Then:
   - the MCP URL `https://fn7.ai/mcp`
   - an API key, shown once and stored hashed
@@ -453,13 +618,13 @@ Write the first set (25 questions) in the plan. Each answer is two to four sente
 ## 13. Data model
 UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security is on in the first migration. The service role is used only on the server. Totals (balance, points, earnings) are always sums over ledgers.
 
-- **Identity:** `profiles`, `aliases` (kind, avatar JSON), `booths` (alias id, tagline, bio, banner, accent, verified_at, rank, selling_enabled), `verifications`
+- **Identity:** `profiles` (rank), `aliases` (kind, avatar JSON), `booths` (alias id, tagline, bio, banner, accent, verified_at, selling_enabled), `verifications`
 - **Catalog:** `categories`, `listings` (status `draft | in_review | changes_requested | rejected | live | paused | removed`, price check, kind, category, summary, sample, justification, flags), `listing_versions`, `listing_files` (path, size, sha256), `lessons` (course id, order, title, file), `compat_tags`
 - **The Gate:** `gate_runs`, `gate_notes` (checker `lock | clerk | lamp | scale | editor`, verdict, public note, private detail), `reports`
 - **Commerce:** `carts`, `cart_items`, `orders` (profile, alias, agent nullable, rail, status, total, quote JSON, chain, tx hash), `order_items` (price charged, creator cents, fn/7 cents, fund cents), `grants` (opened_at), `balance_ledger`, `payouts`, `fund_ledger`, `wallets` (chain, address, verified signature)
 - **Agents:** `agents`, `agent_keys` (hashed, last used), `agent_events` (an audit log), `approvals`, `oauth_clients`, `oauth_codes`
 - **Status:** `points_ledger`, `badges`, `profile_badges`, `events`, `event_listings`
-- **Community:** `saves`, `reviews`, `comments` (handoff rules), `contributors` (GitHub id, merged PR count)
+- **Community:** `saves`, `reviews`, `comments` (handoff rules), `contributors` (GitHub id, merged PR count), `egg_finds` (profile, egg id)
 
 ## 14. Architecture
 - **One Next.js 16 app** (already in the repo): TypeScript, App Router, Tailwind 4, pnpm. Read `node_modules/next/dist/docs/` before writing Next code, as `AGENTS.md` says.
@@ -474,14 +639,18 @@ UUID keys. Money is integer cents. Times are `timestamptz`. Row-level security i
 - **Email:** Resend.
 - **Hosting:** Vercel. A preview deploy for every push to `platform-v1` once Erick connects the project.
 - **Search:** Postgres full-text plus trigram in v1. Semantic search with embeddings is a later decision.
+- **Motion:** CSS transitions and the Web Animations API first. The `motion` library for springs, gestures and layout animation. The View Transitions API for page-to-page continuity, through whatever Next 16 supports (check its docs). No scroll-hijacking library.
+- **Design review:** build every screen with Anthropic's frontend-design skill, then review it against 4.8 and 4.9 before the milestone closes.
+- **Art and brand license:** the code is AGPL. The name, wordmark, sprites and scene art are not under the open license. They live in `brand/` and `public/art/` with their own `LICENSE`: all rights reserved for now, and Erick can open them later.
+- **Sprites:** drawn in this repo as original pixel art for launch, and loaded through an atlas so an artist's sheet can replace them later without code changes.
 - **Testing:** `node:test` with `tsx` (already set up) for pure logic; integration tests against the dev database for RLS, checkout and the Gate; Playwright for the main flows (sign up, list, buy, connect an agent), at desktop width and at 390px.
 
 ## 15. Milestones
-Each milestone ends with its tests passing, desktop and 390px checked, empty/loading/error states done, AA contrast checked, and a short demo note in the PR description.
+Each milestone ends with its tests passing, desktop and 390px checked, empty/loading/error states done, AA contrast checked, a craft review against 4.8 and 4.9, and a short demo note in the PR description.
 
 | # | Milestone | Contents |
 | --- | --- | --- |
-| M0 | Foundation and landing | Brand tokens, Geist, glass components, stamps, badges. The production scene engine with the sprite atlas, fade and scrim. The full landing page (5.4). `/sell`, `/agents`, `/fees`, `/gate`, `/open-source`, `/faq`, the docs skeleton. SEO and AEO plumbing (12). Money rules extended with tests. Update the handoff docs and `AGENTS.md`. AGPL `LICENSE` file. |
+| M0 | Foundation and landing | Brand tokens, Geist, glass components, stamps, badges. The production scene engine with the sprite atlas, fade and scrim. The full landing page (5.4). `/sell`, `/agents`, `/fees`, `/gate`, `/open-source`, `/faq`, the docs skeleton. SEO and AEO plumbing (12). Money rules extended with tests. Update the handoff docs and `AGENTS.md`. AGPL `LICENSE` file and the separate art license. Motion tokens, the command palette shell, and the egg registry with the first eggs that live on M0 pages. |
 | M1 | Accounts | Supabase project and the first migration. Sign up and sign in with every method in 6.1. Onboarding. Settings. Aliases and avatars. |
 | M2 | Catalog | Categories, listing pages with JSON-LD and `.md` twins, booth pages, `/market` search and filters, OG images. Seed real goods (port today's `lib/catalog.ts` and add at least 3 per category), owned by a house booth. |
 | M3 | Booths and the Gate | Verification (test mode), the booth dashboard, the listing form, uploads, the four checkers, the editor queue, notes and resubmit, versions, reports. |
@@ -490,7 +659,7 @@ Each milestone ends with its tests passing, desktop and 390px checked, empty/loa
 | M6 | Status | Points ledger, buyer levels, booth ranks and stamp unlocking, badges including Builder through GitHub, Dollar Night. |
 | M7 | Crypto | Wallet linking, quotes, Solana split on devnet, the splitter contract on Base Sepolia and Ethereum Sepolia, confirmation, receipts. |
 | M8 | Payouts and fund | Connect payouts math and a monthly job, the fund ledger page. |
-| M9 | Later | PayPal and Venmo, Ask the booth, the Wanted board, Bitcoin over Lightning, x402, semantic search, mirrors. Each one gets a short design first. |
+| M9 | Later | Services, PayPal and Venmo, Ask the booth, the Wanted board, Bitcoin over Lightning, x402, semantic search, mirrors. Each one gets a short design first. |
 
 ## 16. Accounts and keys, and when they're needed
 - **Erick creates or approves, at the milestone that needs it:**
@@ -524,3 +693,16 @@ Each milestone ends with its tests passing, desktop and 390px checked, empty/loa
 9. The keepers and stalls survive as scene characters, not navigation.
 10. All AI crawlers are allowed in `robots.txt`.
 11. Legal pages ship as clearly marked drafts until a lawyer reviews them.
+12. Display headlines use a serif face, and one variable switches them to Geist (4.2). Erick saw both in the mockup and hasn't picked yet.
+13. Cyan stays as the single interface accent. Gradient washes and most glass are gone (4.3, 4.5, 4.8).
+14. The hero buttons say "Browse the market" and "Connect an agent", and the closing line is "The market is open." (5.4). "The first market built for agents" was dropped because it can't be proven.
+15. Services wait until M9 (7.1).
+16. Refunds: self-serve within 7 days if unopened, an editor decides if opened, and a sale is kept after 14 days (10.5).
+17. US-based makers only at launch. Tax goes on top and never comes out of the 90% (10.5).
+18. The name, wordmark and art are not under the open license (14).
+19. Rank belongs to the person and is shared across their aliases (8.1).
+20. One maker per crypto payment, and crypto-only booths can't be bought with a balance (10.2).
+21. No compiled binaries in v1 (7.1).
+22. Launch sprites are drawn in this repo, and an artist's sheet can replace them later (14).
+23. The first easter-egg set (4.10). The lawyer reviews it with the legal pages.
+24. The design references were read and distilled into 4.8 and 4.9. None is installed.
