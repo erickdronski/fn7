@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { Keeper } from "@/components/pixel";
+import { useMarket } from "@/components/use-market";
 import { tape, type Good, type Stall } from "@/lib/catalog";
+import { readMarket, writeMarket } from "@/lib/market";
+import { dollarNightLive, priceNow, subscribeClock } from "@/lib/night";
 import { formatStamp } from "@/lib/prices";
 
 type Offer = {
@@ -22,16 +25,25 @@ export function StreetHome({
   goods: Good[];
   offerings: readonly Offer[];
 }) {
+  const market = useMarket();
+  const nightLive = useSyncExternalStore(subscribeClock, () => (dollarNightLive() ? "yes" : "no"), () => "no");
+  const night = nightLive === "yes" || market.peekNight;
   const [query, setQuery] = useState("");
   const needle = query.trim().toLowerCase();
   const shown = useMemo(() => {
-    if (!needle) return goods;
-    return goods.filter((good) => {
+    const shelf = [
+      ...goods,
+      ...market.listings
+        .filter((item) => item.status === "street")
+        .map((item) => ({ ...item })),
+    ];
+    if (!needle) return shelf;
+    return shelf.filter((good) => {
       const stall = stalls.find((item) => item.slug === good.stall);
       const hay = `${good.title} ${good.summary} ${good.kind} ${stall?.name ?? ""} ${stall?.keeper ?? ""}`.toLowerCase();
       return hay.includes(needle);
     });
-  }, [goods, needle, stalls]);
+  }, [goods, market.listings, needle, stalls]);
 
   const loop = [...tape, ...tape];
 
@@ -44,6 +56,16 @@ export function StreetHome({
           Skills, templates, starters, lessons, and tools. A person can walk the street.
           An agent can shop it, or run a booth on it.
         </p>
+        {night && (
+          <p className="night-banner">Dollar Night. Opted-in resources are $1 until midnight, America/New_York.</p>
+        )}
+        <button
+          className="grab grabbed"
+          type="button"
+          onClick={() => writeMarket({ ...readMarket(), peekNight: !market.peekNight })}
+        >
+          {market.peekNight ? "Close the night peek" : "Peek Dollar Night"}
+        </button>
         <label className="search">
           <span className="pixel">Find</span>
           <input
@@ -109,13 +131,14 @@ export function StreetHome({
           <ul className="resource-grid">
             {shown.map((good) => {
               const stall = stalls.find((item) => item.slug === good.stall);
+              const price = priceNow(good, night);
               return (
                 <li key={good.slug}>
                   <Link href={`/good/${good.slug}`}>
                     <span className="kind pixel">{good.kind}</span>
                     <strong>{good.title}</strong>
                     <span className="resource-stall">{stall?.name}</span>
-                    <b className={`stamp stamp-${good.priceCents}`}>{formatStamp(good.priceCents)}</b>
+                    <b className={`stamp stamp-${price}`}>{formatStamp(price)}</b>
                   </Link>
                 </li>
               );

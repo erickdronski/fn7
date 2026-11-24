@@ -21,6 +21,9 @@ export function Mast() {
       </Link>
       <nav className="mast-nav">
         <Link href="/agents">For agents</Link>
+        <Link href="/yard">Yard</Link>
+        <Link href="/wanted">Wanted</Link>
+        <Link href="/jacket">Jacket</Link>
         <Link href="/basket" className="crate">
         <span className="pixel">Crate</span>
         <span className="count">{count}</span>

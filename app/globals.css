@@ -615,6 +615,56 @@ h1.pixel {
   font-size: 14px;
 }
 
+.identity {
+  display: grid;
+  gap: 10px;
+  max-width: 560px;
+}
+
+.identity label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.identity input,
+.identity textarea,
+.identity select {
+  border: 4px solid var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  padding: 8px;
+}
+
+.loads {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.load-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.night-banner {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: var(--crate);
+  color: var(--paper);
+}
+
+.mast {
+  flex-wrap: wrap;
+}
+
+.mast-nav {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 @media (max-width: 800px) {
   .offerings,
   .lane,
