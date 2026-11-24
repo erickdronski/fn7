@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FACTS } from "@/lib/facts";
-import { SITE } from "@/lib/site";
+import { LEGAL_DOCS } from "@/lib/legal";
+import { ROUTES, SITE, isExternal } from "@/lib/site";
 import { Wordmark } from "./wordmark";
 
 type Item = { label: string; href: string };
@@ -9,22 +10,32 @@ const COLUMNS: Array<{ title: string; items: Item[] }> = [
   {
     title: "The market",
     items: [
-      { label: "For agents", href: "/#agents" },
-      { label: "For creators", href: "/#creators" },
-      { label: "Payments", href: "/#payments" },
-      { label: "Rank and price tiers", href: "/#status" },
-      { label: "The Gate", href: "/#gate" },
-      { label: "Spec sheet", href: "/#spec" },
+      { label: "For agents", href: ROUTES.agents },
+      { label: "For creators", href: ROUTES.creators },
+      { label: "Earned pricing", href: ROUTES.rank },
+      { label: "Payments", href: ROUTES.payments },
+      { label: "Trust and the Gate", href: ROUTES.trust },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { label: "Docs", href: ROUTES.docs },
+      { label: "Questions", href: ROUTES.faq },
+      { label: "Changelog", href: ROUTES.changelog },
+      { label: "Security", href: ROUTES.security },
+      { label: "llms.txt", href: "/llms.txt" },
     ],
   },
   {
     title: "Build with us",
     items: [
-      { label: "Open source", href: "/open-source" },
-      { label: "Roadmap", href: "/open-source#roadmap" },
+      { label: "Open source", href: ROUTES.openSource },
+      { label: "Roadmap", href: ROUTES.roadmap },
       { label: "Contributing guide", href: SITE.repo.contributing },
       { label: "Good first issues", href: SITE.repo.goodFirstIssues },
       { label: "Discussions", href: SITE.repo.discussions },
+      { label: "GitHub", href: SITE.repo.url },
     ],
   },
   {
@@ -36,25 +47,34 @@ const COLUMNS: Array<{ title: string; items: Item[] }> = [
       { label: "Report a vulnerability", href: SITE.repo.security },
     ],
   },
-  {
-    title: "Design",
-    items: [
-      { label: "Platform design", href: SITE.design.platform },
-      { label: "Catalog and publishing", href: SITE.design.catalog },
-      { label: "The fn7.json package", href: SITE.design.packageFormat },
-      { label: "GitHub", href: SITE.repo.url },
-    ],
-  },
 ];
 
+function FooterLink({ item, className }: { item: Item; className: string }) {
+  return isExternal(item.href) ? (
+    <a className={className} href={item.href} target="_blank" rel="noreferrer">
+      {item.label}
+    </a>
+  ) : (
+    <Link className={className} href={item.href}>
+      {item.label}
+    </Link>
+  );
+}
+
 export function Footer() {
+  const legal: Item[] = [
+    ...LEGAL_DOCS.map((doc) => ({ label: doc.title, href: `${ROUTES.legal}/${doc.slug}` })),
+    { label: "Code of conduct", href: SITE.repo.conduct },
+  ];
+
   return (
     <footer className="footer">
       <div className="wrap footer-grid">
-        <div>
+        <div className="footer-about">
           <Link href="/" aria-label="fn/7, home" className="footer-mark">
             <Wordmark />
           </Link>
+          <p>{FACTS.definition}</p>
         </div>
         {COLUMNS.map((column) => (
           <div key={column.title}>
@@ -62,26 +82,27 @@ export function Footer() {
             <ul>
               {column.items.map((item) => (
                 <li key={item.label}>
-                  {/^https?:/.test(item.href) ? (
-                    <a className="link footer-link" href={item.href} target="_blank" rel="noreferrer">
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link className="link footer-link" href={item.href}>
-                      {item.label}
-                    </Link>
-                  )}
+                  <FooterLink item={item} className="link footer-link" />
                 </li>
               ))}
             </ul>
           </div>
         ))}
       </div>
-      <div className="wrap footer-fine">
-        <p>{FACTS.definition}</p>
-        <p>
-          {FACTS.status} The code is licensed {FACTS.license}. The name, the wordmark and the pixel art are reserved.
-        </p>
+
+      <div className="legalbar">
+        <div className="wrap legalbar-in">
+          <p>© 2026 fn/7. Code under {FACTS.license}.</p>
+          <nav aria-label="Legal">
+            <ul>
+              {legal.map((item) => (
+                <li key={item.label}>
+                  <FooterLink item={item} className="link legalbar-link" />
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </div>
     </footer>
   );

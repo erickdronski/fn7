@@ -10,6 +10,7 @@ import "@/styles/base.css";
 import "@/styles/ui.css";
 import "@/styles/site.css";
 import "@/styles/landing.css";
+import "@/styles/pages.css";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });

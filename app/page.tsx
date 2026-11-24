@@ -1,19 +1,24 @@
+import Link from "next/link";
 import { Suspense } from "react";
+import { Reasons } from "@/components/page/blocks";
+import { FaqList, faqJsonLd, jsonLdString } from "@/components/page/faq-list";
 import { AgentStory } from "@/components/product/agent-story";
+import { Rails } from "@/components/product/rails";
+import { Receipt } from "@/components/product/receipt";
 import { TierLadder } from "@/components/product/tier-ladder";
 import { MarketScene } from "@/components/scene/market-scene";
 import { StarButton, StarButtonFallback } from "@/components/site/star-button";
 import { Button } from "@/components/ui/button";
 import { CopyButton } from "@/components/ui/copy-button";
 import { Count } from "@/components/ui/count";
-import { PixelIcon, type PixelIconName } from "@/components/ui/pixel-icon";
+import { PixelIcon } from "@/components/ui/pixel-icon";
 import { Reveal } from "@/components/ui/reveal";
+import { CATEGORIES, FAQ, GATE_CHECKS, RANK_REASONS } from "@/lib/content";
 import { egg } from "@/lib/eggs";
 import { FACTS, SPEC_SHEET } from "@/lib/facts";
 import { getRepoStats } from "@/lib/github";
 import { creatorCut } from "@/lib/prices";
-import { SITE } from "@/lib/site";
-import Link from "next/link";
+import { ROUTES, SITE } from "@/lib/site";
 
 const MCP_CONFIG = `{
   "mcpServers": {
@@ -21,67 +26,14 @@ const MCP_CONFIG = `{
   }
 }`;
 
-const CATEGORIES: Array<{ name: string; icon: PixelIconName; types: string }> = [
-  { name: "Agents", icon: "bot", types: "Skills, prompt packs, MCP servers, plugins, workflows" },
-  { name: "Code", icon: "code", types: "Starters, repos, libraries, snippets, scripts" },
-  { name: "Learn", icon: "book", types: "Courses, lessons, guides, recorded workshops" },
-  { name: "Templates", icon: "grid", types: "Docs, decks, spreadsheets, design files, site themes" },
-  { name: "Media", icon: "play", types: "Video, audio, photo sets" },
-  { name: "Software", icon: "window", types: "Apps, extensions and CLIs, as readable source" },
-  { name: "Assets", icon: "gem", types: "Icons, fonts, UI kits, sprites, 3D, presets" },
-  { name: "Data", icon: "data", types: "Datasets, eval sets, embeddings, models in safe formats" },
-];
-
-const GATE: Array<{ icon: PixelIconName; text: string }> = [
-  { icon: "lock", text: "A security scan for leaked secrets, malware and risky installs." },
-  { icon: "lens", text: "A prompt-injection scan for instructions that turn an agent on its owner." },
-  { icon: "sieve", text: "A quality review of the release against its own sample." },
-  { icon: "shield", text: "Human review for anything that runs code or costs more than $5." },
-];
-
 const SALE = 5000;
 const dollars = (cents: number) => `$${(cents / 100).toFixed(2)}`;
-
-const FAQ: Array<{ q: string; a: string }> = [
-  { q: "What is fn/7?", a: FACTS.definition },
-  {
-    q: "Can I buy or sell on it today?",
-    a: "Not yet. fn/7 is being built in the open, one milestone at a time. The design is public, the code is public, and the roadmap shows what comes next. Star the repo to follow along.",
-  },
-  {
-    q: "How much do creators keep?",
-    a: `${FACTS.creatorSharePct}% of the price paid, on every sale, at every price tier and on every way to pay. fn/7 keeps 10%: ${FACTS.platformPct}% runs the market and ${FACTS.fundPct}% goes to a public open-source fund. There is no listing fee and no monthly fee.`,
-  },
-  {
-    q: "How will agents buy things?",
-    a: "Over one MCP connection, or a REST API. An agent searches by describing its task, reads a listing's permissions and track record, pays from a balance under a cap its owner set, verifies what it received and installs it. Purchases above a threshold wait for the owner's approval.",
-  },
-  {
-    q: "How is a release checked before it goes public?",
-    a: "It passes the Gate: a security scan, a prompt-injection scan and a quality review, with human review where the risk is higher. A release that passes gets an Ed25519-signed attestation, recorded in a public transparency log, which an agent can verify before installing.",
-  },
-  {
-    q: "How will payments work?",
-    a: "Cards, Apple Pay and Google Pay through Stripe, a prepaid fn/7 balance, or USDC, SOL and ETH. A card purchase starts at $5, and a balance or crypto works from $1. On-chain sales split 90/10 in one transaction, so fn/7 never holds a buyer's or a creator's coins.",
-  },
-  {
-    q: "What are price tiers?",
-    a: "Every price on fn/7 is one of twelve fixed tiers, from Free to $500. Every creator starts with Free, $1, $3 and $5. Selling well and shopping the market raises a creator's rank, and each rank unlocks higher tiers.",
-  },
-  {
-    q: "Is it really open source?",
-    a: `Yes. The code is licensed ${FACTS.license}, and anyone can read it, run it, fork it and send a pull request. The name, the wordmark and the pixel art are reserved, so a fork needs its own name and look.`,
-  },
-];
+const HOME_FAQ = FAQ.slice(0, 8);
 
 const jsonLd = [
   { "@context": "https://schema.org", "@type": "Organization", name: FACTS.name, alternateName: FACTS.said, url: SITE.origin, description: FACTS.definition, sameAs: [SITE.repo.url] },
   { "@context": "https://schema.org", "@type": "WebSite", name: FACTS.name, url: SITE.origin, description: FACTS.definition },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
-  },
+  faqJsonLd(HOME_FAQ),
 ];
 
 async function RepoFigures() {
@@ -113,10 +65,10 @@ export default function Home() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
 
       <p className="strip">
-        {FACTS.status} <Link href="/open-source#roadmap">See the roadmap</Link>
+        {FACTS.status} <Link href={ROUTES.roadmap}>See the roadmap</Link>
       </p>
 
       <section className="hero" data-scene-host>
@@ -126,19 +78,46 @@ export default function Home() {
             The market <br />
             built for agents
           </h1>
-          <p className="hero-sub">Skills, code, courses and tools, sold over one MCP connection. Creators keep 90%. Every release is scanned, reviewed and signed.</p>
+          <p className="hero-sub">Skills, code, courses and tools, sold over one MCP connection. Creators keep 90% and earn their way from $1 to $500. Every release is scanned, reviewed and signed.</p>
           <div className="hero-cta">
             <Suspense fallback={<StarButtonFallback />}>
               <StarButton />
             </Suspense>
-            <Button href="/open-source#roadmap" variant="line">
-              See the roadmap
+            <Button href={ROUTES.rank} variant="line">
+              How earned pricing works
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="section" id="agents">
+      <section className="section" id="rank">
+        <div className="wrap">
+          <Reveal className="copy copy-wide">
+            <h2>
+              <span className="lead">Earned pricing</span>
+              On fn/7, a price is proof.
+            </h2>
+            <p>
+              You can&rsquo;t type a price here. Every creator starts at Free, $1, $3 and $5, and higher price tiers unlock with rank. Rank comes from settled sales to real buyers, and from buying on the market yourself. A $500
+              release can only come from a creator with 250 settled sales to 100 different buyers.
+            </p>
+          </Reveal>
+          <div className="rank-feature">
+            <Reveal>
+              <TierLadder />
+            </Reveal>
+            <Reasons items={RANK_REASONS} />
+          </div>
+          <div className="linklist">
+            <Button href={ROUTES.rank}>See how rank works</Button>
+            <Button href={ROUTES.creators} variant="line">
+              For creators
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="section gate" id="agents">
         <div className="wrap split">
           <Reveal className="copy">
             <h2>
@@ -154,8 +133,8 @@ export default function Home() {
               <pre className="mono">{MCP_CONFIG}</pre>
             </figure>
             <p className="note">The server ships in milestone M5. The address is reserved.</p>
-            <Button href={SITE.design.agents} variant="line">
-              Read the agent design
+            <Button href={ROUTES.agents} variant="line">
+              See how agents use fn/7
             </Button>
           </Reveal>
           <Reveal delay={90}>
@@ -199,37 +178,17 @@ export default function Home() {
               </dl>
             </div>
             <p className="note">{egg("neverChanges", "The split is the same at every price.")}</p>
-            <Button href={SITE.design.publishing} variant="line">
-              Read how publishing works
+            <Button href={ROUTES.creators} variant="line">
+              See how selling works
             </Button>
           </Reveal>
         </div>
       </section>
 
-      <section className="section" id="payments">
+      <section className="section gate" id="payments">
         <div className="wrap split split-flip">
           <Reveal>
-            <article className="receipt" aria-label="Sample receipt">
-              <header>
-                <h3>Receipt</h3>
-                <span className="mono">ord_7F3K2</span>
-              </header>
-              <dl>
-                <dt>Release-notes skill, 1.2.0</dt>
-                <dd className="mono num">$5.00</dd>
-                <dt>Paid with</dt>
-                <dd>USDC on Solana</dd>
-                <dt>To the creator, @courier</dt>
-                <dd className="mono num">4.50 USDC</dd>
-                <dt>To fn/7</dt>
-                <dd className="mono num">0.50 USDC</dd>
-                <dt>Transaction</dt>
-                <dd className="mono">5hG7…k2Qp</dd>
-                <dt>Signature</dt>
-                <dd>Ed25519, verified</dd>
-              </dl>
-              <footer>Sample data. One transaction pays both sides.</footer>
-            </article>
+            <Receipt />
           </Reveal>
           <Reveal className="copy" delay={90}>
             <h2>
@@ -237,34 +196,11 @@ export default function Home() {
               Pay any way. fn/7 never holds your funds.
             </h2>
             <p>Use a card, Apple Pay, Google Pay or a prepaid balance. Or pay on-chain, and the sale splits 90/10 in one transaction, straight to the creator&rsquo;s wallet.</p>
-            <ul className="rails" aria-label="Ways to pay">
-              {["Card", "Apple Pay", "Google Pay", "Balance", ...FACTS.coins].map((rail) => (
-                <li key={rail}>{rail}</li>
-              ))}
-            </ul>
+            <Rails compact />
             <p className="note">A card purchase starts at $5. A balance or crypto works from $1.</p>
-            <Button href={SITE.design.payments} variant="line">
-              Read how payments work
+            <Button href={ROUTES.payments} variant="line">
+              See every way to pay
             </Button>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section" id="status">
-        <div className="wrap split">
-          <Reveal className="copy">
-            <h2>
-              <span className="lead">Rank</span>
-              Start at $1. Earn your way to $500.
-            </h2>
-            <p>Every price is one of twelve fixed tiers. Every creator starts with Free, $1, $3 and $5. Sell well and shop the market, and your rank unlocks the higher tiers.</p>
-            <p className="note">Refunded sales and your own purchases don&rsquo;t count.</p>
-            <Button href={SITE.design.status} variant="line">
-              Read how rank works
-            </Button>
-          </Reveal>
-          <Reveal delay={90}>
-            <TierLadder />
           </Reveal>
         </div>
       </section>
@@ -281,12 +217,12 @@ export default function Home() {
           <ul className="cats">
             {CATEGORIES.map((category, index) => (
               <li key={category.name}>
-                <Reveal delay={index * 45}>
-                  <a className="tile cat" href={SITE.design.whatCanBeSold} target="_blank" rel="noreferrer">
+                <Reveal delay={(index % 4) * 45}>
+                  <Link className="tile cat" href={`${ROUTES.creators}#catalog`}>
                     <PixelIcon name={category.icon} size={36} />
                     <span className="cat-name">{category.name}</span>
                     <span className="cat-types">{category.types}</span>
-                  </a>
+                  </Link>
                 </Reveal>
               </li>
             ))}
@@ -301,7 +237,7 @@ export default function Home() {
             <p>Nothing goes public until it passes the Gate. Agents only ever see releases that passed.</p>
           </Reveal>
           <ul className="gate-grid">
-            {GATE.map((check, index) => (
+            {GATE_CHECKS.map((check, index) => (
               <li key={check.icon}>
                 <Reveal delay={index * 60}>
                   <PixelIcon name={check.icon} size={84} />
@@ -312,8 +248,8 @@ export default function Home() {
           </ul>
           <Reveal className="gate-foot">
             <p>A release that passes gets an Ed25519-signed attestation in a public transparency log.</p>
-            <Button href={SITE.design.gate} variant="line">
-              Read how the Gate works
+            <Button href={ROUTES.trust} variant="line">
+              See how the Gate works
             </Button>
           </Reveal>
         </div>
@@ -331,9 +267,9 @@ export default function Home() {
               <Suspense fallback={<StarButtonFallback variant="ink" />}>
                 <StarButton variant="ink" />
               </Suspense>
-              <Link href="/open-source" className="btn btn-ink">
+              <Button href={ROUTES.openSource} variant="ink">
                 See how to help
-              </Link>
+              </Button>
             </div>
           </Reveal>
         </div>
@@ -359,26 +295,24 @@ export default function Home() {
               </tbody>
             </table>
           </Reveal>
+          <div className="linklist">
+            <Button href={ROUTES.docs} variant="line" size="sm">
+              Read the docs
+            </Button>
+          </div>
         </div>
       </section>
 
-      <section className="section" id="faq">
+      <section className="section gate" id="faq">
         <div className="wrap faq">
           <Reveal className="copy">
             <h2>Questions</h2>
+            <Button href={ROUTES.faq} variant="line">
+              See all questions
+            </Button>
           </Reveal>
           <Reveal>
-            {FAQ.map((item) => (
-              <details key={item.q} className="faq-item" name="faq">
-                <summary>
-                  {item.q}
-                  <svg className="faq-mark" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                    <path d="M7 1.5v11M1.5 7h11" />
-                  </svg>
-                </summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
+            <FaqList items={HOME_FAQ} />
           </Reveal>
         </div>
       </section>
