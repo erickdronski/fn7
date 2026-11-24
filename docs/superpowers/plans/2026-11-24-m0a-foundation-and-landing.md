@@ -125,3 +125,33 @@ Copy comes from platform design 5.4 and `FACTS`. Until accounts and the market e
 - [ ] **Step 2:** Add `.claude/launch.json` and open the preview. Check the console for errors.
 - [ ] **Step 3:** Add a screenshot to the README. Push `platform-v1`. Open a pull request to `main`.
 - [ ] **Step 4:** Set the repo's description, topics and homepage. Turn on Discussions and private vulnerability reporting.
+
+---
+
+## Outcome (24 November 2026)
+
+All seven tasks are done. A fresh reviewer read the branch at `55f4dfa`, and its findings were fixed in commit `7b34a89` along with the second slice (market preview, plugin kit, story pages).
+
+### Calls made while building
+
+Each line is a decision taken without asking, with what it costs if it was wrong.
+
+1. Built without a pause to review this plan, because the request said to keep building. Cost: the plan is reviewed after the fact.
+2. Until accounts and the market exist, buttons point at real places (GitHub, the roadmap, the designs). Cost: a copy swap in `lib/site.ts`.
+3. The pixel scene is a port of the approved mockup engine, not the finer sprite atlas in platform design 4.6. Cost: the scene looks like the mockup until that slice.
+4. Landing sections live in `app/page.tsx`, not eleven files. Cost: one refactor.
+5. Repo counts of zero are hidden. Cost: one condition.
+6. "90%*" keeps 90% as a floor on every way to pay. The asterisk says who covers processing and network fees, and that a refund or a lost dispute reverses the sale. Cost: if the share itself should vary by way to pay, `lib/prices.ts` and the Money rule change.
+7. Third-party marks are held back where the owner asks to be asked first, behind one switch in `lib/marks.ts`. Cost: the install and agents pages show fn/7's own icons for five tools until it is flipped.
+8. Donations stay "Not open yet" until a public link or address is set. Cost: none. Nothing is collected.
+9. Sample listings and booths are kept out of search engines and the sitemap, and an unknown address is a real 404. Cost: less indexed content before launch.
+10. `/legal/[slug]`, `/g/[slug]` and `/booth/[alias]` export `instant = false`, since every real page is prerendered. Cost: none for real pages.
+11. The nav has four links and three menus, collapses at 1080px and shows one action below 1280px. Cost: one breakpoint and one array.
+12. Most review fixes are CSS, markup or copy, checked by lint, types, the suite and the browser, not each by its own failing test. Cost: a regression there is caught by eye.
+
+### Left for later
+
+- Split `app/page.tsx` into one file per section.
+- The finer sprite atlas for the pixel scene (platform design 4.6).
+- Reduced motion and real touch devices were checked by emulation only.
+- The rules for the payment marks, and for the npm, LangChain, Zapier, n8n and Discord marks, were not checked.
