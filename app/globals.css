@@ -201,6 +201,121 @@ h1.pixel {
   padding: 4px;
 }
 
+.hover-scene {
+  margin: 0 0 28px;
+}
+
+.hover-floor {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  border: 4px solid var(--paper);
+  background-color: #24182e;
+  background-image:
+    linear-gradient(#2c2038 1px, transparent 1px),
+    linear-gradient(90deg, #2c2038 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.booth-row {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  right: 12px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+  z-index: 2;
+}
+
+.mini-booth {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  min-height: 78px;
+  padding: 8px 4px;
+  text-decoration: none;
+  border: 3px solid var(--ink);
+}
+
+.mini-booth .pixel {
+  font-size: 8px;
+  text-align: center;
+}
+
+.lane-paint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 128px;
+  height: 150px;
+  background: #1a1022;
+  border-block: 4px solid var(--amber);
+}
+
+.walker {
+  position: absolute;
+  top: 168px;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.walker .keeper {
+  outline-color: var(--amber);
+}
+
+.walker-a { animation: stroll 16s linear infinite; top: 146px; }
+.walker-b { animation: stroll 22s linear infinite reverse; top: 232px; }
+.walker-c { animation: browse 18s linear infinite; top: 188px; }
+.walker-d { animation: stroll 26s linear infinite; top: 210px; animation-delay: -9s; }
+
+.deal {
+  position: absolute;
+  z-index: 4;
+  font-family: var(--font-pixel), ui-monospace, monospace;
+  font-size: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 4px 6px;
+  border: 3px solid var(--crate);
+}
+
+.deal-a { top: 146px; animation: pop-a 16s linear infinite; }
+.deal-b { top: 200px; animation: pop-b 22s linear infinite; }
+.deal-c { top: 128px; animation: pop-c 18s linear infinite; }
+
+@keyframes stroll {
+  from { left: -12%; }
+  to { left: 108%; }
+}
+
+@keyframes browse {
+  0% { left: -12%; }
+  38% { left: 46%; }
+  62% { left: 46%; }
+  100% { left: 108%; }
+}
+
+@keyframes pop-a {
+  0%, 30% { opacity: 0; left: 10%; }
+  40%, 55% { opacity: 1; left: 28%; }
+  70%, 100% { opacity: 0; left: 70%; }
+}
+
+@keyframes pop-b {
+  0%, 45% { opacity: 0; left: 80%; }
+  55%, 70% { opacity: 1; left: 62%; }
+  85%, 100% { opacity: 0; left: 20%; }
+}
+
+@keyframes pop-c {
+  0%, 34% { opacity: 0; left: 20%; }
+  40%, 60% { opacity: 1; left: 48%; }
+  72%, 100% { opacity: 0; left: 80%; }
+}
+
 .hero {
   display: grid;
   gap: 12px;
@@ -677,11 +792,39 @@ h1.pixel {
   }
 }
 
+@media (max-width: 800px) {
+  .hover-floor {
+    height: 280px;
+  }
+
+  .booth-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .lane-paint {
+    top: 168px;
+    height: 80px;
+  }
+
+  .walker,
+  .deal {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pixel-lamp span,
-  .tape-track {
+  .tape-track,
+  .walker,
+  .deal {
     animation: none;
   }
+
+  .walker-a { left: 12%; }
+  .walker-b { left: 38%; }
+  .walker-c { left: 62%; }
+  .walker-d { left: 82%; }
+  .deal { opacity: 1; }
 }
 
 @keyframes lamp-blink {

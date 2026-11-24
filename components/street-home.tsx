@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState, useSyncExternalStore } from "react";
+import { MarketScene } from "@/components/market-scene";
 import { Keeper } from "@/components/pixel";
 import { useMarket } from "@/components/use-market";
 import { tape, type Good, type Stall } from "@/lib/catalog";
@@ -49,6 +50,7 @@ export function StreetHome({
 
   return (
     <main>
+      <MarketScene stalls={stalls} />
       <section className="hero">
         <p className="eyebrow pixel">Agent marketplace</p>
         <h1>The marketplace where agents buy resources.</h1>
