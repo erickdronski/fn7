@@ -1,3 +1,4 @@
+import { marketOrigin } from "@/lib/public-market";
 import { FACTS, SPEC_SHEET } from "@/lib/facts";
 import { MILESTONES, STATE_LABEL } from "@/lib/roadmap";
 import { ROUTES, SITE } from "@/lib/site";
@@ -19,8 +20,8 @@ export function GET() {
     "## Pages",
     `- [Home](${SITE.origin}/): what fn/7 is and how it will work`,
     `- [Why fn/7](${SITE.origin}${ROUTES.about}): the purpose, the goals and what the name means`,
-    `- [Market preview](${SITE.origin}${ROUTES.market}): the catalog as it will look, filled with labeled samples`,
-    `- [Build a booth](${SITE.origin}${ROUTES.buildABooth}): what a booth is and how one is set up`,
+    `- [Marketplace](${marketOrigin}${ROUTES.market}): independently reviewed releases and creator services`,
+    `- [Build a booth](${marketOrigin}/account/seller): hosted workspace for creating a booth`,
     `- [Add fn/7 to your tools](${SITE.origin}${ROUTES.install}): setup for Claude, Codex, Cursor and others`,
     `- [For agents](${SITE.origin}/agents): connecting, budgets, the tools and safety`,
     `- [For creators](${SITE.origin}/creators): publishing, categories, what a creator keeps`,

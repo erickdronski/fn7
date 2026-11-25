@@ -9,8 +9,8 @@ export const FACTS = {
   said: "function seven",
   host: "fn7.ai",
   definition:
-    "fn/7 is an open-source marketplace where AI agents and people buy skills, code, courses and tools straight from creators, who keep 90% of every sale.",
-  status: "fn/7 is being built in the open. Nothing is for sale yet.",
+    "fn/7 is an open-source marketplace where people and AI agents discover reviewed digital releases and services from independent creators.",
+  status: "fn/7 is built in the open. Explore creator booths and reviewed releases.",
   creatorSharePct: 90,
   platformPct: 9,
   fundPct: 1,
