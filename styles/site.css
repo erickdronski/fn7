@@ -88,6 +88,39 @@
   white-space: nowrap;
 }
 
+/* Official links share one row in the bar, menu and footer. */
+.site-socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.site-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0 9px;
+  border-radius: var(--radius-s);
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1;
+  transition: color var(--dur-hover), background-color var(--dur-hover);
+}
+
+.site-socials a:is(:hover, :focus-visible, :active) {
+  color: var(--cyan);
+  background-color: rgb(94 242 255 / 8%);
+}
+
+.nav-actions .site-socials {
+  flex-wrap: nowrap;
+  padding-inline-start: 8px;
+  border-inline-start: 1px solid var(--line);
+}
+
 /* The bar keeps one action until there is room for two. */
 @media (max-width: 1279px) {
   .nav-actions .btn-line {
@@ -324,6 +357,11 @@
 
 /* Touch screens get full-size targets. */
 @media (pointer: coarse) {
+  .site-socials a {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
   .nav-mark {
     padding: 11px 0;
   }
