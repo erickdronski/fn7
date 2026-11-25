@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Suspense, type CSSProperties } from "react";
+import { type CSSProperties } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "@/components/ui/menu";
 import { BUILD_MENU, HOW_MENU, NAV_GROUPS, NAV_LINKS, RESOURCES_MENU, SITE, isExternal } from "@/lib/site";
 import { NavShell } from "./nav-shell";
-import { StarButton, StarButtonFallback } from "./star-button";
+import { SocialLinks } from "./social-links";
 import { Wordmark } from "./wordmark";
 
 export function Nav() {
@@ -27,9 +27,7 @@ export function Nav() {
         <Button href={SITE.repo.feedback} variant="line" size="sm">
           Share feedback
         </Button>
-        <Suspense fallback={<StarButtonFallback size="sm" />}>
-          <StarButton size="sm" />
-        </Suspense>
+        <SocialLinks />
       </div>
     </>
   );
@@ -38,6 +36,7 @@ export function Nav() {
   const starts = NAV_GROUPS.map((_, index) => NAV_GROUPS.slice(0, index).reduce((sum, group) => sum + group.links.length, 0));
   const sheet = (
     <nav aria-label="Main, small screens" className="sheet-links">
+      <div className="sheet-actions"><SocialLinks showNames /></div>
       {NAV_GROUPS.map((group, groupIndex) => (
         <section key={group.title} className="sheet-group" aria-label={group.title}>
           <h2 className="sheet-title">{group.title}</h2>
@@ -55,11 +54,6 @@ export function Nav() {
           })}
         </section>
       ))}
-      <div className="sheet-actions">
-        <Suspense fallback={<StarButtonFallback />}>
-          <StarButton />
-        </Suspense>
-      </div>
     </nav>
   );
 

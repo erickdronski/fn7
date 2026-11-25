@@ -31,6 +31,43 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Quiet rules sit in the margins, outside the content column at every size. */
+#main {
+  --page-rail: max(8px, calc((100% - var(--wrap)) / 2 - 22px), calc(var(--gutter) + var(--safe-x) - 16px));
+  --rail-ink: rgb(185 182 217 / 8%);
+  position: relative;
+  isolation: isolate;
+  background-image: linear-gradient(var(--rail-ink), var(--rail-ink)), linear-gradient(var(--rail-ink), var(--rail-ink));
+  background-size: 1px 100%;
+  background-position: left var(--page-rail) top, right var(--page-rail) top;
+  background-repeat: no-repeat;
+}
+
+/* Five steps echo the slash in the wordmark. Only the dots carry ink. */
+#main::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset-block-start: 0;
+  inset-inline-end: var(--page-rail);
+  width: clamp(136px, 30vw, 440px);
+  height: clamp(108px, 20vw, 260px);
+  background: radial-gradient(circle at center, rgb(94 242 255 / 20%) 1px, transparent 1.2px) 0 0 / 6px 6px;
+  clip-path: polygon(0 80%, 20% 80%, 20% 60%, 40% 60%, 40% 40%, 60% 40%, 60% 20%, 80% 20%, 80% 0, 100% 0, 100% 40%, 80% 40%, 80% 60%, 60% 60%, 60% 80%, 40% 80%, 40% 100%, 0 100%);
+  mask-image: linear-gradient(155deg, transparent 8%, black 70%, transparent);
+}
+
+@media print, (forced-colors: active) {
+  #main {
+    background: none;
+  }
+
+  #main::before {
+    content: none;
+  }
+}
+
 h1,
 h2,
 h3,

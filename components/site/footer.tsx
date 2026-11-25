@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FACTS } from "@/lib/facts";
 import { LEGAL_DOCS } from "@/lib/legal";
 import { ROUTES, SITE, isExternal } from "@/lib/site";
+import { SocialLinks } from "./social-links";
 import { Wordmark } from "./wordmark";
 
 type Item = { label: string; href: string };
@@ -40,7 +41,6 @@ const COLUMNS: Array<{ title: string; items: Item[] }> = [
       { label: "Contributing guide", href: SITE.repo.contributing },
       { label: "Good first issues", href: SITE.repo.goodFirstIssues },
       { label: "Discussions", href: SITE.repo.discussions },
-      { label: "GitHub", href: SITE.repo.url },
     ],
   },
   {
@@ -80,6 +80,7 @@ export function Footer() {
             <Wordmark />
           </Link>
           <p>{FACTS.definition}</p>
+          <SocialLinks />
         </div>
         {COLUMNS.map((column) => (
           <div key={column.title}>
